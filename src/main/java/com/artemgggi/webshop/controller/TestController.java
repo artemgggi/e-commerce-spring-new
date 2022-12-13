@@ -13,13 +13,13 @@ public class TestController {
     @Autowired
     private ProductRepository productRepository;
 
-    @GetMapping("/example.html")
+    @GetMapping("/example")
     public String showExample(Model model) {
 
         Product p = new Product();
         Long id = (long) 1;
         p = (Product) productRepository.findById(id).get();
         model.addAttribute("product", p);
-        return "/example.html";
+        return "/example";
     }
 }
