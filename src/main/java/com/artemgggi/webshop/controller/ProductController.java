@@ -50,11 +50,32 @@ public class ProductController {
 
     @PostMapping("/changePname")
     public String changePname(@RequestParam("id") Long id,
-            @RequestParam("newPname") String name) {
+                              @RequestParam("newPname") String name) {
         Product p = new Product();
         p = productRepository.findById(id).get();
         p.setName(name);
         productRepository.save(p);
         return "redirect:/productsList";
     }
+
+    @PostMapping("/changePprice")
+    public String changePprice(@RequestParam("id") Long id,
+                               @RequestParam("newPprice") int price) {
+        Product p = new Product();
+        p = productRepository.findById(id).get();
+        p.setPrice(price);
+        productRepository.save(p);
+        return "redirect:/productsList";
+    }
+
+    @PostMapping("/changePdescription")
+    public String changePdescriprion(@RequestParam("id") Long id,
+                               @RequestParam("newPdescription") String description) {
+        Product p = new Product();
+        p = productRepository.findById(id).get();
+        p.setDescription(description);
+        productRepository.save(p);
+        return "redirect:/productsList";
+    }
+
 }

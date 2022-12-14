@@ -50,19 +50,18 @@
             <th scope="row">[[*{product.id}]]</th>
             <td>[[*{product.name}]]
                 <br>
-
                 <!-- Button Modal -->
                 <button type="button" class="btn btn-success " data-toggle="modal"
-                        th:attr="data-target='#exampleModalButton'+*{product.id}">
+                        th:attr="data-target='#changeNameButton'+*{product.id}">
                     Edit
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" th:id="*{'exampleModalButton'+{product.id}}" tabindex="-1" role="dialog"
+                <div class="modal fade" th:id="*{'changeNameButton'+{product.id}}" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Edit name</h5>
+                                <h5 class="modal-title">Edit name</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="false">×</span>
                                 </button>
@@ -71,15 +70,15 @@
                                 <form action="/changePname" method="post">
                                     <div class="form-group">
                                         <label>product id</label>
-                                        <input type="number" th:value="*{product.id}"
-                                               class="form-control" name="id">
+                                        <input type="text" th:value="*{product.id}"
+                                               class="form-control" name="id" readonly>
                                         <label>product name</label>
                                         <input type="text" th:value="*{product.name}"
-                                               class="form-control" name="name" disabled>
+                                               class="form-control" name="name" readonly>
                                         <label>new product name</label>
                                         <input type="text" name="newPname" class="form-control">
                                         <br>
-                                        <button type="submit" class="btn btn-primary"> save</button>
+                                        <button type="submit" class="btn btn-primary">save</button>
                                     </div>
                                 </form>
                             </div>
@@ -87,8 +86,82 @@
                     </div>
                 </div>
             </td>
-            <td>[[*{product.price}]]</td>
-            <td>[[*{product.description}]]</td>
+            <td>[[*{product.price}]]
+                <br>
+                <!-- Button Modal -->
+                <button type="button" class="btn btn-success " data-toggle="modal"
+                        th:attr="data-target='#changePriceButton'+*{product.id}">
+                    Edit
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" th:id="*{'changePriceButton'+{product.id}}" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit price</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="false">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/changePprice" method="post">
+                                    <div class="form-group">
+                                        <label>product id</label>
+                                        <input type="text" th:value="*{product.id}"
+                                               class="form-control" name="id" readonly>
+                                        <label>product price</label>
+                                        <input type="text" th:value="*{product.price}"
+                                               class="form-control" name="name" readonly>
+                                        <label>new product price</label>
+                                        <input type="text" name="newPprice" class="form-control">
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>[[*{product.description}]]
+                <br>
+                <!-- Button Modal -->
+                <button type="button" class="btn btn-success " data-toggle="modal"
+                        th:attr="data-target='#changeDescriptionButton'+*{product.id}">
+                    Edit
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" th:id="*{'changeDescriptionButton'+{product.id}}" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit Description</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="false">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/changePdescription" method="post">
+                                    <div class="form-group">
+                                        <label>product id</label>
+                                        <input type="text" th:value="*{product.id}"
+                                               class="form-control" name="id" readonly>
+                                        <label>product description</label>
+                                        <input type="text" th:value="*{product.description}"
+                                               class="form-control" name="name" readonly>
+                                        <label>new product description</label>
+                                        <input type="text" name="newPdescription" class="form-control">
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
             <td><a th:href="@{/deleteProduct/{id}(id=${product.id})}"
                    class="btn btn-danger">Delete</a></td>
         </tr>
