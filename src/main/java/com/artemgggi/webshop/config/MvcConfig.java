@@ -12,10 +12,10 @@ public class MvcConfig implements WebMvcConfigurer {
         super();
     }
 
-    @Override
-    public void addViewControllers(final ViewControllerRegistry registry) {
-        registry.addViewController("/productsList.html").setViewName("productsList");
-    }
+//    @Override
+//    public void addViewControllers(final ViewControllerRegistry registry) {
+//        registry.addViewController("/productsList.html").setViewName("productsList");
+//    }
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
