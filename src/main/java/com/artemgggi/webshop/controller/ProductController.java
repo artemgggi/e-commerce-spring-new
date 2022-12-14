@@ -22,11 +22,6 @@ public class ProductController {
     public String showProducts(Model model) {
         List<Product> productList = productRepository.findAll();
         model.addAttribute("products", productList);
-
-//        Product p = new Product();
-//        Long id = (long) 1;
-//        p = (Product) productRepository.findById(id).get();
-//        model.addAttribute("product", p);
         return "/productsList";
     }
 
@@ -50,6 +45,16 @@ public class ProductController {
     @GetMapping("/deleteProduct/{id}")
     public String deleteProduct(@PathVariable("id") Long id) {
         productRepository.deleteById(id);
+        return "redirect:/productsList";
+    }
+
+    @PostMapping("/changePname")
+    public String changePname(@RequestParam("id") Long id,
+            @RequestParam("newPname") String name) {
+        Product p = new Product();
+        p = productRepository.findById(id).get();
+        p.setName(name);
+        productRepository.save(p);
         return "redirect:/productsList";
     }
 }
