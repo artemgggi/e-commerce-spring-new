@@ -39,8 +39,9 @@
     </div>
 
     <table class="table">
-        <thead>
+        <thead class="thead-dark">
         <tr>
+            <th scope="col">image</th>
             <th scope="col">id</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
@@ -50,6 +51,8 @@
         </thead>
         <tbody>
         <tr th:each="product : ${products}">
+            <th scope="row"><img th:src="*{'data:image/base64,'+{product.image}}">
+            </th>
             <th scope="row">[[*{product.id}]]</th>
             <td>[[*{product.name}]]
                 <br>

@@ -2,6 +2,7 @@ package com.artemgggi.webshop.controller;
 
 import com.artemgggi.webshop.dto.ProductRepository;
 import com.artemgggi.webshop.model.Product;
+import com.artemgggi.webshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,6 +19,9 @@ public class ProductController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("/productsList")
     public String showProducts(Model model) {
@@ -31,14 +36,11 @@ public class ProductController {
     }
 
     @PostMapping("/addProduct")
-    public String saveProduct(@RequestParam("pname") String name,
+    public String saveProduct(@RequestParam("file") MultipartFile file,
+                              @RequestParam("pname") String name,
                               @RequestParam("pprice") int price,
                               @RequestParam("pdescription") String description) {
-        Product p = new Product();
-        p.setName(name);
-        p.setPrice(price);
-        p.setDescription(description);
-        productRepository.save(p);
+        productService.saveProductToDB(file, name, price, description);
         return "redirect:/productsList";
     }
 

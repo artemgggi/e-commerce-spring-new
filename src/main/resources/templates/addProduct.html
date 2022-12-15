@@ -42,7 +42,7 @@
         <div class="col-md-6 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <form action="/addProduct" method="post">
+                    <form action="/addProduct" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="name">Product name</label>
                             <input type="text" name="pname" id="name" class="form-control">
@@ -52,6 +52,10 @@
                             <br>
                             <label for="price">Product description</label>
                             <input type="text" name="pdescription" id="descriprion" class="form-control">
+                            <div>
+                                <label for="formFile" class="form-label">Upload image</label>
+                                <input class="form-control" type="file" name="file" id="formFile">
+                            </div>
                             <br>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
