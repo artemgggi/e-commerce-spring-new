@@ -12,21 +12,27 @@ public class MvcConfig implements WebMvcConfigurer {
         super();
     }
 
-//    @Override
-//    public void addViewControllers(final ViewControllerRegistry registry) {
-//        registry.addViewController("/productsList.html").setViewName("productsList");
-//    }
-
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(
-                "/images/**",
-                "/css/**",
-                "/js/**"
-        ).addResourceLocations("classpath:/static/images/**",
-                                "classpath:/static/css/**",
-                                "classpath:/static/js/**"
-                                );
+//        registry.addResourceHandler("/**",
+//                        "/css/**",
+//                        "/resources/**",
+//                        "/js/**",
+//                        "/images/**",
+//                        "/api/**",
+//                        "/font-awesome/**")
+//
+//                .addResourceLocations(
+//                        "classpath:/static/css/",
+//                        "classpath:/static/js/",
+//                        "classpath:/static/images/",
+//                        "classpath:/static/api/",
+//                        "classpath:/resources/",
+//                        "classpath:/static/font-awesome/");
+//    }
+        registry
+                .addResourceHandler("/resources/**")
+                .addResourceLocations("src/main/resources");
     }
 
     @Override

@@ -35,14 +35,16 @@
                     <a class="nav-link font-weight-bold" href="/productsList"> Products List </a></li>
             </ul>
         </nav>
+        <hr>
         <h1 class="text-center">Products List</h1>
+        <hr>
     </div>
 
     <table class="table">
         <thead class="thead-dark">
         <tr>
             <th scope="col">image</th>
-            <th scope="col">id</th>
+<!--            <th scope="col">id</th>-->
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col">Description</th>
@@ -51,9 +53,10 @@
         </thead>
         <tbody>
         <tr th:each="product : ${products}">
-            <th scope="row"><img th:src="*{'data:image/base64,'+{product.image}}">
+            <th scope="row"><img th:src="*{'data:image/jpeg;base64,'+{product.image}}"
+                                 style="width: 100px; height: 100px">
             </th>
-            <th scope="row">[[*{product.id}]]</th>
+<!--            <th scope="row">[[*{product.id}]]</th>-->
             <td>[[*{product.name}]]
                 <br>
                 <!-- Button Modal -->

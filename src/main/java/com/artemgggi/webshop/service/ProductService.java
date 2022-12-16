@@ -26,7 +26,7 @@ public class ProductService {
             System.out.println("not valid image");
         }
         try {
-            p.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+            p.setImage(Base64.getEncoder().encodeToString(file.getBytes()).getBytes());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

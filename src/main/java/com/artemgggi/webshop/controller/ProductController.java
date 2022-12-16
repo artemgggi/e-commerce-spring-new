@@ -80,4 +80,9 @@ public class ProductController {
         return "redirect:/productsList";
     }
 
+    @GetMapping("/index")
+    public String getIndexPage() {
+        return "index";
+    }
+
 }
