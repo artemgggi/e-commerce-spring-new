@@ -95,6 +95,7 @@ span {
 
 #sidebar ul li a {
     text-align: left;
+    text-decoration: none;
 }
 
 #sidebar.active ul li a {
@@ -134,14 +135,14 @@ span {
 }
 
 #sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    padding: 10px 0;
 }
 
 #sidebar ul li a {
     padding: 10px;
     font-size: 1.1em;
     display: block;
+	color: #fff;
 }
 
 #sidebar ul li a:hover {
@@ -151,6 +152,7 @@ span {
 
 #sidebar ul li a i {
     margin-right: 10px;
+	
 }
 
 #sidebar ul li.active>a,
