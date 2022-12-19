@@ -5,11 +5,14 @@ import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Controller
 public class ProductController {
@@ -20,16 +23,11 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-//    @GetMapping("/productsList")
-//    public String showProducts(Model model) {
-//        List<Product> productList = productRepository.findAll();
-//        model.addAttribute("products", productList);
-//        return "/productsList";
-//    }
-
-    @GetMapping("/")
-    public String showAddProducts() {
-        return "/addProduct";
+    @GetMapping("/index")
+    public String showAddProducts(Model model) {
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("products", products);
+        return "/index";
     }
 
     @PostMapping("/addProduct")
@@ -76,10 +74,4 @@ public class ProductController {
         productRepository.save(p);
         return "redirect:/productsList";
     }
-
-    @GetMapping("/index")
-    public String getIndexPage() {
-        return "index";
-    }
-
 }

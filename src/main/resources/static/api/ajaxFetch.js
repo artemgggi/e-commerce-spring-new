@@ -40,4 +40,25 @@ function  fire_ajax1()
       });
 }
 
+function handleClickExample(event)
+{
+  event.preventDefault();
+  fire_ajax2();
+}
+function  fire_ajax2()
+{
+	$.ajax({
+        type: "GET",
+        url: "/example",
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+        	$("#app").empty();
+        	$("#app").append(data);
+        }
+      });
+}
+
 
