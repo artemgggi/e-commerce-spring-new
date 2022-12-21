@@ -15,6 +15,7 @@ public class Product {
     private int price;
     private String description;
     private String category;
+
     @Column(name = "image")
     @Basic(fetch = FetchType.LAZY)
     private byte[] image;
@@ -25,6 +26,10 @@ public class Product {
             inverseJoinColumns = {@JoinColumn(name="category_id", referencedColumnName = "id")}
             )
     private Set<Category> categories = new HashSet<Category>();
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="product_id")
+    private Set<Carousel> carousel;
 
     public Long getId() {
         return id;
@@ -80,5 +85,13 @@ public class Product {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+    }
+
+    public Set<Carousel> getCarousel() {
+        return carousel;
+    }
+
+    public void setCarousel(Set<Carousel> carousel) {
+        this.carousel = carousel;
     }
 }
