@@ -12,8 +12,6 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @NonNull
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
