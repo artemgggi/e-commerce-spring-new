@@ -2,6 +2,9 @@ package com.artemgggi.webshop.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 public class Product {
 
@@ -11,12 +14,17 @@ public class Product {
     private String name;
     private int price;
     private String description;
+    private String category;
     @Column(name = "image")
     @Basic(fetch = FetchType.LAZY)
     private byte[] image;
-//    @Lob
-//    @Column(name = "Image", length = Integer.MAX_VALUE)
-//    private byte[] image;
+
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "product_category", joinColumns = {
+            @JoinColumn(name = "product_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name="category_id", referencedColumnName = "id")}
+            )
+    private Set<Category> categories = new HashSet<Category>();
 
     public Long getId() {
         return id;
@@ -56,5 +64,21 @@ public class Product {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
