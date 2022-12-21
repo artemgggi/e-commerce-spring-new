@@ -11,10 +11,12 @@ public class Product {
     private String name;
     private int price;
     private String description;
-//    private byte[] image;
     @Column(name = "image")
     @Basic(fetch = FetchType.LAZY)
     private byte[] image;
+//    @Lob
+//    @Column(name = "Image", length = Integer.MAX_VALUE)
+//    private byte[] image;
 
     public Long getId() {
         return id;
