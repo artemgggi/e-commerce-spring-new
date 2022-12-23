@@ -24,12 +24,8 @@
 
 <body>
 <div id="content">
-
-    <div class="line"></div>
-    <!-- Default form subscription -->
     <div class="card">
         <div class="card-header">
-
             <div class="tab">
                 <button class="tablinks" onclick="openTab(event, 'product')"
                         id="defaultOpen">product
@@ -43,42 +39,31 @@
         <div class="card-body">
 
             <div id="product" class="tabcontent">
-                <h5 class="text-center">add product</h5>
-                <form class="text-center border border-light p-5"
+                <div class="text-center border border-light p-5"
                       action="/Admin/addP"
                       method="POST"
                       enctype="multipart/form-data">
-
-                    <!-- Name -->
                     <input type="text" name="pname" id="name"
                            class="form-control mb-4" placeholder="Product Name">
-                    <!-- Name -->
                     <input type="text" name="brand" id="brand"
                            class="form-control mb-4" placeholder="Product brand">
-                    <!-- Price -->
                     <input type="text" name="price" id="price"
                            class="form-control mb-4" placeholder="Product Price">
-                    <!-- quantity -->
                     <input type="text" name="quantity" id="quantity"
                            class="form-control mb-4" placeholder="Product quantity">
-
-                    <!-- Description -->
-                    <textarea class="form-control mb-4" id="desc" name="desc"
-                              placeholder="Product Description">Product Description
-                     </textarea>
-
+                    <textarea name="desc" class="form-control mb-4" id="desc"
+                              placeholder="Product Description">
+                    </textarea>
                     <div class="form-group">
                         <select class="form-control selectpicker" name="categories"
                                 title="select categories .." multiple data-actions-box="true">
+                        </select>
                         <button class="btn btn-info btn-block" type="submit">submit</button>
-                </form>
-            </div>
-
+                    </div>
             <div id="category" class="tabcontent">
-                <h5 class="text-center">add category</h5>
-                <form action="/Admin/addCategory" method="POST">
+                <form action="/Admin/addCategory" method="POST"  >
                 <div class="form-group">
-                    <input type="text"  class="form-control" placeholder="add category"/>
+                    <input type="text" class="form-control" placeholder="add category"/>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-info btn-block" type="submit">submit</button>
@@ -87,7 +72,6 @@
             </div>
 
             <div id="coupon" class="tabcontent">
-                <h5 class="text-center">add discount to product</h5>
                 <form action="/Admin/addDiscountToP" method="POST">
                     <div class="form-group">
                         <select name="product_id" class="form-control">
@@ -115,16 +99,17 @@
                     </div>
                     <div class="custom-file mb-4">
                         <input type="file" name="file" class="custom-file-input"
-                               id="customFile"> <label class="custom-file-label"
-                                                       for="customFile">Product Image</label>
+                               id="customFile">
+                        <label class="custom-file-label" for="customFile">Product Image</label>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-info btn-block" type="submit">submit</button>
                     </div>
                 </form>
             </div>
+            </div>
         </div>
-    </div>
+</div>
     <script>
 		function openTab(evt, Name) {
 			var i, tabcontent, tablinks;
@@ -140,10 +125,7 @@
 			document.getElementById(Name).style.display = "block";
 			evt.currentTarget.className += " active";
 		}
-
-		// Get the element with id="defaultOpen" and click on it
 		document.getElementById("defaultOpen").click();
-
     </script>
 </body>
 </html>

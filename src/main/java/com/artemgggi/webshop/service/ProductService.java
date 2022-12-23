@@ -1,6 +1,8 @@
 package com.artemgggi.webshop.service;
 
+import com.artemgggi.webshop.dto.CategoryRepository;
 import com.artemgggi.webshop.dto.ProductRepository;
+import com.artemgggi.webshop.model.Category;
 import com.artemgggi.webshop.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,9 @@ public class ProductService {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     public void saveProductToDB(MultipartFile file, String name, int price,
                                 String description) {
@@ -34,5 +39,9 @@ public class ProductService {
         p.setPrice(price);
         p.setDescription(description);
         productRepository.save(p);
+    }
+
+    public Category saveCategory(Category category) {
+        return categoryRepository.save(category);
     }
 }
