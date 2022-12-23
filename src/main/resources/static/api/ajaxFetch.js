@@ -15,9 +15,12 @@ function  fire_ajax()
         success: function (data) {
         	$("#app").empty();
         	$("#app").append(data);
-        }
-      });
-}
+        },
+    error: function (e) {
+        console.log("Error: ", e)
+    }
+    });
+};
 
 function handleClickProductList(event)
 {
@@ -36,29 +39,12 @@ function  fire_ajax1()
         success: function (data) {
         	$("#app").empty();
         	$("#app").append(data);
-        }
-      });
+        },
+    error: function (e) {
+        console.log("Error: ", e)
+    }
+    });
 }
 
-function handleClickExample(event)
-{
-  event.preventDefault();
-  fire_ajax2();
-}
-function  fire_ajax2()
-{
-	$.ajax({
-        type: "GET",
-        url: "/example",
-        processData: false,
-        contentType: false,
-        cache: false,
-        timeout: 600000,
-        success: function (data) {
-        	$("#app").empty();
-        	$("#app").append(data);
-        }
-      });
-}
 
 
