@@ -34,4 +34,14 @@ public class GetViewController {
         mv.addObject("products", products);
         return mv;
     }
+
+    @RequestMapping(value = "/loginForm", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView returnLogin() {
+        ModelAndView mv = new ModelAndView();
+        List<Product> products = productRepository.findAll();
+        mv.setViewName("loginForm");
+
+        return mv;
+    }
 }
