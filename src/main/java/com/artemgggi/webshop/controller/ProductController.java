@@ -23,7 +23,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String showAddProducts(Model model) {
         List<Product> products = productRepository.findAll();
         model.addAttribute("products", products);

@@ -17,7 +17,7 @@ public class GetViewController {
     @Autowired
     ProductRepository productRepository;
 
-    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/addProduct", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView returnAddProducts(){
         ModelAndView mv = new ModelAndView();
@@ -25,7 +25,7 @@ public class GetViewController {
         return mv;
     }
 
-    @RequestMapping(value = "/productsList", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/productsList", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView returnProductsList() {
         ModelAndView mv = new ModelAndView();
@@ -39,9 +39,7 @@ public class GetViewController {
     @ResponseBody
     public ModelAndView returnLogin() {
         ModelAndView mv = new ModelAndView();
-        List<Product> products = productRepository.findAll();
         mv.setViewName("loginForm");
-
         return mv;
     }
 }
