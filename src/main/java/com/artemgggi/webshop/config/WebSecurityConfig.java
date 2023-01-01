@@ -35,7 +35,8 @@ public class WebSecurityConfig {
 
                 // Login Form Details
                 .and()
-                .formLogin().loginPage("/loginForm").permitAll()
+                .formLogin()
+                .defaultSuccessUrl("/adminindex", true)
 
                 // Logout Form Details
                 .and()

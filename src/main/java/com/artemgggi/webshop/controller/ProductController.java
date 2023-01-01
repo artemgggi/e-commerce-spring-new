@@ -22,12 +22,18 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-
     @GetMapping("/")
-    public String showAddProducts(Model model) {
+    public String showIndex(Model model) {
         List<Product> products = productRepository.findAll();
         model.addAttribute("products", products);
         return "/index";
+    }
+
+    @GetMapping("/adminindex")
+    public String showAdminIndex(Model model) {
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("products", products);
+        return "/adminindex";
     }
 
     @PostMapping("/addProduct")

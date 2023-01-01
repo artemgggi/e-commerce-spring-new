@@ -10,7 +10,7 @@
     <!--JS-->
     <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="api/ajaxFetch.js" type="text/javascript"></script>
-    <script src="font-awesome/js1/fontawesome.js" type="text/javascript" ></script>
+    <script src="font-awesome/js1/fontawesome.js" type="text/javascript"></script>
     <!--CSS-->
     <link rel="stylesheet" href="font-awesome/css1/all.css" type="text/css">
     <link rel="stylesheet" href="css/style4.css" type="text/css">
@@ -51,39 +51,31 @@
              class="navbar navbar-expand-lg navbar-light"
              style="border-bottom: 4px solid #dbe2ff">
             <div class="container-fluid">
-            <button type="button" id="sidebarCollapse"
-                    class="btn btn-light mr-4">
-                <i class="fas fa-align-left"></i>
-            </button>
-            <form class="form-inline frm">
-                <input class="form-control mr-sm-2" type="search" value=""
-                       id="search" onkeydown="dropDown(event);" data-toggle="dropdown"
-                       placeholder="Search" aria-label="Search">
-                <a class="nav-link btn btn-light mr-3" href="#"
-                   onclick="">
-                <i class="fas fa-search"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right ml-4"
-                     id="dropdown-container"></div>
-            </form>
+                <button type="button" id="sidebarCollapse"
+                        class="btn btn-light mr-4">
+                    <i class="fas fa-align-left"></i>
+                </button>
+                <form class="form-inline frm">
+                    <input class="form-control mr-sm-2" type="search" value=""
+                           id="search" onkeydown="dropDown(event);" data-toggle="dropdown"
+                           placeholder="Search" aria-label="Search">
+                    <a class="nav-link btn btn-light mr-3" href="#"
+                       onclick="">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right ml-4"
+                         id="dropdown-container"></div>
+                </form>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="nav navbar-nav ml-auto">
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link btn btn-light mr-3" href="#"-->
-<!--                           onclick="handleClickAddProduct(event)">Add Product-->
-<!--                        </a></li>-->
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link btn btn-light mr-3" href="#"-->
-<!--                           onclick="handleClickProductList(event)">Products-->
-<!--                        </a></li>-->
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-light" href="#"
-                           onclick="handleClickLogin(event)">
-                        <i class="fas fa-user"></i>
-                        </a>
-                </ul>
-            </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-light" href="#"
+                               onclick="handleClickLogin(event)">
+                                <i class="fas fa-user"></i>
+                            </a>
+                    </ul>
+                </div>
             </div>
         </nav>
 
@@ -138,7 +130,7 @@
                                 <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
                                     <button class="btn btn-primary text-uppercase"
                                             data-toggle="modal"
-                                            th:attr="data-target='#exampleModalCenter'+*{product.id}">Add to cart
+                                            th:attr="data-target='#exampleModalCenter'+*{product.id}">Add to Card
                                     </button>
 
                                     <!-- Modal -->
@@ -197,7 +189,6 @@
 			$('#sidebarCollapse').on('click', function() {
 				$('#sidebar').toggleClass('active');
 			});
-
 		});
 </script>
 

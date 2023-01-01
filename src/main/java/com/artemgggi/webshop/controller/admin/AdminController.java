@@ -22,19 +22,19 @@ public class AdminController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping("/login")
-    public String getLogin(@RequestParam(value = "error", required = false) String error,
-                            @RequestParam(value = "logout", required = false) String logout,
-                            Model model) {
-        model.addAttribute("error", error != null);
-        model.addAttribute("logout", logout != null);
-        return "loginForm";
-    }
+//    @PostMapping("/login")
+//    public String getLogin(@RequestParam(value = "error", required = false) String error,
+//                            @RequestParam(value = "logout", required = false) String logout,
+//                            Model model) {
+//        model.addAttribute("error", error != null);
+//        model.addAttribute("logout", logout != null);
+//        return "loginForm";
+//    }
 
-    @GetMapping("/admin/index")
-    public String showAddProducts(Model model) {
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
-        return "/admin/index";
-    }
+//    @GetMapping("/admin/index")
+//    public String showAddProducts(Model model) {
+//        List<Product> products = productRepository.findAll();
+//        model.addAttribute("products", products);
+//        return "/admin/index";
+//    }
 }

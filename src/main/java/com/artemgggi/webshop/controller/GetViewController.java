@@ -39,7 +39,7 @@ public class GetViewController {
     @ResponseBody
     public ModelAndView returnLogin() {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("loginForm");
+        mv.setViewName("/loginForm");
         return mv;
     }
 }

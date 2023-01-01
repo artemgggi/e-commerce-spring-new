@@ -15,18 +15,18 @@
     position: relative
 }
 .category{
-	background-image: linear-gradient(to right top, #5629c0, #6d7fcc, #7386D5, #7386D5, #5629c0);
+	background-image: linear-gradient(to right top, #895dec, #6d7fcc, #7386D5, #7386D5, #5629c0);
     color: #fff;
 }
 .about span {
-    color: #5629c0;
+    color: #3e1d77;
     font-size: 16px
 }
 
 .cart-button button {
     font-size: 14px;
     color: #fff;
-    background-color: #5629c0;
+    background-color: #c0bfc4;
     height: 38px
 }
 
@@ -45,13 +45,13 @@
 button:active {
     font-size: 12px;
     color: #fff;
-    background-color: #5629c0;
+    background-color: #46dc9d;
     box-shadow: none
 }
 
 .product_fav i {
     line-height: 40px;
-    color: #5629c0;
+    color: #3aa4c0;
     font-size: 15px
 }
 
@@ -73,7 +73,7 @@ button:active {
 }
 
 .product_fav:hover {
-    background: #5629c0
+    background: #d7122d
 }
 
 .product_fav:hover i {
