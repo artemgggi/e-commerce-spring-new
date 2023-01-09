@@ -17,19 +17,19 @@ public class AdminAjaxController {
     @Autowired
     ProductRepository productRepository;
 
-    @RequestMapping(value = "/Admin/products", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/products", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView returnProducts(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("Admin/products");
+        mv.setViewName("admin/products");
         return mv;
     }
 
-    @RequestMapping(value = "/Admin/productList", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/productList", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView returnProductsList(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("Admin/productList");
+        mv.setViewName("admin/productList");
         return mv;
     }
 

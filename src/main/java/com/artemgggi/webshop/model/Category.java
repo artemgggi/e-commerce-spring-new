@@ -13,6 +13,17 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @Transient
+    private int productsNumber;
+    public Set<Product> getProducts() {
+        return products;
+    }
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+    public int getProductsNumber() {
+        return this.products.size();
+    }
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
     private Set<Product> products;

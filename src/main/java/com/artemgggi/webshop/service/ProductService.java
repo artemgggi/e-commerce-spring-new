@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.List;
 import java.util.Objects;
 
 import net.coobird.thumbnailator.Thumbnails;
@@ -31,7 +32,7 @@ public class ProductService {
     CategoryRepository categoryRepository;
 
     public void saveProductToDB(MultipartFile file, String name, int price,
-                                String description) {
+                                String description, int quantity, String categories) {
         Product p = new Product();
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(
                 file.getOriginalFilename()));
@@ -47,11 +48,58 @@ public class ProductService {
         p.setName(name);
         p.setPrice(price);
         p.setDescription(description);
+        p.setQuantity(quantity);
+        p = addCategoriesToProduct(p, categories);
+        productRepository.save(p);
+    }
+
+    private Product addCategoriesToProduct(Product p ,String categories) {
+        String [] cates = categories.split(",");
+        Category category = null;
+        for(String str : cates) {
+            category = categoryRepository.findById(Long.parseLong(str)).get();
+            p.getCategories().add(category);
+        }
+        return p;
+    }
+
+    public List<Product> getAllProduct()
+    {
+        return productRepository.findAll();
+    }
+    public void deleteProductById(Long id)
+    {
+        productRepository.deleteById(id);
+    }
+    public void chageProductName(Long id ,String name)
+    {
+        Product p = new Product();
+        p = productRepository.findById(id).get();
+        p.setName(name);
+        productRepository.save(p);
+    }
+    public void changeProductDescription(Long id , String description)
+    {
+        Product p = new Product();
+        p = productRepository.findById(id).get();
+        p.setDescription(description);
+        productRepository.save(p);
+    }
+    public void changeProductPrice(Long id,int price)
+    {
+        Product p = new Product();
+        p = productRepository.findById(id).get();
+        p.setPrice(price);
         productRepository.save(p);
     }
 
     public Category saveCategory(Category category) {
         return categoryRepository.save(category);
+    }
+
+    public List<Category> getAllCategories() {
+
+        return categoryRepository.findAll();
     }
 
     public String resizeImageForUse(String src,int width, int height) {

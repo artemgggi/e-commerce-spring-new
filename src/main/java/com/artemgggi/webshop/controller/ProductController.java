@@ -29,14 +29,14 @@ public class ProductController {
         return "/index";
     }
 
-    @PostMapping("/addProduct")
-    public String saveProduct(@RequestParam("file") MultipartFile file,
-                              @RequestParam("pname") String name,
-                              @RequestParam("pprice") int price,
-                              @RequestParam("pdescription") String description) {
-        productService.saveProductToDB(file, name, price, description);
-        return "redirect:/productsList";
-    }
+//    @PostMapping("/addProduct")
+//    public String saveProduct(@RequestParam("file") MultipartFile file,
+//                              @RequestParam("pname") String name,
+//                              @RequestParam("pprice") int price,
+//                              @RequestParam("pdescription") String description) {
+//        productService.saveProductToDB(file, name, price, description);
+//        return "redirect:/productsList";
+//    }
 
     @GetMapping("/deleteProduct/{id}")
     public String deleteProduct(@PathVariable("id") Long id) {

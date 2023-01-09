@@ -7,7 +7,7 @@ function  fire_ajax()
 {
 	$.ajax({
         type: "GET",
-        url: "/Admin/products",
+        url: "/admin/products",
         processData: false,
         contentType: false,
         cache: false,
@@ -31,7 +31,7 @@ function  fire_ajax1()
 {
 	$.ajax({
         type: "GET",
-        url: "/Admin/productList",
+        url: "/admin/productList",
         processData: false,
         contentType: false,
         cache: false,

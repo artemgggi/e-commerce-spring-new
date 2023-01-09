@@ -24,14 +24,14 @@ public class UserDetailService implements UserDetailsService {
             throws UsernameNotFoundException {
         Account account = accountRepository.findByUserName(username);
         String role = account.getUserRole();
-        List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
+        List<GrantedAuthority> grantList = new ArrayList<>();
         GrantedAuthority authority = new SimpleGrantedAuthority(role);
         grantList.add(authority);
         boolean enabled = account.isActive();
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
-        UserDetails userDetails = (UserDetails) new User(account.getUserName(),
+        UserDetails userDetails = new User(account.getUserName(),
                 account.getEncryptedPassword(), enabled, accountNonExpired,
                 credentialsNonExpired, accountNonLocked, grantList);
         return userDetails;

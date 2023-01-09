@@ -9,8 +9,10 @@ import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -23,19 +25,38 @@ public class AdminController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/Admin/index")
+    @GetMapping("/admin/index")
     public String showAddProducts(Model model) {
         List<Product> products = productRepository.findAll();
         model.addAttribute("products", products);
-        return "/Admin/index";
+        return "admin/index";
     }
 
-    @GetMapping("/Admin/product")
+    @GetMapping("/admin/product")
     public String showAddProduct(Model model)
     {
         model.addAttribute("category", new Category());
-//        model.addAttribute("categories", productService.getAllCategories());
-//        model.addAttribute("products", productService.getAllProduct());
-        return "Admin/product";
+        model.addAttribute("categories", productService.getAllCategories());
+        model.addAttribute("products", productService.getAllProduct());
+        return "admin/product";
+    }
+
+    @PostMapping("/admin/addProduct")
+    public String saveProduct(@RequestParam("file") MultipartFile file,
+                              @RequestParam("pname") String name,
+                              @RequestParam("price") int price,
+                              @RequestParam("desc") String desc
+            ,@RequestParam("quantity") int quantity,
+                              @RequestParam("categories") String categories)
+    {
+
+        productService.saveProductToDB(file, name, price,desc, quantity, categories);
+        return "redirect:/admin/product";
+    }
+
+    @PostMapping("/admin/addCategory")
+    public String addCategory(@RequestParam("category") Category category) {
+        productService.saveCategory(category);
+        return "redirect:/admin/product";
     }
 }

@@ -12,6 +12,7 @@
     <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="api/ajaxFetch.js" type="text/javascript"></script>
     <script src="font-awesome/js1/fontawesome.js" type="text/javascript"></script>
+    <script src="js/bootstrap-select.min.js"></script>
     <!--CSS-->
     <link rel="stylesheet" href="font-awesome/css1/all.css" type="text/css">
     <link rel="stylesheet" href="css/style4.css" type="text/css">
@@ -39,31 +40,42 @@
         <div class="card-body">
 
             <div id="product" class="tabcontent">
-                <div class="text-center border border-light p-5"
-                      action="/Admin/addP"
+                <form class="text-center"
+                      action="/admin/addProduct"
                       method="POST"
                       enctype="multipart/form-data">
                     <input type="text" name="pname" id="name"
                            class="form-control mb-4" placeholder="Product Name">
-                    <input type="text" name="brand" id="brand"
-                           class="form-control mb-4" placeholder="Product brand">
                     <input type="text" name="price" id="price"
                            class="form-control mb-4" placeholder="Product Price">
                     <input type="text" name="quantity" id="quantity"
                            class="form-control mb-4" placeholder="Product quantity">
-                    <textarea name="desc" class="form-control mb-4" id="desc"
-                              placeholder="Product Description">
+                    <textarea class="form-control mb-4" name="desc" id="desc">
                     </textarea>
+
                     <div class="form-group">
-                        <select class="form-control selectpicker" name="categories"
+
+                        <select class="form-control mb-4 selectpicker" name="categories"
                                 title="select categories .." multiple data-actions-box="true">
+
+                            <option th:each="category : ${categories}" th:value="${category.id}">[[${category.name}]]</option>
+
                         </select>
-                        <button class="btn btn-info btn-block" type="submit">submit</button>
                     </div>
+
+
+                    <div class="custom-file mb-4">
+                        <input type="file" name="file" class="custom-file-input"
+                               id="customFile"> <label class="custom-file-label"
+                                                       for="customFile">Product Image</label>
+                    </div>
+                    <button class="btn btn-info btn-block" type="submit">submit</button>
+                </div>
+
             <div id="category" class="tabcontent">
-                <form action="/Admin/addCategory" method="POST"  >
+                <form action="/admin/addCategory" method="POST" >
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="add category"/>
+                    <input type="text"  class="form-control" placeholder="add category"/>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-info btn-block" type="submit">submit</button>
@@ -110,6 +122,22 @@
             </div>
         </div>
 </div>
+
+    <script type="text/javascript">
+		$(document).ready(function() {
+			$('#sidebarCollapse').on('click', function() {
+				$('#sidebar').toggleClass('active');
+			});
+
+			$(".chosen-select").chosen({
+				  no_results_text: "Oops, nothing found!"
+				})
+			// To style all selects
+		  $('select').selectpicker();
+		});
+
+
+	</script>
     <script>
 		function openTab(evt, Name) {
 			var i, tabcontent, tablinks;

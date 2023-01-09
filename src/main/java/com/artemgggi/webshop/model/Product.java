@@ -15,6 +15,7 @@ public class Product {
     private int price;
     private String description;
     private String category;
+    private int quantity;
 
     @Column(name = "image")
     @Basic(fetch = FetchType.LAZY)
@@ -93,5 +94,13 @@ public class Product {
 
     public void setCarousel(Set<Carousel> carousel) {
         this.carousel = carousel;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
