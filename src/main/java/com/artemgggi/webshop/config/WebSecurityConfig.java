@@ -36,7 +36,7 @@ public class WebSecurityConfig {
                 // Login Form Details
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/adminindex", true)
+                .defaultSuccessUrl("/Admin/index", true)
 
                 // Logout Form Details
                 .and()

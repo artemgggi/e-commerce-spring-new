@@ -1,4 +1,4 @@
-package com.artemgggi.webshop.controller;
+package com.artemgggi.webshop.controller.admin;
 
 import com.artemgggi.webshop.dto.ProductRepository;
 import com.artemgggi.webshop.model.Product;
@@ -12,26 +12,24 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class GetViewController {
+public class AdminAjaxController {
 
     @Autowired
     ProductRepository productRepository;
 
-    @RequestMapping(value = "/admin/addProduct", method = RequestMethod.GET)
+    @RequestMapping(value = "/Admin/products", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView returnAddProducts(){
+    public ModelAndView returnProducts(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("addProduct");
+        mv.setViewName("Admin/products");
         return mv;
     }
 
-    @RequestMapping(value = "/admin/productsList", method = RequestMethod.GET)
+    @RequestMapping(value = "/Admin/productList", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView returnProductsList() {
+    public ModelAndView returnProductsList(){
         ModelAndView mv = new ModelAndView();
-        List<Product> products = productRepository.findAll();
-        mv.setViewName("productsList");
-        mv.addObject("products", products);
+        mv.setViewName("Admin/productList");
         return mv;
     }
 

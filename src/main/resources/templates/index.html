@@ -119,9 +119,8 @@
                             <div class="product py-4">
 
                                 <div class="text-center">
-                                    <img th:src="*{'data:image/base64,'+{product.image}}"
+                                    <img th:src="*{'data:image/jpeg;base64,'+{product.image}}"
                                          width="200">
-                                    <!--                                    <img th:src="@{|/productImage?code=${product.image}|}" width="200">-->
                                 </div>
                                 <div class="about text-center">
                                     <h5>[[${product.name}]]</h5>

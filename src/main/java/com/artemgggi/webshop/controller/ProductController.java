@@ -29,13 +29,6 @@ public class ProductController {
         return "/index";
     }
 
-    @GetMapping("/adminindex")
-    public String showAdminIndex(Model model) {
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
-        return "/adminindex";
-    }
-
     @PostMapping("/addProduct")
     public String saveProduct(@RequestParam("file") MultipartFile file,
                               @RequestParam("pname") String name,

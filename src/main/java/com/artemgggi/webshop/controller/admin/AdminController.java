@@ -1,6 +1,7 @@
 package com.artemgggi.webshop.controller.admin;
 
 import com.artemgggi.webshop.dto.ProductRepository;
+import com.artemgggi.webshop.model.Category;
 import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +23,19 @@ public class AdminController {
     @Autowired
     private ProductService productService;
 
-//    @PostMapping("/login")
-//    public String getLogin(@RequestParam(value = "error", required = false) String error,
-//                            @RequestParam(value = "logout", required = false) String logout,
-//                            Model model) {
-//        model.addAttribute("error", error != null);
-//        model.addAttribute("logout", logout != null);
-//        return "loginForm";
-//    }
+    @GetMapping("/Admin/index")
+    public String showAddProducts(Model model) {
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("products", products);
+        return "/Admin/index";
+    }
 
-//    @GetMapping("/admin/index")
-//    public String showAddProducts(Model model) {
-//        List<Product> products = productRepository.findAll();
-//        model.addAttribute("products", products);
-//        return "/admin/index";
-//    }
+    @GetMapping("/Admin/product")
+    public String showAddProduct(Model model)
+    {
+        model.addAttribute("category", new Category());
+//        model.addAttribute("categories", productService.getAllCategories());
+//        model.addAttribute("products", productService.getAllProduct());
+        return "Admin/product";
+    }
 }
