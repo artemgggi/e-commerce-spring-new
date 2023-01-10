@@ -1,11 +1,11 @@
 package com.artemgggi.webshop.controller.admin;
 
+import com.artemgggi.webshop.dto.CategoryRepository;
 import com.artemgggi.webshop.dto.ProductRepository;
 import com.artemgggi.webshop.model.Category;
 import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,18 +45,17 @@ public class AdminController {
     public String saveProduct(@RequestParam("file") MultipartFile file,
                               @RequestParam("pname") String name,
                               @RequestParam("price") int price,
-                              @RequestParam("desc") String desc
-            ,@RequestParam("quantity") int quantity,
-                              @RequestParam("categories") String categories)
+                              @RequestParam("desc") String desc,
+                              @RequestParam("quantity") int quantity,
+                              @RequestParam("category") String category)
     {
-
-        productService.saveProductToDB(file, name, price,desc, quantity, categories);
-        return "redirect:/admin/product";
+        productService.saveProductToDB(file, name, price,desc, quantity, category);
+        return "redirect:/admin/index";
     }
 
     @PostMapping("/admin/addCategory")
-    public String addCategory(@RequestParam("category") Category category) {
-        productService.saveCategory(category);
-        return "redirect:/admin/product";
+    public String addCategory(@RequestParam("category") String name) {
+        productService.saveCategory(name);
+        return "redirect:/admin/index";
     }
 }

@@ -2,7 +2,6 @@ package com.artemgggi.webshop.model;
 
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
-
 import java.util.Set;
 
 
@@ -47,7 +46,7 @@ public class Category {
         return name;
     }
 
-    public void setName(@NonNull String name) {
+    public void setName(String name) {
         this.name = name;
     }
 }

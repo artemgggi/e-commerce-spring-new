@@ -63,42 +63,42 @@ public class ProductService {
         return p;
     }
 
-    public List<Product> getAllProduct()
-    {
+    public List<Product> getAllProduct() {
         return productRepository.findAll();
     }
-    public void deleteProductById(Long id)
-    {
+
+    public void deleteProductById(Long id) {
         productRepository.deleteById(id);
     }
-    public void chageProductName(Long id ,String name)
-    {
+
+    public void chageProductName(Long id ,String name) {
         Product p = new Product();
         p = productRepository.findById(id).get();
         p.setName(name);
         productRepository.save(p);
     }
-    public void changeProductDescription(Long id , String description)
-    {
+
+    public void changeProductDescription(Long id , String description) {
         Product p = new Product();
         p = productRepository.findById(id).get();
         p.setDescription(description);
         productRepository.save(p);
     }
-    public void changeProductPrice(Long id,int price)
-    {
+
+    public void changeProductPrice(Long id,int price) {
         Product p = new Product();
         p = productRepository.findById(id).get();
         p.setPrice(price);
         productRepository.save(p);
     }
 
-    public Category saveCategory(Category category) {
-        return categoryRepository.save(category);
+    public Category saveCategory(String name) {
+        Category c = new Category();
+        c.setName(name);
+        return categoryRepository.save(c);
     }
 
     public List<Category> getAllCategories() {
-
         return categoryRepository.findAll();
     }
 
@@ -118,6 +118,7 @@ public class ProductService {
         }
         return null;
     }
+
     private  BufferedImage resizeImage(BufferedImage image , int width , int height) throws IOException {
         ByteArrayOutputStream outputstream = new ByteArrayOutputStream();
         try {
@@ -131,6 +132,7 @@ public class ProductService {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(data);
         return ImageIO.read(inputStream);
     }
+
     private BufferedImage base64ToBufferedImage(String base64Img) {
         BufferedImage image = null;
         byte[] decodedBytes = Base64.getDecoder().decode(base64Img);
