@@ -21,7 +21,7 @@ public class AdminAjaxController {
 
     @RequestMapping(value = "/admin/products", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView returnProducts(Model model){
+    public ModelAndView returnProducts(Model model) {
         model.addAttribute("categories", productService.getAllCategories());
         model.addAttribute("products", productService.getAllProduct());
         ModelAndView mv = new ModelAndView();
@@ -31,7 +31,8 @@ public class AdminAjaxController {
 
     @RequestMapping(value = "/admin/productList", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView returnProductsList(){
+    public ModelAndView returnProductsList(Model model) {
+        model.addAttribute("products", productService.getAllProduct());
         ModelAndView mv = new ModelAndView();
         mv.setViewName("admin/productList");
         return mv;
