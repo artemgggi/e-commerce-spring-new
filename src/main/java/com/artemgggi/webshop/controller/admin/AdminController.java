@@ -1,6 +1,5 @@
 package com.artemgggi.webshop.controller.admin;
 
-import com.artemgggi.webshop.dto.CategoryRepository;
 import com.artemgggi.webshop.dto.ProductRepository;
 import com.artemgggi.webshop.model.Category;
 import com.artemgggi.webshop.model.Product;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +27,7 @@ public class AdminController {
     public String showAddProducts(Model model) {
         List<Product> products = productRepository.findAll();
         model.addAttribute("products", products);
+        model.addAttribute("categories", productService.getAllCategories());
         return "admin/index";
     }
 
@@ -47,9 +46,9 @@ public class AdminController {
                               @RequestParam("price") int price,
                               @RequestParam("desc") String desc,
                               @RequestParam("quantity") int quantity,
-                              @RequestParam("category") String category)
+                              @RequestParam("categories") String categories)
     {
-        productService.saveProductToDB(file, name, price,desc, quantity, category);
+        productService.saveProductToDB(file, name, price,desc, quantity, categories);
         return "redirect:/admin/index";
     }
 

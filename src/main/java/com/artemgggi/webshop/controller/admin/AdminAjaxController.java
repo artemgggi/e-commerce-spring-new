@@ -23,6 +23,7 @@ public class AdminAjaxController {
     @ResponseBody
     public ModelAndView returnProducts(Model model){
         model.addAttribute("categories", productService.getAllCategories());
+        model.addAttribute("products", productService.getAllProduct());
         ModelAndView mv = new ModelAndView();
         mv.setViewName("admin/products");
         return mv;

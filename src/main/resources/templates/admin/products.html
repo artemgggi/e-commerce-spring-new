@@ -48,10 +48,11 @@
                            class="form-control mb-4" placeholder="Product Price">
                     <input type="text" name="quantity" id="quantity"
                            class="form-control mb-4" placeholder="Product quantity">
-                    <textarea class="form-control mb-4" name="desc" id="desc">
+                    <textarea name="desc" placeholder="Description"
+                              class="form-control mb-4" id="desc">
                     </textarea>
                     <div class="form-group">
-                        <select class="form-control mb-1 select" name="categories"
+                        <select class="form-control mb-4 bootstrap-select" name="categories"
                                 multiple data-actions-box="true">
                             <option th:each="category : ${categories}"
                                     th:value="${category.id}">
@@ -69,10 +70,9 @@
             </div>
 
             <div id="category" class="tabcontent">
-                <h5 class="text-center"> add category</h5>
                 <form action="/admin/addCategory" method="POST">
                     <div class="form-group">
-                        <input type="text" name="category" id="category"
+                        <input type="text" name="category"
                                class="form-control mb-4">
                         <button class="btn btn-info btn-block" type="submit">submit</button>
                     </div>
@@ -97,7 +97,7 @@
             </div>
 
             <div id="album" class="tabcontent">
-                <form action="/Admin/addPictureToP" method="POST" enctype="multipart/form-data">
+                <form action="/admin/addPictureToP" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <select name="product_id" class="form-control">
                             <option th:each="product : ${products}" th:value="${product.id}">[[${product.name}]]
