@@ -163,7 +163,8 @@ public class ProductService {
             System.out.println("not a valid file");
         }
         try {
-            carousel.setImage(Base64.getEncoder().encodeToString(file.getBytes()).getBytes());
+            p.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+            carousel.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
         } catch (IOException e) {
             e.printStackTrace();
         }

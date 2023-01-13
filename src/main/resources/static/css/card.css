@@ -24,9 +24,9 @@
 }
 
 .cart-button button {
-    font-size: 14px;
+    font-size: 13px;
     color: #1a1a1a;
-    background-color: #ffffff;
+    background-color: #eaefe480;
     height: 38px
 }
 
@@ -44,8 +44,8 @@
 .cart-button button:focus,
 button:active {
     font-size: 12px;
-    color: #fff;
-    background-color: #46dc9d;
+    color: #000;
+    background-color: #45ff75;
     box-shadow: none
 }
 
@@ -73,11 +73,11 @@ button:active {
 }
 
 .product_fav:hover {
-    background: #d7122d
+    background: #f22945
 }
 
 .product_fav:hover i {
-    color: #fff
+    color: #fdfdfd
 }
 
 .about {

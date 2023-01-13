@@ -9,9 +9,9 @@ public class Carousel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Lob
     @Column(name = "image")
-    @Basic(fetch = FetchType.LAZY)
-    private byte[] image;
+    private String image;
 
     public Long getId() {
         return id;
@@ -21,11 +21,11 @@ public class Carousel {
         this.id = id;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

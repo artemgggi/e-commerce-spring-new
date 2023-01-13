@@ -2949,22 +2949,20 @@ fieldset:disabled a.btn {
 
 .btn-link {
   font-weight: 400;
-  color: #007bff;
   text-decoration: none;
 }
 
 .btn-link:hover {
-  color: #0056b3;
-  text-decoration: underline;
+  color: #000eb3;
+
 }
 
 .btn-link:focus, .btn-link.focus {
-  text-decoration: underline;
   box-shadow: none;
 }
 
 .btn-link:disabled, .btn-link.disabled {
-  color: #6c757d;
+  color: #2f363c;
   pointer-events: none;
 }
 
