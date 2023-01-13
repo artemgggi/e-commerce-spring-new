@@ -16,10 +16,9 @@ public class Product {
     private String description;
     private String category;
     private int quantity;
-
+    @Lob
     @Column(name = "image")
-    @Basic(fetch = FetchType.LAZY)
-    private byte[] image;
+    private String image;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "product_category", joinColumns = {
@@ -64,11 +63,11 @@ public class Product {
         this.description = description;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

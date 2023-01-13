@@ -22,14 +22,11 @@
 </head>
 <body>
 <div class="wrapper">
-    <!-- Sidebar  -->
-
     <nav th:fragment="sidebar" class="active" id="sidebar">
         <div class="sidebar-header">
             <h3>Web-Shop</h3>
             <strong><i class="fa fa-shopping-cart" aria-hidden="true"></i></strong>
         </div>
-
         <ul class="list-unstyled components">
             <li>
                 <a href="/"><i class="fas fa-home"></i>Home
@@ -43,8 +40,6 @@
             </li>
         </ul>
     </nav>
-
-    <!-- Page Content  -->
     <div id="content">
         <nav th:fragment="topBar"
              class="navbar navbar-expand-lg navbar-light"
@@ -63,9 +58,8 @@
                         <i class="fas fa-search"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right ml-4"
-                         id="dropdown-container"></div>
+                         id="dropdown"></div>
                 </form>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
@@ -136,11 +130,10 @@
                     <div class="row g-2">
                         <div class="col-md-4 mb-2" th:each="product : ${products}">
                             <div class="product py-4">
-
                                 <div class="text-center">
-                                    <img th:src="*{'data:image/base64,'+{product.image}}"
-                                         width="200">
-                                    <!--                                    <img th:src="@{|/productImage?code=${product.image}|}" width="200">-->
+                                    <img th:src="*{'data:image/jpeg;base64,'+ {product.image}}"
+                                         height="130"
+                                         width="130">
                                 </div>
                                 <div class="about text-center">
                                     <h5>[[${product.name}]]</h5>
@@ -169,8 +162,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="card">
-                                                        <img th:src="*{'data:image/jpeg;base64,'+{product.image}}"
-                                                             height="250px" class="card-img-top" alt="...">
+<!--                                                        image-->
                                                         <div class="card-body">
                                                             <form action="/addToCart" method="POSt">
                                                                 <input type="hidden" name="id"

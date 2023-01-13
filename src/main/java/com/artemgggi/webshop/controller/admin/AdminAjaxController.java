@@ -40,7 +40,7 @@ public class AdminAjaxController {
 
     @RequestMapping(value = "/loginForm", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView returnLogin() {
+    public ModelAndView returnLoginForm() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("/loginForm");
         return mv;

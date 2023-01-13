@@ -60,7 +60,7 @@
                     </div>
                     <div class="custom-file mb-4">
                         <input type="file" name="file" class="custom-file-input"
-                               id="customFile">
+                               id="file">
                         <label class="custom-file-label" for="customFile">Product Image</label>
                     </div>
                     <button class="btn btn-info btn-block" type="submit">submit</button>
@@ -70,8 +70,17 @@
             <div id="category" class="tabcontent">
                 <form action="/admin/addCategory" method="POST">
                     <div class="form-group">
+                        <select class="form-control mb-4 bootstrap-select"
+                                name="categories"
+                                multiple data-actions-box="true">
+                            <option th:each="category : ${categories}"
+                                    th:value="${category.id}">
+                                [[${category.name}]]
+                            </option>
+                        </select>
                         <input type="text" name="category"
-                               class="form-control mb-4">
+                               class="form-control mb-4"
+                               placeholder="Add category">
                         <button class="btn btn-info btn-block" type="submit">submit</button>
                     </div>
                 </form>
@@ -125,10 +134,8 @@
 			$(".chosen-select").chosen({
 				  no_results_text: "Oops, nothing found!"
 				})
-			// To style all selects
 		  $('select').selectpicker();
 		});
-
 </script>
 <script type="text/javascript">
 		function openTab(evt, Name) {
@@ -146,8 +153,6 @@
 			evt.currentTarget.className += " active";
 		}
 		document.getElementById("defaultOpen").click();
-
 </script>
-</div>
 </body>
 </html>

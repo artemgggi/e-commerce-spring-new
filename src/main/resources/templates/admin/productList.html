@@ -25,26 +25,23 @@
     <table class="table">
         <thead class="thread-dark">
         <tr>
-            <th scope="col">image</th>
+            <th scope="col">Image</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col">Description</th>
-            <th scope="col">Delete</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="product : ${products}">
-            <th scope="row"><img th:src="*{'data:image/jpeg;base64,'+{product.image}}"
+            <th scope="row"><img th:src="*{'data:image;base64,'+{product.image}}"
                                  style="width: 100px; height: 100px">
             </th>
             <td>[[*{product.name}]]
                 <br>
-                <!-- Button Modal -->
                 <button type="button" class="btn btn-success " data-toggle="modal"
-                        th:attr="data-target='#changeNameButton'+*{product.id}">
-                    Edit
+                        th:attr="data-target='#changeNameButton'+*{product.id}">Edit
                 </button>
-                <!-- Modal -->
                 <div class="modal fade" th:id="*{'changeNameButton'+{product.id}}" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -56,7 +53,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="/changePname" method="post">
+                                <form action="admin/changeName" method="post">
                                     <div class="form-group">
                                         <label>product id</label>
                                         <input type="text" th:value="*{product.id}"
@@ -77,12 +74,9 @@
             </td>
             <td>[[*{product.price}]]
                 <br>
-                <!-- Button Modal -->
                 <button type="button" class="btn btn-success " data-toggle="modal"
-                        th:attr="data-target='#changePriceButton'+*{product.id}">
-                    Edit
+                        th:attr="data-target='#changePriceButton'+*{product.id}">Edit
                 </button>
-                <!-- Modal -->
                 <div class="modal fade" th:id="*{'changePriceButton'+{product.id}}" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -115,12 +109,10 @@
             </td>
             <td>[[*{product.description}]]
                 <br>
-                <!-- Button Modal -->
                 <button type="button" class="btn btn-success " data-toggle="modal"
                         th:attr="data-target='#changeDescriptionButton'+*{product.id}">
                     Edit
                 </button>
-                <!-- Modal -->
                 <div class="modal fade" th:id="*{'changeDescriptionButton'+{product.id}}" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -151,7 +143,7 @@
                     </div>
                 </div>
             </td>
-            <td><a th:href="@{/deleteProduct/{id}(id=${product.id})}"
+            <td><br><a th:href="@{admin/deleteProduct/{id}(id=${product.id})}"
                    class="btn btn-danger">Delete</a></td>
         </tr>
         </tbody>
