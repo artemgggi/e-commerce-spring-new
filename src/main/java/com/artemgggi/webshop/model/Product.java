@@ -22,7 +22,7 @@ public class Product {
     @Column(name = "image")
     private String image;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "product_category", joinColumns = {
             @JoinColumn(name = "product_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name="category_id", referencedColumnName = "id")}

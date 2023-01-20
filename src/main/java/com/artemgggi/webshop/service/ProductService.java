@@ -50,6 +50,9 @@ public class ProductService {
         p.setDescription(description);
         p.setQuantity(quantity);
         addCategoriesToProduct(p, categories);
+        Coupon c = new Coupon();
+        c.setDiscount(0);
+        p.setDiscount(c);
         productRepository.save(p);
     }
 
@@ -176,9 +179,13 @@ public class ProductService {
     public void addDiscountToProduct(Long id, int discount) {
         Product p = new Product();
         p = productRepository.findById(id).get();
-        Coupon c = new Coupon();
-        c.setDiscount(discount);
-        p.setDiscount(c);
+        if (p.getDiscount() == null) {
+            Coupon c = new Coupon();
+            c.setDiscount(discount);
+            p.setDiscount(c);
+        } else {
+            p.getDiscount().setDiscount(discount);
+        }
         productRepository.save(p);
     }
 
@@ -187,5 +194,9 @@ public class ProductService {
         p = productRepository.findById(id).get();
         p.setQuantity(quantity);
         productRepository.save(p);
+    }
+
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).get();
     }
 }

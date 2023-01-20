@@ -49,8 +49,7 @@
                               class="form-control mb-4" placeholder="Description">
                     </textarea>
                     <div class="form-group">
-                        <select class="form-control mb-4 bootstrap-select" name="categories"
-                                multiple data-actions-box="true">
+                        <select class="form-control mb-4 bootstrap-select" name="categories">
                             <option th:each="category : ${categories}"
                                     th:value="${category.id}">
                                     [[${category.name}]]

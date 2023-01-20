@@ -70,5 +70,29 @@ function  fire_ajax2()
     });
 }
 
+function handleClickDetail(event)
+{
+  event.preventDefault();
+  fire_ajax3();
+}
+function  fire_ajax3()
+{
+	$.ajax({
+        type: "GET",
+        url: "/detail",
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+        	$("#app").empty();
+        	$("#app").append(data);
+        },
+    error: function (e) {
+        console.log("Error: ", e)
+    }
+    });
+}
+
 
 

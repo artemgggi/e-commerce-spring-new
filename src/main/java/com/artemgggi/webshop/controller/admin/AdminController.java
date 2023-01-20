@@ -87,7 +87,7 @@ public class AdminController {
         return "redirect:/admin/index";
     }
 
-    @PostMapping("/admin/changeQuantity")
+    @PostMapping("/admin/changeProductQuantity")
     public String changeQuantity(@RequestParam("id") Long id ,
                                  @RequestParam("newQuantity") int quantity) {
         productService.changeProductQuantity(id, quantity);

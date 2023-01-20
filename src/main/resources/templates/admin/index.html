@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li>
-                <a href="#"><i class="fas fa-question"></i> Contact</a>
+                <a href="#"><i class="fas fa-question"></i> FQ</a>
             </li>
             <li>
                 <a href="#"><i class="fas fa-paper-plane"></i> Contact</a>
@@ -131,6 +131,8 @@
                     <div class="row g-2">
                         <div class="col-md-4 mb-2" th:each="product : ${products}">
                             <div class="product py-4">
+                                <span class="off bg-success">-
+										[[${product.discount}]]% OFF</span>
                                 <div class="text-center">
                                     <img th:src="*{'data:image/jpeg;base64,'+ {product.image}}"
                                          height="130"

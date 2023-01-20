@@ -159,7 +159,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="/changePquantity" method="post">
+                                <form action="admin/changeProductQuantity" method="post">
                                     <div class="form-group">
                                         <label>product id</label>
                                         <input type="text" th:value="*{product.id}"
@@ -168,7 +168,7 @@
                                         <input type="text" th:value="*{product.quantity}"
                                                class="form-control" name="name" readonly>
                                         <label>new product quantity</label>
-                                        <input type="text" name="newPquantity" class="form-control">
+                                        <input type="text" name="newQuantity" class="form-control">
                                         <br>
                                         <button type="submit" class="btn btn-primary">save</button>
                                     </div>
