@@ -16,6 +16,8 @@ public class Product {
     private String description;
     private String category;
     private int quantity;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Coupon discount;
     @Lob
     @Column(name = "image")
     private String image;
@@ -101,5 +103,13 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Coupon getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Coupon discount) {
+        this.discount = discount;
     }
 }
