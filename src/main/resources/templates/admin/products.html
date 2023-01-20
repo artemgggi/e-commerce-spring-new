@@ -86,7 +86,7 @@
             </div>
 
             <div id="coupon" class="tabcontent">
-                <form action="/Admin/addDiscountToP" method="POST">
+                <form action="/admin/addDiscountToP" method="POST">
                     <div class="form-group">
                         <select name="product_id" class="form-control">
                             <option th:each="product : ${products}" th:value="${product.id}">[[${product.name}]]

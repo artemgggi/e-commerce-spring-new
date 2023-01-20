@@ -4,6 +4,7 @@ import com.artemgggi.webshop.dto.CategoryRepository;
 import com.artemgggi.webshop.dto.ProductRepository;
 import com.artemgggi.webshop.model.Carousel;
 import com.artemgggi.webshop.model.Category;
+import com.artemgggi.webshop.model.Coupon;
 import com.artemgggi.webshop.model.Product;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,6 +170,22 @@ public class ProductService {
             e.printStackTrace();
         }
         p.getCarousel().add(carousel);
+        productRepository.save(p);
+    }
+
+    public void addDiscountToProduct(Long id, int discount) {
+        Product p = new Product();
+        p = productRepository.findById(id).get();
+        Coupon c = new Coupon();
+        c.setDiscount(discount);
+        p.setDiscount(c);
+        productRepository.save(p);
+    }
+
+    public void changeProductQuantity(Long id, int quantity) {
+        Product p = new Product();
+        p = productRepository.findById(id).get();
+        p.setQuantity(quantity);
         productRepository.save(p);
     }
 }

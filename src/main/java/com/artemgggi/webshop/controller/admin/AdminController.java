@@ -90,6 +90,7 @@ public class AdminController {
     @PostMapping("/admin/changeQuantity")
     public String changeQuantity(@RequestParam("id") Long id ,
                                  @RequestParam("newQuantity") int quantity) {
+        productService.changeProductQuantity(id, quantity);
         return "redirect:/admin/index";
     }
 
@@ -97,6 +98,13 @@ public class AdminController {
     public String addImageToProduct(@RequestParam("file") MultipartFile file,
                                     @RequestParam("product_id") Long id ) {
         productService.addImageToProduct(file,id);
+        return "redirect:/admin/index";
+    }
+
+    @PostMapping("/admin/addDiscountToP")
+    public String addDiscountToProduct(@RequestParam("product_id") Long id,
+                                       @RequestParam("discount") int discount) {
+        productService.addDiscountToProduct(id, discount);
         return "redirect:/admin/index";
     }
 }

@@ -29,6 +29,7 @@
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col">Description</th>
+            <th scope="col">Quantity</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -133,6 +134,41 @@
                                                class="form-control" name="name" readonly>
                                         <label>new product description</label>
                                         <input type="text" name="newPdescription" class="form-control">
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>[[*{product.quantity}]]
+                <br>
+                <button type="button" class="btn btn-success " data-toggle="modal"
+                        th:attr="data-target='#changeQuantityButton'+*{product.id}">Edit
+                </button>
+                <div class="modal fade" th:id="*{'changeQuantityButton'+{product.id}}" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit quantity</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="false">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/changePquantity" method="post">
+                                    <div class="form-group">
+                                        <label>product id</label>
+                                        <input type="text" th:value="*{product.id}"
+                                               class="form-control" name="id" readonly>
+                                        <label>product quantity</label>
+                                        <input type="text" th:value="*{product.quantity}"
+                                               class="form-control" name="name" readonly>
+                                        <label>new product quantity</label>
+                                        <input type="text" name="newPquantity" class="form-control">
                                         <br>
                                         <button type="submit" class="btn btn-primary">save</button>
                                     </div>
