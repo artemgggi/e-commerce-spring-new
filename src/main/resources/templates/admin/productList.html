@@ -124,7 +124,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="/changePdescription" method="post">
+                                <form action="/admin/changePdescription" method="post">
                                     <div class="form-group">
                                         <label>product id</label>
                                         <input type="text" th:value="*{product.id}"
@@ -133,7 +133,7 @@
                                         <input type="text" th:value="*{product.description}"
                                                class="form-control" name="name" readonly>
                                         <label>new product description</label>
-                                        <input type="text" name="newPdescription" class="form-control">
+                                        <textarea type="text" name="newPdescription" class="form-control"></textarea>
                                         <br>
                                         <button type="submit" class="btn btn-primary">save</button>
                                     </div>
