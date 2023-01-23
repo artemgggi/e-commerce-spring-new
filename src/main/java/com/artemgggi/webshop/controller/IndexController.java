@@ -26,12 +26,4 @@ public class IndexController {
         model.addAttribute("categories", productService.getAllCategories());
         return "/index";
     }
-
-    @GetMapping("/productList")
-    public String showProductList(Model model) {
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
-        model.addAttribute("categories", productService.getAllCategories());
-        return "admin/productList";
-    }
 }

@@ -29,7 +29,7 @@ public class AdminController {
         List<Product> products = productRepository.findAll();
         model.addAttribute("products", products);
         model.addAttribute("categories", productService.getAllCategories());
-        return "admin/index";
+        return "/admin/index";
     }
 
     @GetMapping("/admin/product")
@@ -38,7 +38,7 @@ public class AdminController {
         model.addAttribute("category", new Category());
         model.addAttribute("categories", productService.getAllCategories());
         model.addAttribute("products", productService.getAllProduct());
-        return "admin/product";
+        return "/admin/product";
     }
 
     @PostMapping("/admin/addProduct")
@@ -80,9 +80,9 @@ public class AdminController {
         return "redirect:/admin/index";
     }
 
-    @PostMapping("/admin/changePrice")
+    @PostMapping("/admin/changePprice")
     public String changePrice(@RequestParam("id") Long id ,
-                              @RequestParam("newPrice") int price) {
+                              @RequestParam("newPprice") int price) {
         productService.changeProductPrice(id, price);
         return "redirect:/admin/index";
     }

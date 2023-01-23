@@ -25,7 +25,7 @@ public class AdminAjaxController {
         model.addAttribute("categories", productService.getAllCategories());
         model.addAttribute("products", productService.getAllProduct());
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("admin/products");
+        mv.setViewName("/admin/products");
         return mv;
     }
 
@@ -34,7 +34,7 @@ public class AdminAjaxController {
     public ModelAndView returnProductsList(Model model) {
         model.addAttribute("products", productService.getAllProduct());
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("admin/productList");
+        mv.setViewName("/admin/productList");
         return mv;
     }
 

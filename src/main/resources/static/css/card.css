@@ -15,8 +15,8 @@
     position: relative
 }
 .category{
-	background-image: linear-gradient(to right top, #ec5d90, #6da4cc, #d573a3, #738ad5, #5629c0);
-    color: #fff;
+	background-image: linear-gradient(to right top,#29b360, #5629c0);
+	color: #fff;
 }
 .about span {
     color: #3e1d77;

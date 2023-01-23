@@ -58,9 +58,8 @@ public class ProductService {
 
     private Product addCategoriesToProduct(Product p ,String categories) {
         String [] cates = categories.split(",");
-        Category category = null;
         for(String str : cates) {
-            category = categoryRepository.findById(Long.parseLong(str)).get();
+            Category category = categoryRepository.findById(Long.parseLong(str)).get();
             p.getCategories().add(category);
         }
         return p;
@@ -75,22 +74,19 @@ public class ProductService {
     }
 
     public void changeProductName(Long id ,String name) {
-        Product p = new Product();
-        p = productRepository.findById(id).get();
+        Product p = productRepository.findById(id).get();
         p.setName(name);
         productRepository.save(p);
     }
 
     public void changeProductDescription(Long id , String description) {
-        Product p = new Product();
-        p = productRepository.findById(id).get();
+        Product p = productRepository.findById(id).get();
         p.setDescription(description);
         productRepository.save(p);
     }
 
     public void changeProductPrice(Long id,int price) {
-        Product p = new Product();
-        p = productRepository.findById(id).get();
+        Product p = productRepository.findById(id).get();
         p.setPrice(price);
         productRepository.save(p);
     }
@@ -158,7 +154,6 @@ public class ProductService {
     }
 
     public void addImageToProduct(MultipartFile file, Long id) {
-
         Product p = productRepository.findById(id).get();
         Carousel carousel = new Carousel();
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -177,8 +172,7 @@ public class ProductService {
     }
 
     public void addDiscountToProduct(Long id, int discount) {
-        Product p = new Product();
-        p = productRepository.findById(id).get();
+        Product p = productRepository.findById(id).get();
         if (p.getDiscount() == null) {
             Coupon c = new Coupon();
             c.setDiscount(discount);
@@ -190,8 +184,7 @@ public class ProductService {
     }
 
     public void changeProductQuantity(Long id, int quantity) {
-        Product p = new Product();
-        p = productRepository.findById(id).get();
+        Product p = productRepository.findById(id).get();
         p.setQuantity(quantity);
         productRepository.save(p);
     }
