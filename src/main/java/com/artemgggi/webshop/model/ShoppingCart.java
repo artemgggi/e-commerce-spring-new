@@ -2,6 +2,7 @@ package com.artemgggi.webshop.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -24,6 +25,10 @@ public class ShoppingCart {
 
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<CartItem> items;
+
+    public ShoppingCart() {
+        items = new ArrayList<CartItem>();
+    }
 
     private String tokenSession;
 
