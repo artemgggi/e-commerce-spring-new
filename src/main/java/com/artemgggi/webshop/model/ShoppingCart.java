@@ -2,9 +2,7 @@ package com.artemgggi.webshop.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 @Entity
 @Table(name = "shopping_cart")
@@ -23,12 +21,8 @@ public class ShoppingCart {
     @Transient
     private int itemsNumber;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Collection<CartItem> items;
-
-    public ShoppingCart() {
-        items = new ArrayList<CartItem>();
-    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<CartItem> items = new HashSet<>();
 
     private String tokenSession;
 
@@ -49,7 +43,7 @@ public class ShoppingCart {
     }
 
     public Double getTotalPrice() {
-        Double sum = 0.0;
+        double sum = 0.0;
         for (CartItem item : this.items) {
            sum = sum + item.getProduct().getPrice();
         }
@@ -60,11 +54,11 @@ public class ShoppingCart {
         return this.items.size();
     }
 
-    public Collection<CartItem> getItems() {
+    public Set<CartItem> getItems() {
         return items;
     }
 
-    public void setItems(Collection<CartItem> items) {
+    public void setItems(Set<CartItem> items) {
         this.items = items;
     }
 

@@ -1,6 +1,7 @@
 package com.artemgggi.webshop.controller;
 
 import com.artemgggi.webshop.dto.ProductRepository;
+import com.artemgggi.webshop.dto.ShoppingCartRepository;
 import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class IndexController {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    ShoppingCartRepository shoppingCartRepository;
 
     @GetMapping("/")
     public String showIndex(Model model) {
