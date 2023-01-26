@@ -43,7 +43,7 @@
     <div id="content">
         <nav th:fragment="topBar"
              class="navbar navbar-expand-lg navbar-light"
-             style="border-bottom: 4px solid #dbe2ff">
+             style="border-bottom: 4px solid #ffffff">
             <div class="container-fluid">
                 <button type="button" id="sidebarCollapse"
                         class="btn btn-light mr-4">
@@ -71,10 +71,9 @@
                                onclick="handleClickProductList(event)">Products
                             </a></li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-light mr-3" href="#"
-                               onclick="handleClickLogin(event)">
+                            <a class="nav-link btn btn-light mr-3" href="/shoppingCart">
                                 <i class="fas fa-shopping-basket"></i>
-                                <span class="label">[[${shoppingCart.itemsNumber}]</span>
+                                <span class="label">[[${shoppingCart.itemsNumber}]]</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -132,7 +131,7 @@
                         <div class="col-md-4 mb-2" th:each="product : ${products}">
                             <div class="product py-4">
                                 <span class="off bg-success">-
-										[[${product.discount}]]% OFF</span>
+										[[${product.discount.discount}]]% OFF</span>
                                 <div class="text-center">
                                     <img th:src="*{'data:image/jpeg;base64,'+ {product.image}}"
                                          height="130"

@@ -19,7 +19,7 @@ public class ShoppingCartService {
     @Autowired
     private ProductService productService;
 
-    public ShoppingCart addShoppingCartFirstTime(Long id, String sessionToken, int quantity) {
+    public void addShoppingCartFirstTime(Long id, String sessionToken, int quantity) {
         ShoppingCart shoppingCart = new ShoppingCart();
         CartItem cartItem = new CartItem();
         cartItem.setQuantity(quantity);
@@ -27,21 +27,19 @@ public class ShoppingCartService {
         cartItem.setProduct(productService.getProductById(id));
         shoppingCart.getItems().add(cartItem);
         shoppingCart.setTokenSession(sessionToken);
-        return shoppingCartRepository.save(shoppingCart);
+        shoppingCartRepository.save(shoppingCart);
     }
 
-    public ShoppingCart addToExistShoppingCart(Long id, String sessionToken, int quantity) {
+    public void addToExistShoppingCart(Long id, String sessionToken, int quantity) {
         ShoppingCart shoppingCart = shoppingCartRepository.findByTokenSession(sessionToken);
         Product p = productService.getProductById(id);
-        Boolean productDoesExistInTheCart = false;
         if (shoppingCart != null) {
             Set<CartItem> items = shoppingCart.getItems();
             for (CartItem item : items) {
                 if (item.getProduct().equals(p)) {
-                    productDoesExistInTheCart = true;
                     item.setQuantity(item.getQuantity() + quantity);
                     shoppingCart.setItems(items);
-                    return shoppingCartRepository.saveAndFlush(shoppingCart);
+                    shoppingCartRepository.saveAndFlush(shoppingCart);
                 }
             }
         }
@@ -51,9 +49,13 @@ public class ShoppingCartService {
             cartItem1.setQuantity(quantity);
             cartItem1.setProduct(p);
             shoppingCart.getItems().add(cartItem1);
-            return shoppingCartRepository.saveAndFlush(shoppingCart);
+            shoppingCartRepository.saveAndFlush(shoppingCart);
         }
-        return this.addShoppingCartFirstTime(id, sessionToken, quantity);
+        this.addShoppingCartFirstTime(id, sessionToken, quantity);
+    }
+
+    public ShoppingCart getShoppingCartBySessionToken(String sessionToken) {
+        return shoppingCartRepository.findByTokenSession(sessionToken);
     }
 }
 

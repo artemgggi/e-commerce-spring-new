@@ -26,6 +26,8 @@ public class ShoppingCart {
 
     private String tokenSession;
 
+    public ShoppingCart() {}
+
     public Long getId() {
         return id;
     }

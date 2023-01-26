@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-Shop</title>
+    <!--JS-->
+    <base href="/">
+    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="api/ajaxFetch.js" type="text/javascript"></script>
+    <script src="font-awesome/js1/fontawesome.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+    <!--CSS-->
+    <link rel="stylesheet" href="font-awesome/css1/all.css" type="text/css">
+    <link rel="stylesheet" href="css/style4.css" type="text/css">
+    <link rel="stylesheet" href="css/card.css" type="text/css">
+    <link rel="stylesheet" href="css/cart.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css" type="text/css">
+    <link rel="icon" href="images/icon.png"/>
+</head>
+<body>
+<div class="wrapper">
+    <nav th:fragment="sidebar" class="active" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Web-Shop</h3>
+            <strong><i class="fa fa-shopping-cart" aria-hidden="true"></i></strong>
+        </div>
+        <ul class="list-unstyled components">
+            <li>
+                <a href="/"><i class="fas fa-home"></i>Home
+                </a>
+            </li>
+            <li>
+                <a href="#"><i class="fas fa-question"></i> FQ</a>
+            </li>
+            <li>
+                <a href="#"><i class="fas fa-paper-plane"></i> Contact</a>
+            </li>
+        </ul>
+    </nav>
+    <div id="content">
+        <nav th:fragment="topBar"
+             class="navbar navbar-expand-lg navbar-light"
+             style="border-bottom: 4px solid #ffffff">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse"
+                        class="btn btn-light mr-4">
+                    <i class="fas fa-align-left"></i>
+                </button>
+                <form class="form-inline frm">
+                    <input class="form-control mr-sm-2" type="search" value=""
+                           id="search" onkeydown="dropDown(event);" data-toggle="dropdown"
+                           placeholder="Search" aria-label="Search">
+                    <a class="nav-link btn btn-light mr-3" href="#"
+                       onclick="">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right ml-4"
+                         id="dropdown"></div>
+                </form>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-light mr-3" href="/shoppingCart">
+                                <i class="fas fa-shopping-basket"></i>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-light mr-3" href="#"
+                               onclick="handleClickLogin(event)">
+                                <i class="fas fa-user"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-light mr-3" href="/logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container" id="app">
+
+            <div class="row g-2">
+                <div class="col-md-3" th:fragment="generalSection">
+                    <div class="accordion" id="accordion">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button
+                                            class="btn btn-link btn-block text-left text-uppercase"
+                                            type="button" data-toggle="collapse"
+                                            data-target="collapseOne"
+                                            aria-controls="collapseOne">Categories
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseOne" class="collapse show"
+                                 aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body category">
+                                    <div class="t-products p-2">
+                                        <div class="p-lists">
+                                            <div class="d-flex justify-content-between mt-2"
+                                                 th:each="category : ${categories}">
+                                                <span>[[${category.name}]]</span>
+                                                <span>[[${category.productsNumber}]]</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="row g-2">
+
+                        <div class="col-md-9">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="tab">
+                                        <button class="tablinks" onclick="openTab(event, 'cart')"
+                                                id="defaultOpen">
+                                            <i class="fas fa-cart-plus" title="View Cart" style="color: #5629c0; font-size: 20px"></i>
+                                        </button>
+                                        <button class="tablinks" onclick="openTab(event, 'wishlist')">
+                                            <i class="fas fa-heart" style="color: #5629c0; font-size: 20px"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="cart" class="tabcontent">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class=" table-responsive shopping-cart" style="background-color: #fff">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Product</th>
+                                                            <th class="text-center">Quantity</th>
+                                                            <th class="text-center">Subtotal</th>
+                                                            <th class="text-center">Discount</th>
+                                                            <th class="text-center"><a
+                                                                    class="btn btn-sm btn-outline-danger clear"
+                                                                    th:href="@{/clearShoppingCart}">Clear </a></th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr th:each="cartItem : ${shoppingCart.items}" >
+                                                            <td>
+                                                                <div class="product-item">
+                                                                    <a class="product-thumb" href="#"><img alt="Product"></a>
+                                                                    <div class="product-info">
+                                                                        <h4 class="product-title">
+                                                                            <a href="#">[[${cartItem.product.name}]]</a>
+                                                                        </h4>
+                                                                        <span><em>Price:</em>
+																		</span>
+
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <form action="/updateShoppingCart" method="post">
+                                                                    <input type="hidden"
+                                                                           name="item_id"/>
+                                                                    <div class="input-group">
+                                                                        <input type="number" name="quantity"
+
+                                                                               class="form-control round-input form-control-sm"/>
+                                                                        <button class="btn btn-success btn-sm btn-custom"
+                                                                                type="submit">
+                                                                            <i class="fa fa-check"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </td>
+                                                            <td class="text-center text-lg text-medium">
+
+                                                            </td>
+                                                            <td class="text-center text-lg text-medium">
+
+                                                            </td>
+                                                            <td class="text-center"><a class="remove-from-cart"
+
+                                                                                       data-toggle="tooltip"><i
+                                                                    class="fa fa-trash"></i></a></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="shopping-cart-footer">
+                                                    <div class="column">
+                                                        <form class="coupon-form" method="post">
+                                                            <input class="form-control round-input form-control-sm"
+                                                                   type="text"
+                                                                   placeholder="Coupon code" required="">
+                                                            <button class="btn btn-outline-primary btn-sm"
+                                                                    type="submit">Apply Coupon
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="column text-lg">
+                                                        <b>Subtotal: <span class="text-medium"></span></b>
+                                                    </div>
+                                                </div>
+                                                <div class="shopping-cart-footer">
+                                                    <div class="column">
+                                                        <a class="btn btn-outline-secondary back" href="/"><i
+                                                                class="fas fa-arrow-left"></i>&nbsp;Back to Shopping</a>
+                                                    </div>
+                                                    <div class="column cart-button">
+
+                                                        <a class="btn checkout btn-success" href="#">Checkout</a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ------------------- WishList  --------------------------->
+
+                                    <div id="wishlist" class="tabcontent">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="cart-button table-responsive shopping-cart"
+                                                     style="background-color: #fff">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Product</th>
+                                                            <th class="text-center">add to cart</th>
+                                                            <th class="text-center"><a
+                                                                    class="btn btn-sm btn-outline-danger clear"
+                                                                    th:href="@{/clearWishList}">Clear </a></th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <td>
+                                                                <div class="product-item">
+                                                                    <a class="product-thumb" href="#"><img
+
+                                                                            alt="Product"></a>
+                                                                    <div class="product-info">
+                                                                        <h4 class="product-title">
+                                                                            <a href="#"></a>
+                                                                        </h4>
+                                                                        <span><em>Price:</em>
+																		</span>
+
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+
+                                                            <td class="text-center">
+                                                                <button class="btn  text-uppercase"
+                                                                        style="background-color:#fff !important;"
+                                                                        data-toggle="modal"
+                                                                        >
+                                                                    <i class="fas fa-cart-plus"
+                                                                       style="color: #5629c0; font-size: 20px"></i>
+                                                                </button> <!-- Modal -->
+                                                                <div class="modal fade"
+
+                                                                     data-backdrop="static" data-keyboard="false"
+                                                                     tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                                                     aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title"
+                                                                                    id="staticBackdropLabel">add
+                                                                                    to cart</h5>
+                                                                                <button type="button" class="close"
+                                                                                        data-dismiss="modal"
+                                                                                        aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+
+                                                                                <div class="card">
+                                                                                    <img
+
+                                                                                            height="250px"
+                                                                                            class="card-img-top"
+                                                                                            alt="...">
+                                                                                    <div class="card-body">
+                                                                                        <form action="/addToCart"
+                                                                                              method="POSt">
+                                                                                            <input type="hidden"
+                                                                                                   name="id"
+                                                                                            >
+                                                                                            <input type="number"
+                                                                                                   min="1" value="1"
+                                                                                                   name="quantity"
+                                                                                                   class="form-control"
+                                                                                                   placeholder="quantity"/>
+
+                                                                                            <button type="submit"
+                                                                                                    class="btn btn-primary btn-left btn-sm mt-2">
+                                                                                                submit
+                                                                                            </button>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center"><a class="remove-from-cart"
+
+                                                                                       data-toggle="tooltip"><i
+                                                                    class="fa fa-trash"></i></a></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#sidebarCollapse').on('click', function() {
+				$('#sidebar').toggleClass('active');
+			});
+		});
+</script>
+
+<script>
+		function openTab(evt, Name) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(
+						" active", "");
+			}
+			document.getElementById(Name).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+		document.getElementById("defaultOpen").click();
+	</script>
+
+</body>
+</html>
