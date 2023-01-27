@@ -1,5 +1,6 @@
 package com.artemgggi.webshop.service;
 
+import com.artemgggi.webshop.dto.CartItemRepository;
 import com.artemgggi.webshop.dto.ShoppingCartRepository;
 import com.artemgggi.webshop.model.CartItem;
 import com.artemgggi.webshop.model.Product;
@@ -18,6 +19,9 @@ public class ShoppingCartService {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CartItemRepository cartItemRepository;
 
     public void addShoppingCartFirstTime(Long id, String sessionToken, int quantity) {
         ShoppingCart shoppingCart = new ShoppingCart();
@@ -56,6 +60,32 @@ public class ShoppingCartService {
 
     public ShoppingCart getShoppingCartBySessionToken(String sessionToken) {
         return shoppingCartRepository.findByTokenSession(sessionToken);
+    }
+
+    public void updateShoppingCartItem(Long id, int quantity) {
+        CartItem cartItem = cartItemRepository.findById(id).get();
+        cartItem.setQuantity(quantity);
+        cartItemRepository.saveAndFlush(cartItem);
+    }
+
+    public void removeCartIemFromShoppingCart(Long id, String sessionToken) {
+        ShoppingCart shoppingCart = shoppingCartRepository.findByTokenSession(sessionToken);
+        Set<CartItem> items = shoppingCart.getItems();
+        CartItem cartItem = null;
+        for(CartItem item : items) {
+            if(item.getId() == id) {
+                cartItem = item;
+            }
+        }
+        items.remove(cartItem);
+        cartItemRepository.delete(cartItem);
+        shoppingCart.setItems(items);
+        shoppingCartRepository.save(shoppingCart);
+    }
+
+    public void clearShoppingCart(String sessionToken) {
+        ShoppingCart sh = shoppingCartRepository.findByTokenSession(sessionToken);
+        shoppingCartRepository.delete(sh);
     }
 }
 
