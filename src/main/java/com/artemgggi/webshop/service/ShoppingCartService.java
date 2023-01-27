@@ -31,31 +31,27 @@ public class ShoppingCartService {
         cartItem.setProduct(productService.getProductById(id));
         shoppingCart.getItems().add(cartItem);
         shoppingCart.setTokenSession(sessionToken);
+        shoppingCart.setDate(new Date());
         shoppingCartRepository.save(shoppingCart);
     }
 
     public void addToExistShoppingCart(Long id, String sessionToken, int quantity) {
         ShoppingCart shoppingCart = shoppingCartRepository.findByTokenSession(sessionToken);
         Product p = productService.getProductById(id);
-        if (shoppingCart != null) {
-            Set<CartItem> items = shoppingCart.getItems();
-            for (CartItem item : items) {
-                if (item.getProduct().equals(p)) {
-                    item.setQuantity(item.getQuantity() + quantity);
-                    shoppingCart.setItems(items);
-                    shoppingCartRepository.saveAndFlush(shoppingCart);
-                }
+        Set<CartItem> items = shoppingCart.getItems();
+        for (CartItem item : items) {
+            if (item.getProduct().equals(p)) {
+                item.setQuantity(item.getQuantity() + quantity);
+                shoppingCartRepository.saveAndFlush(shoppingCart);
+            } else {
+                CartItem cartItem1 = new CartItem();
+                cartItem1.setDate(new Date());
+                cartItem1.setQuantity(quantity);
+                cartItem1.setProduct(p);
+                shoppingCart.getItems().add(cartItem1);
+                shoppingCartRepository.saveAndFlush(shoppingCart);
             }
         }
-        if (shoppingCart != null) {
-            CartItem cartItem1 = new CartItem();
-            cartItem1.setDate(new Date());
-            cartItem1.setQuantity(quantity);
-            cartItem1.setProduct(p);
-            shoppingCart.getItems().add(cartItem1);
-            shoppingCartRepository.saveAndFlush(shoppingCart);
-        }
-        this.addShoppingCartFirstTime(id, sessionToken, quantity);
     }
 
     public ShoppingCart getShoppingCartBySessionToken(String sessionToken) {
