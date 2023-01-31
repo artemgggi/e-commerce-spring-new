@@ -53,18 +53,18 @@
                     <input class="form-control mr-sm-2" type="search" value=""
                            id="search" onkeydown="dropDown(event);" data-toggle="dropdown"
                            placeholder="Search" aria-label="Search">
-                    <a class="nav-link btn btn-light mr-3" href="#"
-                       onclick="">
-                        <i class="fas fa-search"></i>
-                    </a>
+<!--                    <a class="nav-link btn btn-light mr-3" href="#"-->
+<!--                       onclick="dropDown(event)">-->
+<!--                        <i class="fas fa-search"></i>-->
+<!--                    </a>-->
                     <div class="dropdown-menu dropdown-menu-right ml-4"
-                         id="dropdown"></div>
+                         id="dropdown-container"></div>
                 </form>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link btn btn-light mr-3" href="#"
-                               onclick="handleClickAddProduct(event)">Add Product +
+                               onclick="handleClickAddProduct(event)">Add
                             </a></li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-light mr-3" href="#"
@@ -96,19 +96,8 @@
 
             <div class="row g-2">
                 <div class="col-md-3" th:fragment="generalSection">
-
                     <div class="accordion" id="accordion">
                         <div class="card">
-<!--                            <div class="card-header" id="headingOne">-->
-<!--                                <h2 class="mb-0">-->
-<!--                                    <button-->
-<!--                                            class="btn btn-link btn-block text-left text-uppercase"-->
-<!--                                            type="button" data-toggle="collapse"-->
-<!--                                            data-target="collapseOne"-->
-<!--                                            aria-controls="collapseOne">Categories-->
-<!--                                    </button>-->
-<!--                                </h2>-->
-<!--                            </div>-->
                             <div id="collapseOne" class="collapse show"
                                  aria-labelledby="headingOne" data-parent="#accordion">
                                 <div class="card-body category">
@@ -117,7 +106,7 @@
                                             <p>Categories</p>
                                             <div class="d-flex justify-content-between mt-2"
                                                  th:each="category : ${categories}">
-                                                <span>[[${category.name}]]</span>
+                                                <a href="">[[${category.name}]]</a>
                                                 <span>[[${category.productsNumber}]]</span>
                                             </div>
                                         </div>

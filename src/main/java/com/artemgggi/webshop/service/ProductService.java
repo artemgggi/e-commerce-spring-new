@@ -6,6 +6,7 @@ import com.artemgggi.webshop.model.Carousel;
 import com.artemgggi.webshop.model.Category;
 import com.artemgggi.webshop.model.Coupon;
 import com.artemgggi.webshop.model.Product;
+import jakarta.transaction.Transactional;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -191,5 +192,10 @@ public class ProductService {
 
     public Product getProductById(Long id) {
         return productRepository.findById(id).get();
+    }
+
+    @Transactional
+    public List<Product> searchProductByNameLike(String value) {
+        return productRepository.findByNameContainingIgnoreCase(value);
     }
 }
