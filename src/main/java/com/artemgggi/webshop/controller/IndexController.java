@@ -3,7 +3,10 @@ package com.artemgggi.webshop.controller;
 import com.artemgggi.webshop.dto.ProductRepository;
 import com.artemgggi.webshop.dto.ShoppingCartRepository;
 import com.artemgggi.webshop.model.Product;
+import com.artemgggi.webshop.model.ShoppingCart;
 import com.artemgggi.webshop.service.ProductService;
+import com.artemgggi.webshop.service.ShoppingCartService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,8 +27,18 @@ public class IndexController {
     @Autowired
     ShoppingCartRepository shoppingCartRepository;
 
+    @Autowired
+    ShoppingCartService shoppingCartService;
+
     @GetMapping("/")
-    public String showIndex(Model model) {
+    public String showIndex(HttpServletRequest request, Model model) {
+        String sessionToken = (String) request.getSession(true).getAttribute("sessionToken");
+        if (sessionToken == null) {
+            model.addAttribute("shoppingCart", new ShoppingCart());
+        } else {
+            ShoppingCart shoppingCart = shoppingCartService.getShoppingCartBySessionToken(sessionToken);
+            model.addAttribute("shoppingCart", shoppingCart);
+        }
         List<Product> products = productRepository.findAll();
         model.addAttribute("products", products);
         model.addAttribute("categories", productService.getAllCategories());
