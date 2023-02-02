@@ -46,10 +46,10 @@
                     <input type="text" name="quantity" id="quantity"
                            class="form-control mb-4" placeholder="Product quantity">
                     <textarea type="text" name="desc" id="desc"
-                              class="form-control mb-4" placeholder="Description">
+                              class="form-control mb-4">
                     </textarea>
                     <div class="form-group">
-                        <select class="form-control mb-4 bootstrap-select" name="categories">
+                        <select class="form-control" name="categories">
                             <option th:each="category : ${categories}"
                                     th:value="${category.id}">
                                     [[${category.name}]]
@@ -68,7 +68,7 @@
             <div id="category" class="tabcontent">
                 <form action="/admin/addCategory" method="POST">
                     <div class="form-group">
-                        <select class="form-control mb-4 bootstrap-select"
+                        <select class="form-control mb-4"
                                 name="categories"
                                 multiple data-actions-box="true">
                             <option th:each="category : ${categories}"
