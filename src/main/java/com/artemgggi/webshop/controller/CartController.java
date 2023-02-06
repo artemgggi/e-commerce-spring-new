@@ -1,8 +1,10 @@
 package com.artemgggi.webshop.controller;
 
 import com.artemgggi.webshop.model.ShoppingCart;
+import com.artemgggi.webshop.model.WishList;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
+import com.artemgggi.webshop.service.WishListService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,10 @@ import java.util.UUID;
 
 @Controller
 public class CartController {
+
+    @Autowired
+    WishListService wishListService;
+
     @Autowired
     ProductService productService;
 
@@ -41,9 +47,12 @@ public class CartController {
         String sessionToken = (String) request.getSession(true).getAttribute("sessionToken");
         if (sessionToken == null) {
             model.addAttribute("shoppingCart", new ShoppingCart());
+            model.addAttribute("wishList", new WishList());
         } else {
             ShoppingCart shoppingCart = shoppingCartService.getShoppingCartBySessionToken(sessionToken);
+            WishList wishList = wishListService.getWishListBySessionToken(sessionToken);
             model.addAttribute("shoppingCart", shoppingCart);
+            model.addAttribute("wishList", wishList);
         }
         model.addAttribute("categories", productService.getAllCategories());
         return "/shoppingCart";

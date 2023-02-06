@@ -49,7 +49,7 @@ public class ShoppingCart {
     public Double getTotalPrice() {
         double sum = 0.0;
         for (CartItem item : this.items) {
-           sum = sum + item.getProduct().getPrice();
+           sum = sum + item.getProduct().getPrice() * item.getQuantity();
         }
         return sum;
     }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -63,13 +64,13 @@ public class ShoppingCartService {
         cartItem.setQuantity(quantity);
         cartItemRepository.saveAndFlush(cartItem);
     }
-
+    //TODO
     public void removeCartIemFromShoppingCart(Long id, String sessionToken) {
         ShoppingCart shoppingCart = shoppingCartRepository.findByTokenSession(sessionToken);
         Set<CartItem> items = shoppingCart.getItems();
         CartItem cartItem = null;
         for(CartItem item : items) {
-            if(item.getId() == id) {
+            if(Objects.equals(item.getId(), id)) {
                 cartItem = item;
             }
         }

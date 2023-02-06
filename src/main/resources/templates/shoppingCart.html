@@ -64,7 +64,8 @@
                             <a class="nav-link btn btn-light mr-3" href="/shoppingCart">
                                 <i class="fas fa-shopping-basket"></i>
                                 <span class="label">[[${shoppingCart.itemsNumber}]]</span>
-                            </a></li>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-light" href="#"
                                onclick="handleClickLogin(event)">
@@ -150,7 +151,7 @@
                                                             <td class="text-center">
                                                                 <form action="/updateShoppingCart" method="post">
                                                                     <input type="hidden"
-                                                                           name="item_id"/>
+                                                                           name="item_id" th:value="${cartItem.id}"/>
                                                                     <div class="input-group">
                                                                         <input type="number" name="quantity" min="1"
                                                                                th:value="${cartItem.quantity}"
@@ -226,15 +227,16 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
+                                                        <tr th:each="item : ${whishList.items}">
                                                             <td>
                                                                 <div class="product-item">
                                                                     <a class="product-thumb"
-                                                                       href="#"><img alt="Product"></a>
+                                                                       href="#"><img th:src="*{'data:image/jpeg;base64,'+{item.product.image}}" alt="Product"></a>
                                                                     <div class="product-info">
                                                                         <h4 class="product-title">
-                                                                            <a href="#"></a>
+                                                                            <a href="#">[[${item.product.name}]]</a>
                                                                         </h4>
-                                                                        <span><em>Price:</em>
+                                                                        <span><em>Price:</em>$[[${item.product.price}]]
 																		</span>
                                                                     </div>
                                                                 </div>
@@ -247,6 +249,7 @@
                                                                        style="color: #5629c0; font-size: 20px"></i>
                                                                 </button>
                                                                 <div class="modal fade"
+                                                                     th:id="*{'exampleModalCenter'+{item.product.id}}"
                                                                      data-backdrop="static" data-keyboard="false"
                                                                      tabindex="-1" aria-labelledby="staticBackdropLabel"
                                                                      aria-hidden="true">
@@ -264,7 +267,8 @@
                                                                             </div>
                                                                             <div class="modal-body">
                                                                                 <div class="card">
-                                                                                    <img height="250px"
+                                                                                    <img th:src="*{'data:image/jpeg;base64,'+{item.product.image}}"
+                                                                                            height="250px"
                                                                                          class="card-img-top"
                                                                                          alt="...">
                                                                                     <div class="card-body">
@@ -273,6 +277,7 @@
                                                                                             <input type="hidden"
                                                                                                    name="id">
                                                                                             <input type="number"
+                                                                                                   th:value="${item.product.id}"
                                                                                                    min="1" value="1"
                                                                                                    name="quantity"
                                                                                                    class="form-control"
