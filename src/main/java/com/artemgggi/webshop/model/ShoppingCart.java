@@ -3,7 +3,6 @@ package com.artemgggi.webshop.model;
 import jakarta.persistence.*;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Entity
 @Table(name = "shopping_cart")
@@ -23,8 +22,8 @@ public class ShoppingCart {
     private int itemsNumber;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<CartItem> items = new LinkedHashSet<>();
-//    private Set<CartItem> items = Collections.newSetFromMap(new ConcurrentHashMap<>());
+    private Set<CartItem> items = new HashSet<>();
+//    private Set<CartItem> items = Collections.synchronizedSet(new HashSet<>());
 
     private String tokenSession;
 

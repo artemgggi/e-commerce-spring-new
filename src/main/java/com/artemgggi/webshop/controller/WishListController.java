@@ -30,7 +30,6 @@ public class WishListController {
     @GetMapping("/removeWishListItem/{id}")
     public String removeItem(@PathVariable("id") Long id, HttpServletRequest request) {
         String sessionToken = (String) request.getSession(false).getAttribute("sessionTokenWishList");
-        System.out.println("got here ");
         wishListService.removeItemWishList(id, sessionToken);
         return "redirect:/shoppingCart";
     }

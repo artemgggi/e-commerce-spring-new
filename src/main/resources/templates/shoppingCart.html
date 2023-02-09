@@ -226,21 +226,7 @@
                                                             </th>
                                                         </tr>
                                                         </thead>
-                                                        <tbody>
-                                                        <tr th:each="item : ${whishList.items}">
-                                                            <td>
-                                                                <div class="product-item">
-                                                                    <a class="product-thumb"
-                                                                       href="#"><img th:src="*{'data:image/jpeg;base64,'+{item.product.image}}" alt="Product"></a>
-                                                                    <div class="product-info">
-                                                                        <h4 class="product-title">
-                                                                            <a href="#">[[${item.product.name}]]</a>
-                                                                        </h4>
-                                                                        <span><em>Price:</em>$[[${item.product.price}]]
-																		</span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
+
                                                             <td class="text-center">
                                                                 <button class="btn  text-uppercase"
                                                                         style="background-color:#fff !important;"
@@ -249,7 +235,7 @@
                                                                        style="color: #5629c0; font-size: 20px"></i>
                                                                 </button>
                                                                 <div class="modal fade"
-                                                                     th:id="*{'exampleModalCenter'+{item.product.id}}"
+
                                                                      data-backdrop="static" data-keyboard="false"
                                                                      tabindex="-1" aria-labelledby="staticBackdropLabel"
                                                                      aria-hidden="true">
@@ -257,8 +243,7 @@
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
                                                                                 <h5 class="modal-title"
-                                                                                    id="staticBackdropLabel">add
-                                                                                    to cart</h5>
+                                                                                    id="staticBackdropLabel">add to cart</h5>
                                                                                 <button type="button" class="close"
                                                                                         data-dismiss="modal"
                                                                                         aria-label="Close">
@@ -267,7 +252,7 @@
                                                                             </div>
                                                                             <div class="modal-body">
                                                                                 <div class="card">
-                                                                                    <img th:src="*{'data:image/jpeg;base64,'+{item.product.image}}"
+                                                                                    <img
                                                                                             height="250px"
                                                                                          class="card-img-top"
                                                                                          alt="...">
@@ -277,7 +262,7 @@
                                                                                             <input type="hidden"
                                                                                                    name="id">
                                                                                             <input type="number"
-                                                                                                   th:value="${item.product.id}"
+
                                                                                                    min="1" value="1"
                                                                                                    name="quantity"
                                                                                                    class="form-control"
@@ -313,6 +298,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
 		$(document).ready(function() {
 			$('#sidebarCollapse').on('click', function() {

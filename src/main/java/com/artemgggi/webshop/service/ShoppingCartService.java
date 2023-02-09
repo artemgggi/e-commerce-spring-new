@@ -39,19 +39,23 @@ public class ShoppingCartService {
     public void addToExistShoppingCart(Long id, String sessionToken, int quantity) {
         ShoppingCart shoppingCart = shoppingCartRepository.findByTokenSession(sessionToken);
         Product p = productService.getProductById(id);
+        boolean productExistInTheCart = false;
         Set<CartItem> items = shoppingCart.getItems();
         for (CartItem item : items) {
             if (item.getProduct().equals(p)) {
+                productExistInTheCart = true;
                 item.setQuantity(item.getQuantity() + quantity);
-                shoppingCartRepository.saveAndFlush(shoppingCart);
-            } else {
-                CartItem cartItem1 = new CartItem();
-                cartItem1.setDate(new Date());
-                cartItem1.setQuantity(quantity);
-                cartItem1.setProduct(p);
-                shoppingCart.getItems().add(cartItem1);
-                shoppingCartRepository.saveAndFlush(shoppingCart);
             }
+        }
+        shoppingCart.setItems(items);
+        shoppingCartRepository.saveAndFlush(shoppingCart);
+        if(!productExistInTheCart) {
+            CartItem cartItem1 = new CartItem();
+            cartItem1.setDate(new Date());
+            cartItem1.setQuantity(quantity);
+            cartItem1.setProduct(p);
+            shoppingCart.getItems().add(cartItem1);
+            shoppingCartRepository.saveAndFlush(shoppingCart);
         }
     }
 

@@ -3,7 +3,6 @@ package com.artemgggi.webshop.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "cart_item")
@@ -12,11 +11,14 @@ public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private int quantity;
+
     @Temporal(TemporalType.DATE)
     private Date date;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id", nullable=false, updatable=false)
     private Product product;
 
     public Long getId() {
@@ -86,8 +88,6 @@ public class CartItem {
                 return false;
         } else if (!product.equals(other.product))
             return false;
-        if (quantity != other.quantity)
-            return false;
-        return true;
+        return quantity == other.quantity;
     }
 }

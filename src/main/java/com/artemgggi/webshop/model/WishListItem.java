@@ -3,10 +3,9 @@ package com.artemgggi.webshop.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
+@Table(name = "wishlist_item")
 public class WishListItem {
 
     @Id
@@ -16,45 +15,31 @@ public class WishListItem {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    @Transient
-    private int itemsNumber;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<WishListItem> items = new LinkedHashSet<>();
-
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_id",nullable=false, updatable=false)
     private Product product;
 
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public Date getDate() {
         return date;
     }
+
     public void setDate(Date date) {
         this.date = date;
     }
+
     public Product getProduct() {
         return product;
     }
+
     public void setProduct(Product product) {
         this.product = product;
-    }
-
-    public int getItemsNumber() {
-        return this.items.size();
-    }
-
-    public Set<WishListItem> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<WishListItem> items) {
-        this.items = items;
     }
 
     @Override
@@ -64,6 +49,7 @@ public class WishListItem {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -74,10 +60,7 @@ public class WishListItem {
             return false;
         WishListItem other = (WishListItem) obj;
         if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
+            return other.id == null;
+        } else return id.equals(other.id);
     }
 }

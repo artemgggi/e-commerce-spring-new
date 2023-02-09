@@ -2,9 +2,7 @@ package com.artemgggi.webshop.service;
 
 import com.artemgggi.webshop.dto.WishListItemRepository;
 import com.artemgggi.webshop.dto.WishListRepository;
-import com.artemgggi.webshop.model.Product;
-import com.artemgggi.webshop.model.WishList;
-import com.artemgggi.webshop.model.WishListItem;
+import com.artemgggi.webshop.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,30 +30,17 @@ public class WishListService {
         wishlist.setSessionToken(sessionToken);
         wishlist.setDate(new Date());
         return wishListRepository.save(wishlist);
-
     }
 
-    public WishList addToExistingWishList(Long id, String sessionToken) {
+    public void addToExistingWishList(Long id, String sessionToken) {
         WishList wishList = wishListRepository.findBySessionToken(sessionToken);
         Product p = productService.getProductById(id);
-        Boolean productDoesExistInTheCart = false;
-        if (wishList != null) {
-            Set<WishListItem> items = wishList.getItems();
-            for (WishListItem item : items) {
-                if (item.getProduct().equals(p)) {
-                    productDoesExistInTheCart = true;
-                    break;
-                }
-            }
-        }
-        if(!productDoesExistInTheCart && (wishList != null)) {
-            WishListItem item1 = new WishListItem();
-            item1.setDate(new Date());
-            item1.setProduct(p);
-            wishList.getItems().add(item1);
-            return wishListRepository.saveAndFlush(wishList);
-        }
-        return null;
+        Set<WishListItem> items = wishList.getItems();
+        WishListItem wishListItem1 = new WishListItem();
+        wishListItem1.setDate(new Date());
+        wishListItem1.setProduct(p);
+        wishList.getItems().add(wishListItem1);
+        wishListRepository.saveAndFlush(wishList);
     }
 
     public WishList getWishListBySessionToken(String sessionToken) {

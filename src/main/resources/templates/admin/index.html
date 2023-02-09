@@ -53,10 +53,6 @@
                     <input class="form-control mr-sm-2" type="search" value=""
                            id="search" onkeydown="dropDown(event);" data-toggle="dropdown"
                            placeholder="Search" aria-label="Search">
-<!--                    <a class="nav-link btn btn-light mr-3" href="#"-->
-<!--                       onclick="dropDown(event)">-->
-<!--                        <i class="fas fa-search"></i>-->
-<!--                    </a>-->
                     <div class="dropdown-menu dropdown-menu-right ml-4"
                          id="dropdown-container"></div>
                 </form>
@@ -65,30 +61,35 @@
                         <li class="nav-item">
                             <a class="nav-link btn btn-light mr-3" href="#"
                                onclick="handleClickAddProduct(event)">Add
-                            </a></li>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-light mr-3" href="#"
                                onclick="handleClickProductList(event)">Products
-                            </a></li>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-light mr-3" href="#"
+                               onclick="">Orders
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-light mr-3" href="/shoppingCart">
                                 <i class="fas fa-shopping-basket"></i>
                                 <span class="label">[[${shoppingCart.itemsNumber}]]</span>
-                            </a>
-                            <a class="nav-link btn btn-light mr-3" href="/shoppingCart">
-                                <i class="fas fa-heart"></i>
-                                <span class="label">[[${wishList.itemsNumber}]]</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-light mr-3" href="#"
                                onclick="handleClickLogin(event)">
                                 <i class="fas fa-user"></i>
-                            </a></li>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-light mr-3" href="/logout">
                                 <i class="fas fa-sign-out-alt"></i>
-                            </a></li>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

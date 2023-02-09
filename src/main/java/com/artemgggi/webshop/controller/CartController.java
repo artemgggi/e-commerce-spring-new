@@ -47,12 +47,12 @@ public class CartController {
         String sessionToken = (String) request.getSession(true).getAttribute("sessionToken");
         if (sessionToken == null) {
             model.addAttribute("shoppingCart", new ShoppingCart());
-            model.addAttribute("wishList", new WishList());
+//            model.addAttribute("wishList", new WishList());
         } else {
             ShoppingCart shoppingCart = shoppingCartService.getShoppingCartBySessionToken(sessionToken);
             WishList wishList = wishListService.getWishListBySessionToken(sessionToken);
             model.addAttribute("shoppingCart", shoppingCart);
-            model.addAttribute("wishList", wishList);
+//            model.addAttribute("wishList", wishList);
         }
         model.addAttribute("categories", productService.getAllCategories());
         return "/shoppingCart";

@@ -11,15 +11,21 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NonNull
     private String name;
+
     @Transient
     private int productsNumber;
+
     public Set<Product> getProducts() {
         return products;
     }
+
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
+
     public int getProductsNumber() {
         return this.products.size();
     }
@@ -29,6 +35,7 @@ public class Category {
     public Category() {}
 
     public Category(Long id, String name) {
+        super();
         this.id = id;
         this.name = name;
     }
