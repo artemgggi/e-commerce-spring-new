@@ -11,6 +11,4 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByNameContainingIgnoreCase(String name);
-//    @Query(value = "select name from product where name like %:keyword%",nativeQuery = true)
-//    List<Product> findByNameContaining(@Param("keyword") String name);
 }

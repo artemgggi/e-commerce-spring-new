@@ -8,7 +8,6 @@ import com.artemgggi.webshop.model.Coupon;
 import com.artemgggi.webshop.model.Product;
 import jakarta.transaction.Transactional;
 import net.coobird.thumbnailator.Thumbnails;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,11 +26,14 @@ import java.util.Objects;
 @Service
 public class ProductService {
 
-    @Autowired
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    @Autowired
-    CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
+
+    public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
+        this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
+    }
 
     public void saveProductToDB(MultipartFile file, String name, int price,
                                 String description, int quantity, String categories) {

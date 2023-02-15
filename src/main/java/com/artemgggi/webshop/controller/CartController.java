@@ -1,12 +1,10 @@
 package com.artemgggi.webshop.controller;
 
 import com.artemgggi.webshop.model.ShoppingCart;
-import com.artemgggi.webshop.model.WishList;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
 import com.artemgggi.webshop.service.WishListService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,19 +17,28 @@ import java.util.UUID;
 @Controller
 public class CartController {
 
-    @Autowired
-    WishListService wishListService;
+    private final WishListService wishListService;
 
-    @Autowired
-    ProductService productService;
+    private final ProductService productService;
 
-    @Autowired
-    ShoppingCartService shoppingCartService;
+    private final ShoppingCartService shoppingCartService;
+
+    public CartController(WishListService wishListService,
+                          ProductService productService,
+                          ShoppingCartService shoppingCartService) {
+        this.wishListService = wishListService;
+        this.productService = productService;
+        this.shoppingCartService = shoppingCartService;
+    }
+
+    public String getSessionToken(HttpServletRequest request) {
+        return (String) request.getSession(true).getAttribute("sessionToken");
+    }
 
     @PostMapping("/addToCart")
     public String addToCart(HttpServletRequest request, @RequestParam("id") Long id,
                             @RequestParam("quantity") int quantity) {
-        String sessionToken = (String) request.getSession(true).getAttribute("sessionToken");
+        String sessionToken = getSessionToken(request);
         if (sessionToken == null) {
             sessionToken = UUID.randomUUID().toString();
             request.getSession().setAttribute("sessionToken", sessionToken);
@@ -44,15 +51,12 @@ public class CartController {
 
     @GetMapping("/shoppingCart")
     public String showShoppingCartView(HttpServletRequest request, Model model) {
-        String sessionToken = (String) request.getSession(true).getAttribute("sessionToken");
+        String sessionToken = getSessionToken(request);
         if (sessionToken == null) {
             model.addAttribute("shoppingCart", new ShoppingCart());
-//            model.addAttribute("wishList", new WishList());
         } else {
             ShoppingCart shoppingCart = shoppingCartService.getShoppingCartBySessionToken(sessionToken);
-            WishList wishList = wishListService.getWishListBySessionToken(sessionToken);
             model.addAttribute("shoppingCart", shoppingCart);
-//            model.addAttribute("wishList", wishList);
         }
         model.addAttribute("categories", productService.getAllCategories());
         return "/shoppingCart";

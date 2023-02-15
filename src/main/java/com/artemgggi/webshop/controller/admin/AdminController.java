@@ -7,7 +7,6 @@ import com.artemgggi.webshop.model.ShoppingCart;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,14 +20,19 @@ import java.util.List;
 @Controller
 public class AdminController {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
-    @Autowired
-    ShoppingCartService shoppingCartService;
+    private final ShoppingCartService shoppingCartService;
+
+    public AdminController(ProductRepository productRepository,
+                           ProductService productService,
+                           ShoppingCartService shoppingCartService) {
+        this.productRepository = productRepository;
+        this.productService = productService;
+        this.shoppingCartService = shoppingCartService;
+    }
 
     @GetMapping("/admin/index")
     public String showAddProducts(HttpServletRequest request, Model model) {

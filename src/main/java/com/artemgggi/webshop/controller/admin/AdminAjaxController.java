@@ -2,7 +2,6 @@ package com.artemgggi.webshop.controller.admin;
 
 import com.artemgggi.webshop.dto.ProductRepository;
 import com.artemgggi.webshop.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminAjaxController {
 
-    @Autowired
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    @Autowired
-    ProductService productService;
+    private final ProductService productService;
+
+    public AdminAjaxController(ProductRepository productRepository, ProductService productService) {
+        this.productRepository = productRepository;
+        this.productService = productService;
+    }
 
     @RequestMapping(value = "/admin/products", method = RequestMethod.GET)
     @ResponseBody

@@ -3,7 +3,7 @@ package com.artemgggi.webshop.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,11 +18,8 @@ public class WishList {
 
     private String sessionToken;
 
-    @Transient
-    private int itemsNumber;
-
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER )
-    private Set<WishListItem> items = new LinkedHashSet<>();
+    private Set<WishListItem> items = new HashSet<>();
 
     public WishList() {}
 

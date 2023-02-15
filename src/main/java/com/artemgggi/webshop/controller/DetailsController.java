@@ -5,8 +5,6 @@ import com.artemgggi.webshop.model.ShoppingCart;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class DetailsController {
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
-    @Autowired
-    private ShoppingCartService shoppingCartService;
+    private final ShoppingCartService shoppingCartService;
+
+    public DetailsController(ProductService productService, ShoppingCartService shoppingCartService) {
+        this.productService = productService;
+        this.shoppingCartService = shoppingCartService;
+    }
 
     @GetMapping("/detail/{id}")
     public String getProductDetail(HttpServletRequest request, @PathVariable("id") Long id, Model model) {

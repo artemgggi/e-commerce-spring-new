@@ -16,8 +16,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    @Autowired
-    UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
+
+    public WebSecurityConfig(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {
@@ -44,7 +47,6 @@ public class WebSecurityConfig {
                 .and()
                 .formLogin()
                 .defaultSuccessUrl("/admin/index", true)
-
 
                 // Logout Form Details
                 .and()

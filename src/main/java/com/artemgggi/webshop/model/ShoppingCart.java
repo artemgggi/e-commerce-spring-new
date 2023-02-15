@@ -23,7 +23,6 @@ public class ShoppingCart {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<CartItem> items = new HashSet<>();
-//    private Set<CartItem> items = Collections.synchronizedSet(new HashSet<>());
 
     private String tokenSession;
 

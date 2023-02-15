@@ -5,7 +5,6 @@ import com.artemgggi.webshop.dto.ShoppingCartRepository;
 import com.artemgggi.webshop.model.CartItem;
 import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.model.ShoppingCart;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -15,14 +14,19 @@ import java.util.Set;
 @Service
 public class ShoppingCartService {
 
-    @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
-    @Autowired
-    private CartItemRepository cartItemRepository;
+    private final CartItemRepository cartItemRepository;
+
+    public ShoppingCartService(ShoppingCartRepository shoppingCartRepository,
+                               ProductService productService,
+                               CartItemRepository cartItemRepository) {
+        this.shoppingCartRepository = shoppingCartRepository;
+        this.productService = productService;
+        this.cartItemRepository = cartItemRepository;
+    }
 
     public void addShoppingCartFirstTime(Long id, String sessionToken, int quantity) {
         ShoppingCart shoppingCart = new ShoppingCart();
@@ -49,7 +53,7 @@ public class ShoppingCartService {
         }
         shoppingCart.setItems(items);
         shoppingCartRepository.saveAndFlush(shoppingCart);
-        if(!productExistInTheCart) {
+        if( !productExistInTheCart ) {
             CartItem cartItem1 = new CartItem();
             cartItem1.setDate(new Date());
             cartItem1.setQuantity(quantity);

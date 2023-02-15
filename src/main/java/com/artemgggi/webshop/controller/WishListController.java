@@ -2,29 +2,32 @@ package com.artemgggi.webshop.controller;
 
 import com.artemgggi.webshop.service.WishListService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import java.util.UUID;
 
 @Controller
 public class WishListController {
 
-    @Autowired
-    private WishListService wishListService;
+    private final WishListService wishListService;
+
+    public WishListController(WishListService wishListService) {
+        this.wishListService = wishListService;
+    }
 
     @GetMapping("/addToWishlist/{id}")
     public String addToWishList(@PathVariable("id") Long id, HttpServletRequest request) {
-        String sessionToken = (String) request.getSession(true).getAttribute("sessionTokenWishList");
+        String sessionToken = (String) request.getSession(true).getAttribute("sessionToken");
         if (sessionToken == null) {
             sessionToken = UUID.randomUUID().toString();
-            request.getSession().setAttribute("sessionTokenWishList", sessionToken);
+            request.getSession().setAttribute("sessionToken", sessionToken);
             wishListService.addToWishFirstTime(id, sessionToken);
         } else {
-            wishListService.addToExistingWishList(id, sessionToken);
+            wishListService.addToExistWishList(id, sessionToken);
         }
-        return "redirect:/";
+        return "redirect:/admin/index";
     }
 
     @GetMapping("/removeWishListItem/{id}")
