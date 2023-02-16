@@ -52,6 +52,7 @@ public class ProductService {
         p.setPrice(price);
         p.setDescription(description);
         p.setQuantity(quantity);
+        p.getCategories().add(categories);
         addCategoriesToProduct(p, categories);
         Coupon c = new Coupon();
         c.setDiscount(0);
@@ -199,5 +200,10 @@ public class ProductService {
     @Transactional
     public List<Product> searchProductByNameLike(String value) {
         return productRepository.findByNameContainingIgnoreCase(value);
+    }
+
+    @Transactional
+    public List<Product> searchProductByCategory(String id) {
+        return productRepository.findProductByCategory(id);
     }
 }

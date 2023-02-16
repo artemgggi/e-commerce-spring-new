@@ -17,9 +17,13 @@ public class WishListController {
         this.wishListService = wishListService;
     }
 
+    public String getSessionToken(HttpServletRequest request) {
+        return (String) request.getSession(true).getAttribute("sessionToken");
+    }
+
     @GetMapping("/addToWishlist/{id}")
     public String addToWishList(@PathVariable("id") Long id, HttpServletRequest request) {
-        String sessionToken = (String) request.getSession(true).getAttribute("sessionToken");
+        String sessionToken = getSessionToken(request);
         if (sessionToken == null) {
             sessionToken = UUID.randomUUID().toString();
             request.getSession().setAttribute("sessionToken", sessionToken);

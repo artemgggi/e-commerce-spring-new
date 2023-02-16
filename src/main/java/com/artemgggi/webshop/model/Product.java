@@ -14,7 +14,6 @@ public class Product {
     private String name;
     private int price;
     private String description;
-    private String category;
     private int quantity;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Coupon discount;
@@ -71,14 +70,6 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public Set<Category> getCategories() {

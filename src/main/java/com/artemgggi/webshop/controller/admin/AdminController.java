@@ -4,8 +4,10 @@ import com.artemgggi.webshop.dto.ProductRepository;
 import com.artemgggi.webshop.model.Category;
 import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.model.ShoppingCart;
+import com.artemgggi.webshop.model.WishList;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
+import com.artemgggi.webshop.service.WishListService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,12 +28,16 @@ public class AdminController {
 
     private final ShoppingCartService shoppingCartService;
 
+    private final WishListService wishListService;
+
     public AdminController(ProductRepository productRepository,
                            ProductService productService,
-                           ShoppingCartService shoppingCartService) {
+                           ShoppingCartService shoppingCartService,
+                           WishListService wishListService) {
         this.productRepository = productRepository;
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
+        this.wishListService = wishListService;
     }
 
     @GetMapping("/admin/index")

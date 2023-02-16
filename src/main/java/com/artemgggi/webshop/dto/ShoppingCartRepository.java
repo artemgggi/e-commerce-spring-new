@@ -8,5 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long> {
-    ShoppingCart findByTokenSession(String sessionToken);
+    ShoppingCart findBySessionToken(String sessionToken);
 }

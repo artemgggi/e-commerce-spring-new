@@ -24,7 +24,7 @@ public class ShoppingCart {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<CartItem> items = new HashSet<>();
 
-    private String tokenSession;
+    private String sessionToken;
 
     public ShoppingCart() {}
 
@@ -64,11 +64,11 @@ public class ShoppingCart {
         this.items = items;
     }
 
-    public String getTokenSession() {
-        return tokenSession;
+    public String getSessionToken() {
+        return sessionToken;
     }
 
-    public void setTokenSession(String tokenSession) {
-        this.tokenSession = tokenSession;
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
     }
 }

@@ -69,8 +69,7 @@
                 <form action="/admin/addCategory" method="POST">
                     <div class="form-group">
                         <select class="form-control mb-4"
-                                name="categories"
-                                multiple data-actions-box="true">
+                                name="categories">
                             <option th:each="category : ${categories}"
                                     th:value="${category.id}">
                                 [[${category.name}]]

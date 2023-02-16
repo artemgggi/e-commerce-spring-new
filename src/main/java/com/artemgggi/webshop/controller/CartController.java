@@ -1,6 +1,7 @@
 package com.artemgggi.webshop.controller;
 
 import com.artemgggi.webshop.model.ShoppingCart;
+import com.artemgggi.webshop.model.WishList;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
 import com.artemgggi.webshop.service.WishListService;
@@ -54,8 +55,10 @@ public class CartController {
         String sessionToken = getSessionToken(request);
         if (sessionToken == null) {
             model.addAttribute("shoppingCart", new ShoppingCart());
+            model.addAttribute("wishList", new WishList());
         } else {
             ShoppingCart shoppingCart = shoppingCartService.getShoppingCartBySessionToken(sessionToken);
+            WishList wishList = wishListService.getWishListBySessionToken(sessionToken);
             model.addAttribute("shoppingCart", shoppingCart);
         }
         model.addAttribute("categories", productService.getAllCategories());

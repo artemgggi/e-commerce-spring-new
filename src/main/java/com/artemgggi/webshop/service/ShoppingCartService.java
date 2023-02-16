@@ -35,13 +35,13 @@ public class ShoppingCartService {
         cartItem.setDate(new Date());
         cartItem.setProduct(productService.getProductById(id));
         shoppingCart.getItems().add(cartItem);
-        shoppingCart.setTokenSession(sessionToken);
+        shoppingCart.setSessionToken(sessionToken);
         shoppingCart.setDate(new Date());
         shoppingCartRepository.save(shoppingCart);
     }
 
     public void addToExistShoppingCart(Long id, String sessionToken, int quantity) {
-        ShoppingCart shoppingCart = shoppingCartRepository.findByTokenSession(sessionToken);
+        ShoppingCart shoppingCart = shoppingCartRepository.findBySessionToken(sessionToken);
         Product p = productService.getProductById(id);
         boolean productExistInTheCart = false;
         Set<CartItem> items = shoppingCart.getItems();
@@ -64,7 +64,7 @@ public class ShoppingCartService {
     }
 
     public ShoppingCart getShoppingCartBySessionToken(String sessionToken) {
-        return shoppingCartRepository.findByTokenSession(sessionToken);
+        return shoppingCartRepository.findBySessionToken(sessionToken);
     }
 
     public void updateShoppingCartItem(Long id, int quantity) {
@@ -74,7 +74,7 @@ public class ShoppingCartService {
     }
     //TODO
     public void removeCartIemFromShoppingCart(Long id, String sessionToken) {
-        ShoppingCart shoppingCart = shoppingCartRepository.findByTokenSession(sessionToken);
+        ShoppingCart shoppingCart = shoppingCartRepository.findBySessionToken(sessionToken);
         Set<CartItem> items = shoppingCart.getItems();
         CartItem cartItem = null;
         for(CartItem item : items) {
@@ -89,7 +89,7 @@ public class ShoppingCartService {
     }
 
     public void clearShoppingCart(String sessionToken) {
-        ShoppingCart sh = shoppingCartRepository.findByTokenSession(sessionToken);
+        ShoppingCart sh = shoppingCartRepository.findBySessionToken(sessionToken);
         shoppingCartRepository.delete(sh);
     }
 }
