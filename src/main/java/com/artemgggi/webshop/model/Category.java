@@ -18,20 +18,10 @@ public class Category {
     @Transient
     private int productsNumber;
 
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-
-    public int getProductsNumber() {
-        return this.products.size();
-    }
-
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
+//    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.ALL)
     private Set<Product> products;
+
     public Category() {}
 
     public Category(Long id, String name) {
@@ -55,5 +45,17 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public int getProductsNumber() {
+        return this.products.size();
     }
 }

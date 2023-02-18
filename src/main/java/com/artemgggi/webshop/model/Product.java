@@ -2,7 +2,7 @@ package com.artemgggi.webshop.model;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
+
 import java.util.Set;
 
 @Entity
@@ -21,12 +21,15 @@ public class Product {
     @Column(name = "image")
     private String image;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "product_category", joinColumns = {
-            @JoinColumn(name = "product_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name="category_id", referencedColumnName = "id")}
-            )
-    private Set<Category> categories = new HashSet<Category>();
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "product_category", joinColumns = {
+//            @JoinColumn(name = "product_id", referencedColumnName = "id")},
+//            inverseJoinColumns = {@JoinColumn(name="category_id", referencedColumnName = "id")}
+//            )
+//    private Set<Category> categories = new HashSet<Category>();
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="product_id")
@@ -72,13 +75,13 @@ public class Product {
         this.image = image;
     }
 
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
+//    public Set<Category> getCategories() {
+//        return categories;
+//    }
+//
+//    public void setCategories(Set<Category> categories) {
+//        this.categories = categories;
+//    }
 
     public Set<Carousel> getCarousel() {
         return carousel;
@@ -102,5 +105,13 @@ public class Product {
 
     public void setDiscount(Coupon discount) {
         this.discount = discount;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

@@ -48,26 +48,26 @@ public class ProductService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        Category category = categoryRepository.findById(Long.parseLong(categories)).get();
         p.setName(name);
         p.setPrice(price);
         p.setDescription(description);
         p.setQuantity(quantity);
-        p.getCategories().add(categories);
-        addCategoriesToProduct(p, categories);
+        p.setCategory(category);
         Coupon c = new Coupon();
         c.setDiscount(0);
         p.setDiscount(c);
         productRepository.save(p);
     }
 
-    private Product addCategoriesToProduct(Product p ,String categories) {
-        String [] cates = categories.split(",");
-        for(String str : cates) {
-            Category category = categoryRepository.findById(Long.parseLong(str)).get();
-            p.getCategories().add(category);
-        }
-        return p;
-    }
+//    private Product addCategoriesToProduct(Product p ,String categories) {
+//        String [] cates = categories.split(",");
+//        for(String str : cates) {
+//            Category category = categoryRepository.findById(Long.parseLong(str)).get();
+//            p.getCategories().add(category);
+//        }
+//        return p;
+//    }
 
     public List<Product> getAllProduct() {
         return productRepository.findAll();
