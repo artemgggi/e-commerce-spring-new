@@ -204,6 +204,6 @@ public class ProductService {
 
     @Transactional
     public List<Product> searchProductByCategory(String id) {
-        return productRepository.findProductByCategory(id);
+        return productRepository.findProductByCategoryId(id);
     }
 }
