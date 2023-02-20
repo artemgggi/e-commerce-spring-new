@@ -1,22 +1,19 @@
 package com.artemgggi.webshop.controller;
 
 import com.artemgggi.webshop.dto.ProductRepository;
-import com.artemgggi.webshop.dto.ShoppingCartRepository;
-import com.artemgggi.webshop.model.Category;
 import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.model.ShoppingCart;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class IndexController {
@@ -25,17 +22,13 @@ public class IndexController {
 
     private final ProductService productService;
 
-    private final ShoppingCartRepository shoppingCartRepository;
-
     private final ShoppingCartService shoppingCartService;
 
     public IndexController(ProductRepository productRepository,
                            ProductService productService,
-                           ShoppingCartRepository shoppingCartRepository,
                            ShoppingCartService shoppingCartService) {
         this.productRepository = productRepository;
         this.productService = productService;
-        this.shoppingCartRepository = shoppingCartRepository;
         this.shoppingCartService = shoppingCartService;
     }
 

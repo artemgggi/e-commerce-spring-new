@@ -21,12 +21,6 @@ public class Product {
     @Column(name = "image")
     private String image;
 
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "product_category", joinColumns = {
-//            @JoinColumn(name = "product_id", referencedColumnName = "id")},
-//            inverseJoinColumns = {@JoinColumn(name="category_id", referencedColumnName = "id")}
-//            )
-//    private Set<Category> categories = new HashSet<Category>();
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
@@ -74,14 +68,6 @@ public class Product {
     public void setImage(String image) {
         this.image = image;
     }
-
-//    public Set<Category> getCategories() {
-//        return categories;
-//    }
-//
-//    public void setCategories(Set<Category> categories) {
-//        this.categories = categories;
-//    }
 
     public Set<Carousel> getCarousel() {
         return carousel;

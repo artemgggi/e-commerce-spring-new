@@ -40,9 +40,8 @@ public class WishListService {
         wishlist.setDate(new Date());
         wishListRepository.save(wishlist);
     }
-
+    //TODO
     public void addToExistWishList(Long id, String sessionToken) {
-
     }
 
     public WishList removeItemWishList(Long id, String sessionToken) {

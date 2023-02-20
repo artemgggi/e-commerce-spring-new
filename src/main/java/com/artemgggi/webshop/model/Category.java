@@ -18,7 +18,6 @@ public class Category {
     @Transient
     private int productsNumber;
 
-//    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.ALL)
     private Set<Product> products;
 

@@ -4,7 +4,6 @@ import com.artemgggi.webshop.dto.ProductRepository;
 import com.artemgggi.webshop.model.Category;
 import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.model.ShoppingCart;
-import com.artemgggi.webshop.model.WishList;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
 import com.artemgggi.webshop.service.WishListService;
@@ -28,16 +27,12 @@ public class AdminController {
 
     private final ShoppingCartService shoppingCartService;
 
-    private final WishListService wishListService;
-
     public AdminController(ProductRepository productRepository,
                            ProductService productService,
-                           ShoppingCartService shoppingCartService,
-                           WishListService wishListService) {
+                           ShoppingCartService shoppingCartService) {
         this.productRepository = productRepository;
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
-        this.wishListService = wishListService;
     }
 
     @GetMapping("/admin/index")
@@ -82,7 +77,7 @@ public class AdminController {
         return "redirect:/admin/index";
     }
 
-    @GetMapping("/admin/deleteProd/{id}")
+    @GetMapping("/admin/deleteProduct/{id}")
     public String deleteProduct(@PathVariable("id") Long id) {
         productService.deleteProductById(id);
         return "redirect:/admin/index";

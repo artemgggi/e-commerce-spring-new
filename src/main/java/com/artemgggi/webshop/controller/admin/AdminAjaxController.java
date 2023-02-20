@@ -12,12 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminAjaxController {
 
-    private final ProductRepository productRepository;
-
     private final ProductService productService;
 
-    public AdminAjaxController(ProductRepository productRepository, ProductService productService) {
-        this.productRepository = productRepository;
+    public AdminAjaxController(ProductService productService) {
         this.productService = productService;
     }
 
