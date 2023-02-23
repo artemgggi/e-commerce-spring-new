@@ -36,7 +36,7 @@ public class AdminController {
     }
 
     @GetMapping("/admin/index")
-    public String showAddProducts(HttpServletRequest request, Model model) {
+    public String showAdminIndex(HttpServletRequest request, Model model) {
         String sessionToken = (String) request.getSession(true).getAttribute("sessionToken");
         if (sessionToken == null) {
             model.addAttribute("shoppingCart", new ShoppingCart());

@@ -48,8 +48,7 @@
     <!-- Page Content  -->
     <div id="content">
         <nav th:fragment="topBar"
-             class="navbar navbar-expand-lg navbar-light"
-             style="border-bottom: 4px solid #ffffff">
+             class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <button type="button" id="sidebarCollapse"
                         class="btn btn-light mr-4">
@@ -59,10 +58,6 @@
                     <input class="form-control mr-sm-2" type="search" value=""
                            id="search" onkeydown="dropDown(event);" data-toggle="dropdown"
                            placeholder="Search" aria-label="Search">
-                    <a class="nav-link btn btn-light mr-3" href="#"
-                       onclick="">
-                        <i class="fas fa-search"></i>
-                    </a>
                     <div class="dropdown-menu dropdown-menu-right ml-4"
                          id="dropdown-container"></div>
                 </form>
@@ -99,7 +94,7 @@
                                             <p>Categories</p>
                                             <div class="d-flex justify-content-between mt-2"
                                                  th:each="category : ${categories}">
-                                                <a href="">[[${category.name}]]</a>
+                                                <a th:href="@{/category/{id}(id = ${category.id})}">[[${category.name}]]</a>
                                                 <span>[[${category.productsNumber}]]</span>
                                             </div>
                                         </div>

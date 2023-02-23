@@ -55,10 +55,8 @@ public class CartController {
         String sessionToken = getSessionToken(request);
         if (sessionToken == null) {
             model.addAttribute("shoppingCart", new ShoppingCart());
-            model.addAttribute("wishList", new WishList());
         } else {
             ShoppingCart shoppingCart = shoppingCartService.getShoppingCartBySessionToken(sessionToken);
-            WishList wishList = wishListService.getWishListBySessionToken(sessionToken);
             model.addAttribute("shoppingCart", shoppingCart);
         }
         model.addAttribute("categories", productService.getAllCategories());
@@ -85,5 +83,10 @@ public class CartController {
         request.getSession(false).removeAttribute("sessionToken");
         shoppingCartService.clearShoppingCart(sessionToken);
         return "redirect:/shoppingCart";
+    }
+
+    @GetMapping("/shoppingCartCustomer")
+    public String getShoppingCartConfirmation() {
+        return "/shoppingCartCustomer";
     }
 }

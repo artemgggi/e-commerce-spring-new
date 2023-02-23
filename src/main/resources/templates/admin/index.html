@@ -42,8 +42,7 @@
     </nav>
     <div id="content">
         <nav th:fragment="topBar"
-             class="navbar navbar-expand-lg navbar-light"
-             style="border-bottom: 4px solid #ffffff">
+             class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <button type="button" id="sidebarCollapse"
                         class="btn btn-light mr-4">
@@ -70,7 +69,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-light mr-3" href="#"
-                               onclick="">Orders
+                               onclick="handleClickOrders(event)">Orders
                             </a>
                         </li>
                         <li class="nav-item">
@@ -95,7 +94,7 @@
             </div>
         </nav>
 
-        <div class="container" id="app">
+        <div class="container" >
 
             <div class="row g-2">
                 <div class="col-md-3" th:fragment="generalSection">
@@ -120,7 +119,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-md-9" id="app">
                     <div class="row g-2">
                         <div class="col-md-4 mb-2" th:each="product : ${products}">
                             <div class="product py-4">
@@ -209,7 +208,6 @@
 				$('#sidebar').toggleClass('active');
 			});
 		});
-
 </script>
 
 </body>

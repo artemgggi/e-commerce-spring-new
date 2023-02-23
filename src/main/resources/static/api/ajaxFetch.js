@@ -22,13 +22,12 @@ function  fire_ajax()
     });
 };
 
-function handleClickProductList(event)
-{
+
+function handleClickProductList(event) {
   event.preventDefault();
   fire_ajax1();
 }
-function  fire_ajax1()
-{
+function  fire_ajax1() {
 	$.ajax({
         type: "GET",
         url: "/admin/productList",
@@ -46,13 +45,13 @@ function  fire_ajax1()
     });
 }
 
-function handleClickLogin(event)
-{
+
+function handleClickLogin(event) {
   event.preventDefault();
   fire_ajax2();
 }
-function  fire_ajax2()
-{
+
+function  fire_ajax2() {
 	$.ajax({
         type: "GET",
         url: "/loginForm",
@@ -71,7 +70,31 @@ function  fire_ajax2()
 }
 
 
-function dropDown(event){
+function handleClickOrders(event) {
+  event.preventDefault();
+  fire_ajax3();
+}
+
+function  fire_ajax3() {
+	$.ajax({
+        type: "GET",
+        url: "/admin/orders",
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+        	$("#app").empty();
+        	$("#app").append(data);
+        },
+    error: function (e) {
+        console.log("Error: ", e)
+    }
+    });
+}
+
+
+function dropDown(event) {
 		    var val = $("#search").val();
 		    if(val.length > 1){
 		    	$.ajax({

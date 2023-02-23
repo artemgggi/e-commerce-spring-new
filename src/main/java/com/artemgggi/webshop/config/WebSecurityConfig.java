@@ -10,7 +10,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -35,28 +34,43 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable()
+//                http.csrf().disable();
+//                http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .authorizeHttpRequests()
+//                .requestMatchers("/admin/**").hasRole("ROLE_MANAGER")
+//                .requestMatchers("/**").permitAll()
+//                .anyRequest().authenticated()
+//
+//                // Login Form Details
+//                .and()
+//                .formLogin()
+//                .loginProcessingUrl("/j_spring_security_check")
+//                .loginPage("/loginForm").permitAll()
+//                .failureUrl("/loginForm?error=true")
+//
+//                // Logout Form Details
+//                .and()
+//                .logout()
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
+//                .logoutSuccessUrl("/")
+//
+//                // Exception Details
+//                .and()
+//                .exceptionHandling();
+//        return http.build();
+        http.cors().disable();
+                http
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeHttpRequests()
-                .requestMatchers("admin/**").hasRole("ROLE_MANAGER")
-                .requestMatchers("/**").permitAll()
-                .anyRequest().authenticated()
+                .authorizeHttpRequests(atzrx -> atzrx
+                        .requestMatchers("/**").permitAll()
+                        .anyRequest().authenticated()
+                );
+        http.formLogin().defaultSuccessUrl("/admin/index");
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
 
-                // Login Form Details
-                .and()
-                .formLogin()
-                .defaultSuccessUrl("/admin/index", true)
-
-                // Logout Form Details
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
-                .logoutSuccessUrl("/")
-
-                // Exception Details
-                .and()
-                .exceptionHandling();
         return http.build();
     }
 }

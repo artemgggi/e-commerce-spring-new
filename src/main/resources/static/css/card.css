@@ -20,14 +20,14 @@
 }
 .about span {
     color: #016b00;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .cart-button button {
     font-size: 12px;
     color: #000000;
-    background-color: #ffffff;
-    height: 38px
+    background-color: #84f0bd;
+    height: 30px
 }
 
 .checkout .back{
