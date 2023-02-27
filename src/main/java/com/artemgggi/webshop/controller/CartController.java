@@ -1,7 +1,6 @@
 package com.artemgggi.webshop.controller;
 
 import com.artemgggi.webshop.model.ShoppingCart;
-import com.artemgggi.webshop.model.WishList;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
 import com.artemgggi.webshop.service.WishListService;
@@ -86,7 +85,14 @@ public class CartController {
     }
 
     @GetMapping("/shoppingCartCustomer")
-    public String getShoppingCartConfirmation() {
+    public String getShoppingCartCustomer() {
         return "/shoppingCartCustomer";
     }
+
+    @PostMapping("/shoppingCartCustomerConfirm")
+    public String saveShoppingCartCustomer() {
+        return null;
+
+    }
+
 }
