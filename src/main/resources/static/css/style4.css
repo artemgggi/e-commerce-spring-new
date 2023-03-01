@@ -13,7 +13,7 @@ p {
     font-size: 1.3em;
     font-weight: 300;
     line-height: 1.7em;
-    color: #cbffe1;
+    color: #feff91;
 }
 
 a,
@@ -26,7 +26,7 @@ a:focus {
 
 .navbar {
     padding: 15px 10px;
-    background: #256162;
+    background: #fff9d4;
     border: none;
     border-radius: 0;
     margin-bottom: 10px;
@@ -36,8 +36,8 @@ a:focus {
 	font-weight: 700;
 	font-family: sans-serif;
 	font-size: 16px;
-	background: #228082;
-	border-color: #000;
+	background: #f6ffff;
+	border-color: #ffe500;
 }
 .navbar btn:hover{
 	background: #f8f9fa;
@@ -73,8 +73,8 @@ span {
 #sidebar {
     min-width: 200px;
     max-width: 200px;
-    background: #156059eb;
-    color: #ffffff;
+    background: #fcffd5;
+    color: #ad9b9b;
     transition: all 0.3s;
 }
 
@@ -126,7 +126,7 @@ span {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #326f8f;
+    background: #feffea;
 }
 
 #sidebar .sidebar-header strong {
@@ -142,12 +142,12 @@ span {
     padding: 10px;
     font-size: 1.1em;
     display: block;
-	color: #fff;
+	color: #837474;
 }
 
 #sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
+    color: #000000;
+    background: #fffe91;
 }
 
 #sidebar ul li a i {
@@ -158,7 +158,7 @@ span {
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #d5d9ed;
 }
 
 a[data-toggle="collapse"] {
@@ -176,7 +176,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #7481b8;
 }
 
 ul.CTAs {
