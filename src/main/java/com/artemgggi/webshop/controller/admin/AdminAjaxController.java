@@ -1,9 +1,6 @@
 package com.artemgggi.webshop.controller.admin;
 
-import com.artemgggi.webshop.dto.ProductRepository;
 import com.artemgggi.webshop.service.ProductService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,18 +45,4 @@ public class AdminAjaxController {
         mv.setViewName("/admin/orders");
         return mv;
     }
-
-    @GetMapping("/loginForm")
-    public String getLogin() {
-        return "/loginForm";
-    }
-
-//    @RequestMapping(value = "/loginForm", method = RequestMethod.GET)
-//    @ResponseBody
-//    public ModelAndView returnLoginForm(HttpServletRequest request, HttpSession session) {
-//        request.getSession();
-//        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("/loginForm");
-//        return mv;
-//    }
 }

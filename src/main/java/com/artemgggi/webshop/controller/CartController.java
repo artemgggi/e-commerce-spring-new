@@ -18,18 +18,13 @@ import java.util.UUID;
 @Controller
 public class CartController {
 
-    private final WishListService wishListService;
-
     private final ProductService productService;
 
     private final ShoppingCartService shoppingCartService;
 
 
-    public CartController(WishListService wishListService,
-                          ProductService productService,
-                          ShoppingCartService shoppingCartService)
-                           {
-        this.wishListService = wishListService;
+    public CartController(ProductService productService,
+                          ShoppingCartService shoppingCartService) {
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
     }

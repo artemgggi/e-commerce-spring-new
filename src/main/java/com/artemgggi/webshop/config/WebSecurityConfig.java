@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -34,43 +34,19 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//                http.csrf().disable();
-//                http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authorizeHttpRequests()
-//                .requestMatchers("/admin/**").hasRole("ROLE_MANAGER")
-//                .requestMatchers("/**").permitAll()
-//                .anyRequest().authenticated()
-//
-//                // Login Form Details
-//                .and()
-//                .formLogin()
-//                .loginProcessingUrl("/j_spring_security_check")
-//                .loginPage("/loginForm").permitAll()
-//                .failureUrl("/loginForm?error=true")
-//
-//                // Logout Form Details
-//                .and()
-//                .logout()
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
-//                .logoutSuccessUrl("/")
-//
-//                // Exception Details
-//                .and()
-//                .exceptionHandling();
-//        return http.build();
-        http.cors().disable();
-                http
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                http.csrf().disable();
+                http.authorizeHttpRequests()
+                .requestMatchers("/admin/**").hasRole("MANAGER")
+                        .requestMatchers("/**").permitAll().anyRequest().authenticated()
                 .and()
-                .authorizeHttpRequests(atzrx -> atzrx
-                        .requestMatchers("/**").permitAll()
-                        .anyRequest().authenticated()
-                );
-        http.formLogin().defaultSuccessUrl("/admin/index");
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
-
+                .formLogin().defaultSuccessUrl("/admin/index").permitAll()
+                .loginProcessingUrl("/j_spring_security_check")
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
+                .logoutSuccessUrl("/")
+                .and()
+                .exceptionHandling();
         return http.build();
     }
 }
