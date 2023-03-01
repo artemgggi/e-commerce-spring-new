@@ -1,5 +1,6 @@
 package com.artemgggi.webshop.controller;
 
+import com.artemgggi.webshop.model.Order;
 import com.artemgggi.webshop.model.ShoppingCart;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
@@ -23,9 +24,11 @@ public class CartController {
 
     private final ShoppingCartService shoppingCartService;
 
+
     public CartController(WishListService wishListService,
                           ProductService productService,
-                          ShoppingCartService shoppingCartService) {
+                          ShoppingCartService shoppingCartService)
+                           {
         this.wishListService = wishListService;
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
@@ -83,16 +86,4 @@ public class CartController {
         shoppingCartService.clearShoppingCart(sessionToken);
         return "redirect:/shoppingCart";
     }
-
-    @GetMapping("/shoppingCartCustomer")
-    public String getShoppingCartCustomer() {
-        return "/shoppingCartCustomer";
-    }
-
-    @PostMapping("/shoppingCartCustomerConfirm")
-    public String saveShoppingCartCustomer() {
-        return null;
-
-    }
-
 }

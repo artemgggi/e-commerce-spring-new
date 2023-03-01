@@ -76,29 +76,6 @@
             </div>
         </nav>
         <div class="container" id="app">
-
-            <div class="row g-2">
-                <div class="col-md-3" th:fragment="generalSection">
-                    <div class="accordion" id="accordion">
-                        <div class="card">
-                            <div id="collapseOne" class="collapse show"
-                                 aria-labelledby="headingOne" data-parent="#accordion">
-                                <div class="card-body category">
-                                    <div class="t-products p-2">
-                                        <div class="p-lists">
-                                            <p>Categories</p>
-                                            <div class="d-flex justify-content-between mt-2"
-                                                 th:each="category : ${categories}">
-                                                <a href="">[[${category.name}]]</a>
-                                                <span>[[${category.productsNumber}]]</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-md-9">
                     <div class="row g-2">
                         <div class="col-md-9">
@@ -107,25 +84,16 @@
                                     <form class="text-center"
                                           action="/shoppingCartCustomerConfirm"
                                           method="POST">
-                                        <input type="text" name="customerName" id="name"
+                                        <input type="text" name="name" id="name"
                                                class="form-control mb-4" placeholder="Your name">
                                         <input type="text" name="email" id="email"
                                                class="form-control mb-4" placeholder="Email">
-                                        <input type="text" name="phoneNumber" id="PhoneNumber"
+                                        <input type="text" name="phone" id="PhoneNumber"
                                                class="form-control mb-4" placeholder="Phone Number">
-                                        <input type="text" name="adress" id="adress"
+                                        <input type="text" name="address" id="adress"
                                                class="form-control mb-4" placeholder="Adress">
-<!--                                        <input type="submit" value="Submit"/>-->
-<!--                                        <input type="reset" value="Reset"/>-->
-                                        <div class="shopping-cart-footer">
-                                            <div class="column cart-button">
-                                                <a class="btn btn-outline-secondary back" type="submit">
-                                                    <i class="fas fa-arrow-left"></i>Back</a>
-                                            </div>
-                                            <div class="column cart-button" type="reset">
-                                                <a class="btn checkout btn-success">Next</a>
-                                            </div>
-                                        </div>
+                                        <input type="submit" value="Submit"/>
+                                        <input type="reset" value="Reset"/>
                                     </form>
                                 </div>
                             </div>
@@ -135,6 +103,5 @@
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

@@ -3,30 +3,29 @@ package com.artemgggi.webshop.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "orders",
-        uniqueConstraints = { @UniqueConstraint(columnNames = "order_num")})
+@Table(name = "orders")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name= "order_id")
     private Long id;
 
     private Date orderDate;
+    private Date deliveryDate;
+    private double totalPrice;
+    private double shippingFee;
+    private String orderStatus;
+    private String notes;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    private Customer customer;
 
-    @Column(name = "order_num")
-    private int orderNum;
-
-    private double amount;
-
-    private String customerName;
-
-    private String customerAdress;
-
-    private String customerEmail;
-
-    private String customerPhone;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    private List<OrderDetail> orderDetailList;
 
     public Long getId() {
         return id;
@@ -44,51 +43,59 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public int getOrderNum() {
-        return orderNum;
+    public Date getDeliveryDate() {
+        return deliveryDate;
     }
 
-    public void setOrderNum(int orderNum) {
-        this.orderNum = orderNum;
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public double getShippingFee() {
+        return shippingFee;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setShippingFee(double shippingFee) {
+        this.shippingFee = shippingFee;
     }
 
-    public String getCustomerAdress() {
-        return customerAdress;
+    public String getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setCustomerAdress(String customerAdress) {
-        this.customerAdress = customerAdress;
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
-    public String getCustomerEmail() {
-        return customerEmail;
+    public String getNotes() {
+        return notes;
     }
 
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
-    public String getCustomerPhone() {
-        return customerPhone;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerPhone(String customerPhone) {
-        this.customerPhone = customerPhone;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public List<OrderDetail> getOrderDetailList() {
+        return orderDetailList;
+    }
+
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
     }
 }
