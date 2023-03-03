@@ -92,6 +92,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="cart" class="tabcontent">
+                                        <div th:if="${shoppingCart.items.isEmpty()}">Cart is Empty</div>
                                         <div class="col-12">
                                             <div class="row">
                                                 <div class=" table-responsive shopping-cart" style="background-color: #fff">

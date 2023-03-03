@@ -153,7 +153,7 @@ sup {
 }
 
 a {
-  color: #ffffff;
+  color: #828282;
   text-decoration: none;
   background-color: transparent;
 }
@@ -384,6 +384,7 @@ h4, .h4 {
 
 h5, .h5 {
   font-size: 1.25rem;
+  color: dimgrey;
 }
 
 h6, .h6 {
@@ -2420,9 +2421,9 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  color: #848484;
+  background-color: #ffffff;
+  border-color: #b8b8b8;
 }
 
 .btn-primary:hover {
@@ -3066,7 +3067,7 @@ input[type="button"].btn-block {
   color: #212529;
   text-align: left;
   list-style: none;
-  background-color: #75c0b3;
+  background-color: #fcffd5ab;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;

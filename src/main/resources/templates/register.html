@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web-Shop</title>
+  <!--JS-->
+  <base href="/">
+  <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+  <script src="api/ajaxFetch.js" type="text/javascript"></script>
+  <script src="font-awesome/js1/fontawesome.js" type="text/javascript"></script>
+  <script src="js/bootstrap.js" type="text/javascript"></script>
+  <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+  <!--CSS-->
+  <link rel="stylesheet" href="font-awesome/css1/all.css" type="text/css">
+  <link rel="stylesheet" href="css/style4.css" type="text/css">
+  <link rel="stylesheet" href="css/card.css" type="text/css">
+  <link rel="stylesheet" href="css/cart.css" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap-select.min.css" type="text/css">
+  <link rel="icon" href="images/icon.png"/>
+</head>
+<body>
+  <div class="card">
+    <div class="text-center border border-light p-5">
+    <div class="form">
+      <p>Register</p>
+      <div th:if = "${error}" class="text-center alert alert-danger">
+        <p th:text="${error}"></p>
+      </div>
+      <div th:if = "${username}" class="text-center alert-warning">
+        <p th:text="${username}"></p>
+      </div>
+      <div th:if = "${password}" class="text-center alert-warning">
+        <p th:text="${password}"></p>
+      </div>
+      <div th:if = "${success}" class="text-center alert-success">
+        <p th:text="${success}"></p>
+      </div>
+      <form th:action="@{/do-register}" method="post" th:object="${customerDto}">
+        <div class="input-form">
+          <input type="text" th:field = "*{firstName}" placeholder="First Name" name="">
+        </div>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}"
+             th:errors = "*{firstName}"
+        ></div>
+        <div class="input-form">
+          <input type="text" th:field = "*{lastName}" placeholder="Last Name" name="">
+        </div>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}"
+             th:errors = "*{lastName}"
+        ></div>
+        <div class="input-form">
+          <input type="email" th:field = "*{username}" placeholder="Username" name="">
+        </div>
+        <div class="input-form">
+          <input type="password" th:field = "*{password}" placeholder="Password" name="">
+        </div>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}"
+             th:errors = "*{password}"
+        ></div>
+        <div class="input-form">
+          <input type="password" th:field = "*{repeatPassword}" placeholder="Verify password" name="">
+        </div>
+        <div class="input-form">
+          <p>Do You Already Have An Account ? <a th:href="@{/login}"> Sign in now </a></p>
+        </div>
+        <div class="input-form">
+          <input type="submit" value="Sign up">
+        </div>
+      </form>
+    </div>
+    </div>
+  </div>
+</body>
+</html>

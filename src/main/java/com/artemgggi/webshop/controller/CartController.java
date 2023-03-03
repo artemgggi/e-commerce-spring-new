@@ -34,17 +34,18 @@ public class CartController {
     }
 
     @PostMapping("/addToCart")
-    public String addToCart(HttpServletRequest request, @RequestParam("id") Long id,
-                            @RequestParam("quantity") int quantity) {
+    public String addToCart(HttpServletRequest request, @RequestParam("id") Long id) {
         String sessionToken = getSessionToken(request);
         if (sessionToken == null) {
             sessionToken = UUID.randomUUID().toString();
             request.getSession().setAttribute("sessionToken", sessionToken);
+            int quantity = 1;
             shoppingCartService.addShoppingCartFirstTime(id, sessionToken, quantity);
         } else {
+            int quantity = 1;
             shoppingCartService.addToExistShoppingCart(id, sessionToken, quantity);
         }
-        return "redirect:/admin/index";
+        return "redirect:/";
     }
 
     @GetMapping("/shoppingCart")
