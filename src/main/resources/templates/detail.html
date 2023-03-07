@@ -136,59 +136,23 @@
                                     </div>
                                 </h5>
                             </div>
+                            <div>
+                                <div class="cart-button mt-3 px-2 d-flex align-items-center">
+                                    <form th:action="@{/addToCart}" method="post" >
+                                        <input type="hidden" th:value="${product.id}" name="id">
+                                        <input type="submit" class="btn btn-primary" value="Add to Cart">
+                                    </form>
+                                    <button class="btn btn-primary btn-sm  button ml-2 mr-2">
+                                        <i class="fa fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
                             <hr>
                             <h5>Product description</h5>
                             <div class="small text-muted">
                                 [[${product.description}]]
                             </div>
                             <hr>
-                            <div>
-                                <div class="cart-button">
-                                    <button class="btn btn-primary btn-sm  button" data-toggle="modal"
-                                            th:attr="data-target='#exampleModalCenter'+*{product.id}">
-                                        <i class="fa fa-cart-plus"></i>Add to cart
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" th:id="*{'exampleModalCenter'+{product.id}}"
-                                         data-backdrop="static" data-keyboard="false" tabindex="-1"
-                                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="staticBackdropLabel">add to cart</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-
-                                                    <div class="card">
-                                                        <img th:src="*{'data:image/jpeg;base64,'+{product.image}}"
-                                                             height="250px" width="250px" class="card-img-top"
-                                                             alt="...">
-                                                        <div class="card-body">
-                                                            <form action="/addToCart" method="POST">
-                                                                <input type="hidden" name="id"
-                                                                       th:value="${product.id}"/>
-                                                                <input type="number" min="1" value="1" name="quantity"
-                                                                       class="form-control" placeholder="quantity"/>
-                                                                <button type="submit" class="btn btn-primary mt-2">
-                                                                    submit
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary btn-sm  button ml-2 mr-2">
-                                        <i class="fa fa-heart"></i> Add to wishlist
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

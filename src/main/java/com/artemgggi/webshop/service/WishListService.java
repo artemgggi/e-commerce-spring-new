@@ -30,7 +30,7 @@ public class WishListService {
         return wishListRepository.findBySessionToken(sessionToken);
     }
 
-    public void addToWishFirstTime(Long id, String sessionToken) {
+    public void addToWishListFirstTime(Long id, String sessionToken) {
         WishList wishlist = new WishList();
         WishListItem wishListitem = new WishListItem();
         wishListitem.setDate(new Date());
@@ -62,5 +62,9 @@ public class WishListService {
     public void clearWishList(String sessionToken) {
         WishList sh = wishListRepository.findBySessionToken(sessionToken);
         wishListRepository.delete(sh);
+    }
+
+    public WishList getShoppingCartBySessionToken(String sessionToken) {
+        return wishListRepository.findBySessionToken(sessionToken);
     }
 }

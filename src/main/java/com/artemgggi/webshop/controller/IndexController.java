@@ -3,6 +3,7 @@ package com.artemgggi.webshop.controller;
 import com.artemgggi.webshop.dto.ProductRepository;
 import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.model.ShoppingCart;
+import com.artemgggi.webshop.model.WishList;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,6 +42,7 @@ public class IndexController {
         String sessionToken = getSessionToken(request);
         if (sessionToken == null) {
             model.addAttribute("shoppingCart", new ShoppingCart());
+            model.addAttribute("wishList", new WishList());
         } else {
             ShoppingCart shoppingCart = shoppingCartService.getShoppingCartBySessionToken(sessionToken);
             model.addAttribute("shoppingCart", shoppingCart);

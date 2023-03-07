@@ -1,10 +1,7 @@
 package com.artemgggi.webshop.controller;
 
-import com.artemgggi.webshop.model.Order;
 import com.artemgggi.webshop.model.ShoppingCart;
-import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
-import com.artemgggi.webshop.service.WishListService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,14 +15,9 @@ import java.util.UUID;
 @Controller
 public class CartController {
 
-    private final ProductService productService;
-
     private final ShoppingCartService shoppingCartService;
 
-
-    public CartController(ProductService productService,
-                          ShoppingCartService shoppingCartService) {
-        this.productService = productService;
+    public CartController(ShoppingCartService shoppingCartService) {
         this.shoppingCartService = shoppingCartService;
     }
 
@@ -57,7 +49,6 @@ public class CartController {
             ShoppingCart shoppingCart = shoppingCartService.getShoppingCartBySessionToken(sessionToken);
             model.addAttribute("shoppingCart", shoppingCart);
         }
-        model.addAttribute("categories", productService.getAllCategories());
         return "/shoppingCart";
     }
 
