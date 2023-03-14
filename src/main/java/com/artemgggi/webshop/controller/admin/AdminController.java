@@ -51,8 +51,7 @@ public class AdminController {
     }
 
     @GetMapping("/admin/product")
-    public String showAddProduct(Model model)
-    {
+    public String showAddProduct(Model model) {
         model.addAttribute("category", new Category());
         model.addAttribute("categories", productService.getAllCategories());
         model.addAttribute("products", productService.getAllProduct());
@@ -65,8 +64,7 @@ public class AdminController {
                               @RequestParam("price") int price,
                               @RequestParam("desc") String desc,
                               @RequestParam("quantity") int quantity,
-                              @RequestParam("categories") String categories)
-    {
+                              @RequestParam("categories") String categories) {
         productService.saveProductToDB(file, name, price,desc, quantity, categories);
         return "redirect:/admin/index";
     }

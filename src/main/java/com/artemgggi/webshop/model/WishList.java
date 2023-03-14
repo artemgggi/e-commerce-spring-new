@@ -16,6 +16,9 @@ public class WishList {
     @Temporal(TemporalType.DATE)
     private Date date;
 
+    @Transient
+    private int itemsNumber;
+
     private String sessionToken;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER )

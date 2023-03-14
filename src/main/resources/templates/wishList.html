@@ -85,9 +85,10 @@
                                                 <thead>
                                                 <tr>
                                                     <th>Product</th>
+                                                    <th class="text-center">Buy</th>
                                                     <th class="text-center">
                                                         <a class="btn btn-sm btn-outline-danger clear"
-                                                           th:href="@{/clearShoppingCart}">Clear</a>
+                                                           th:href="@{/clearWishList}">Clear</a>
                                                     </th>
                                                 </tr>
                                                 </thead>
@@ -106,9 +107,16 @@
                                                             </div>
                                                         </div>
                                                     </td>
+                                                    <td class="text-center text-lg text-medium">
+                                                        <form th:action="@{/addToCart}" method="post" >
+                                                            <input type="hidden" th:value="${WishListItem.product.id}" name="id">
+                                                            <input type="submit" class="btn btn-primary" value="Add to Cart">
+                                                        </form>
+                                                    </td>
                                                     <td class="text-center">
                                                         <a class="remove-from-cart"
-                                                           data-toggle="tooltip">
+                                                        th:href="@{/removeWishListItem/{id}(id = ${WishListItem.id})}"
+                                                            data-toggle="tooltip">
                                                             <i class="fa fa-trash"></i>
                                                         </a>
                                                     </td>
@@ -117,9 +125,8 @@
                                             </table>
                                         </div>
                                         <div class="shopping-cart-footer">
-                                            <div class="column">
                                                 <a class="btn btn-outline-secondary back" href="/">
-                                                    <i class="fas fa-arrow-left"></i>&nbsp;Back to Shopping</a>
+                                                    <i class="fas fa-arrow-left"></i>Back to Shopping</a>
                                             </div>
                                         </div>
                                     </div>

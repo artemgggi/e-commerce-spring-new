@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.UUID;
 
@@ -22,16 +20,16 @@ public class WishListController {
     }
 
     public String getSessionToken(HttpServletRequest request) {
-        return (String) request.getSession(true).getAttribute("sessionToken");
+        return (String) request.getSession(true).getAttribute("sessionTokenWishList");
     }
 
     @GetMapping("/wishList")
     public String getWishList(HttpServletRequest request, Model model) {
-        String sessionToken = getSessionToken(request);
-        if (sessionToken == null) {
+        String sessionTokenWishList = getSessionToken(request);
+        if (sessionTokenWishList == null) {
             model.addAttribute("wishList", new WishList());
         } else {
-            WishList wishList = wishListService.getShoppingCartBySessionToken(sessionToken);
+            WishList wishList = wishListService.getShoppingCartBySessionToken(sessionTokenWishList);
             model.addAttribute("wishList", wishList);
         }
         return "/wishList";
@@ -39,15 +37,15 @@ public class WishListController {
 
     @GetMapping("/addToWishlist/{id}")
     public String addToWishList(@PathVariable("id") Long id, HttpServletRequest request) {
-        String sessionToken = getSessionToken(request);
-        if (sessionToken == null) {
-            sessionToken = UUID.randomUUID().toString();
-            request.getSession().setAttribute("sessionToken", sessionToken);
-            wishListService.addToWishListFirstTime(id, sessionToken);
+        String sessionTokenWishList= getSessionToken(request);
+        if (sessionTokenWishList == null) {
+            sessionTokenWishList = UUID.randomUUID().toString();
+            request.getSession().setAttribute("sessionTokenWishList", sessionTokenWishList);
+            wishListService.addToWishListFirstTime(id, sessionTokenWishList);
         } else {
-            wishListService.addToExistWishList(id, sessionToken);
+            wishListService.addToExistWishList(id, sessionTokenWishList);
         }
-        return "redirect:/wishList";
+        return "redirect:/";
     }
 
     @GetMapping("/removeWishListItem/{id}")

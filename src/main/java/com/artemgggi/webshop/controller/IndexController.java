@@ -6,6 +6,7 @@ import com.artemgggi.webshop.model.ShoppingCart;
 import com.artemgggi.webshop.model.WishList;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
+import com.artemgggi.webshop.service.WishListService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,27 +26,41 @@ public class IndexController {
 
     private final ShoppingCartService shoppingCartService;
 
+    private final WishListService wishListService;
+
     public IndexController(ProductRepository productRepository,
                            ProductService productService,
-                           ShoppingCartService shoppingCartService) {
+                           ShoppingCartService shoppingCartService,
+                           WishListService wishListService) {
         this.productRepository = productRepository;
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
+        this.wishListService = wishListService;
     }
 
     public String getSessionToken(HttpServletRequest request) {
         return (String) request.getSession(true).getAttribute("sessionToken");
     }
 
+    public String getSessionTokenWishList(HttpServletRequest request) {
+        return (String) request.getSession(true).getAttribute("sessionTokenWishList");
+    }
+
     @GetMapping("/")
     public String showIndex(HttpServletRequest request, Model model) {
         String sessionToken = getSessionToken(request);
+        String sessionTokenWishList = getSessionTokenWishList(request);
         if (sessionToken == null) {
             model.addAttribute("shoppingCart", new ShoppingCart());
-            model.addAttribute("wishList", new WishList());
         } else {
             ShoppingCart shoppingCart = shoppingCartService.getShoppingCartBySessionToken(sessionToken);
             model.addAttribute("shoppingCart", shoppingCart);
+        }
+        if (sessionTokenWishList == null) {
+            model.addAttribute("wishList", new WishList());
+        } else {
+            WishList wishList = wishListService.getWishListBySessionToken(sessionTokenWishList);
+            model.addAttribute("wishList", wishList);
         }
         List<Product> products = productRepository.findAll();
         model.addAttribute("products", products);

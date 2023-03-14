@@ -2,11 +2,11 @@ package com.artemgggi.webshop.service;
 
 import com.artemgggi.webshop.dto.WishListItemRepository;
 import com.artemgggi.webshop.dto.WishListRepository;
-import com.artemgggi.webshop.model.WishList;
-import com.artemgggi.webshop.model.WishListItem;
+import com.artemgggi.webshop.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -26,22 +26,41 @@ public class WishListService {
         this.productService = productService;
     }
 
-    public WishList getWishListBySessionToken(String sessionToken) {
-        return wishListRepository.findBySessionToken(sessionToken);
+    public WishList getWishListBySessionToken(String sessionTokenWishList) {
+        return wishListRepository.findBySessionToken(sessionTokenWishList);
     }
 
-    public void addToWishListFirstTime(Long id, String sessionToken) {
+    public void addToWishListFirstTime(Long id, String sessionTokenWishList) {
         WishList wishlist = new WishList();
         WishListItem wishListitem = new WishListItem();
         wishListitem.setDate(new Date());
         wishListitem.setProduct(productService.getProductById(id));
         wishlist.getItems().add(wishListitem);
-        wishlist.setSessionToken(sessionToken);
+        wishlist.setSessionToken(sessionTokenWishList);
         wishlist.setDate(new Date());
         wishListRepository.save(wishlist);
     }
     //TODO
-    public void addToExistWishList(Long id, String sessionToken) {
+    public void addToExistWishList(Long id, String sessionTokenWishList) {
+        WishList wishList = wishListRepository.findBySessionToken(sessionTokenWishList);
+        Product p = productService.getProductById(id);
+        boolean productExistInTheWishList = false;
+        Set<WishListItem> items = wishList.getItems();
+        for (WishListItem item : items) {
+            if (item.getProduct().equals(p)) {
+                productExistInTheWishList= true;
+//                item.setQuantity(item.getQuantity() + quantity);
+            }
+        }
+        wishList.setItems(items);
+        wishListRepository.saveAndFlush(wishList);
+        if( !productExistInTheWishList ) {
+            WishListItem wishListItem = new WishListItem();
+            wishListItem.setDate(new Date());
+            wishListItem.setProduct(p);
+            wishList.getItems().add(wishListItem);
+            wishListRepository.saveAndFlush(wishList);
+        }
     }
 
     public WishList removeItemWishList(Long id, String sessionToken) {
@@ -49,7 +68,7 @@ public class WishListService {
         Set<WishListItem> items = WishList.getItems();
         WishListItem item = null;
         for(WishListItem item1 : items) {
-            if(item1.getId()==id) {
+            if(Objects.equals(item1.getId(), id)) {
                 item = item1;
             }
         }
@@ -59,12 +78,12 @@ public class WishListService {
         return wishListRepository.save(WishList);
     }
 
-    public void clearWishList(String sessionToken) {
-        WishList sh = wishListRepository.findBySessionToken(sessionToken);
+    public void clearWishList(String sessionTokenWishList) {
+        WishList sh = wishListRepository.findBySessionToken(sessionTokenWishList);
         wishListRepository.delete(sh);
     }
 
-    public WishList getShoppingCartBySessionToken(String sessionToken) {
-        return wishListRepository.findBySessionToken(sessionToken);
+    public WishList getShoppingCartBySessionToken(String sessionTokenWishList) {
+        return wishListRepository.findBySessionToken(sessionTokenWishList);
     }
 }

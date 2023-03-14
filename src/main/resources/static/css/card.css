@@ -52,7 +52,7 @@ button:active {
 
 .product_fav i {
     line-height: 40px;
-    color: #a3a49f;
+    color: #acb5bd;
     font-size: 15px
 }
 
@@ -60,7 +60,7 @@ button:active {
     display: inline-block;
     width: 30px;
     height: 40px;
-    background: #ffffff;
+    background: #efefef;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
     border-radius: 11%;
     text-align: center;

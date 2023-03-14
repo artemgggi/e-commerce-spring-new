@@ -8,5 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface WishListRepository extends JpaRepository<WishList, Long> {
-    WishList findBySessionToken(String sessionToken);
+    WishList findBySessionToken(String sessionTokenWishList);
 }

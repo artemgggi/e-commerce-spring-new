@@ -1,190 +1,144 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web-Shop</title>
-  <!--JS-->
-  <base href="/">
-  <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
-  <script src="api/ajaxFetch.js" type="text/javascript"></script>
-  <script src="font-awesome/js1/fontawesome.js" type="text/javascript"></script>
-  <script src="js/bootstrap.js" type="text/javascript"></script>
-  <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
-  <!--CSS-->
-  <link rel="stylesheet" href="font-awesome/css1/all.css" type="text/css">
-  <link rel="stylesheet" href="css/style4.css" type="text/css">
-  <link rel="stylesheet" href="css/card.css" type="text/css">
-  <link rel="stylesheet" href="css/cart.css" type="text/css">
-  <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-  <link rel="stylesheet" href="css/bootstrap-select.min.css" type="text/css">
-  <link rel="icon" href="images/icon.png"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-Shop</title>
+    <!--JS-->
+    <base href="/">
+    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="api/ajaxFetch.js" type="text/javascript"></script>
+    <script src="font-awesome/js1/fontawesome.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+    <!--CSS-->
+    <link rel="stylesheet" href="font-awesome/css1/all.css" type="text/css">
+    <link rel="stylesheet" href="css/style4.css" type="text/css">
+    <link rel="stylesheet" href="css/card.css" type="text/css">
+    <link rel="stylesheet" href="css/cart.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css" type="text/css">
+    <link rel="icon" href="images/icon.png"/>
 </head>
 <body>
 <div class="wrapper">
-  <nav th:fragment="sidebar" class="active" id="sidebar">
-    <div class="sidebar-header">
-      <h3>Web-Shop</h3>
-      <strong><i class="fa fa-shopping-cart" aria-hidden="true"></i></strong>
-    </div>
-    <ul class="list-unstyled components">
-      <li>
-        <a href="/"><i class="fas fa-home"></i>Home
-        </a>
-      </li>
-      <li>
-        <a href="#"><i class="fas fa-question"></i> FQ</a>
-      </li>
-      <li>
-        <a href="#"><i class="fas fa-paper-plane"></i> Contact</a>
-      </li>
-    </ul>
-  </nav>
-  <div id="content">
-    <nav th:fragment="topBar"
-         class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid">
-        <button type="button" id="sidebarCollapse"
-                class="btn btn-light mr-4">
-          <i class="fas fa-align-left"></i>
-        </button>
-        <form class="form-inline frm">
-          <input class="form-control mr-sm-2" type="search" value=""
-                 id="search" onkeydown="dropDown(event);" data-toggle="dropdown"
-                 placeholder="Search" aria-label="Search">
-          <div class="dropdown-menu dropdown-menu-right ml-4"
-               id="dropdown-container"></div>
-        </form>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link btn btn-light mr-3" href="/shoppingCart">
-                <i class="fas fa-shopping-basket"></i>
-                <span class="label">[[${shoppingCart.itemsNumber}]]</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link btn btn-light mr-3" href="#"
-                 onclick="handleClickLogin(event)">
-                <i class="fas fa-user"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link btn btn-light mr-3" href="/logout">
-                <i class="fas fa-sign-out-alt"></i>
-              </a>
-            </li>
-          </ul>
+    <nav th:fragment="sidebar" class="active" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Web-Shop</h3>
+            <strong><i class="fa fa-shopping-cart" aria-hidden="true"></i></strong>
         </div>
-      </div>
+        <ul class="list-unstyled components">
+            <li>
+                <a href="/"><i class="fas fa-home"></i>Home
+                </a>
+            </li>
+            <li>
+                <a href="#"><i class="fas fa-question"></i> FQ</a>
+            </li>
+            <li>
+                <a href="#"><i class="fas fa-paper-plane"></i> Contact</a>
+            </li>
+        </ul>
     </nav>
-
-    <div class="container" id="app">
-
-      <div class="row g-2">
-        <div class="col-md-3" th:fragment="generalSection">
-          <div class="accordion" id="accordion">
-            <div class="card">
-              <div id="collapseOne" class="collapse show"
-                   aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body category">
-                  <div class="t-products p-2">
-                    <div class="p-lists">
-                      <p>Categories</p>
-                      <div class="d-flex justify-content-between mt-2"
-                           th:each="category : ${categories}">
-                        <a th:href="@{/category/{id}(id = ${category.id})}">[[${category.name}]]</a>
-                        <span>[[${category.productsNumber}]]</span>
-                      </div>
-                    </div>
-                  </div>
+    <div id="content">
+        <nav th:fragment="topBar"
+             class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse"
+                        class="btn btn-light mr-4">
+                    <i class="fas fa-align-left"></i>
+                </button>
+                <form class="form-inline frm">
+                    <input class="form-control mr-sm-2" type="search" value=""
+                           id="search" onkeydown="dropDown(event);" data-toggle="dropdown"
+                           placeholder="Search" aria-label="Search">
+                    <div class="dropdown-menu dropdown-menu-right ml-4"
+                         id="dropdown-container"></div>
+                </form>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-light mr-3" href="/shoppingCart">
+                                <i class="fas fa-shopping-basket"></i>
+                                <span class="label">[[${shoppingCart.itemsNumber}]]</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-light mr-3" href="#"
+                               onclick="handleClickLogin(event)">
+                                <i class="fas fa-user"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-light mr-3" href="/logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
+        </nav>
 
-        <div class="col-md-9">
-          <div class="row g-2">
-            <div class="col-md-4 mb-2" th:each="product : ${products}">
-              <div class="product py-4">
-                <div th:if="${product.discount.discount != 0}">
-                  <span class="off bg-success">-[[${product.discount.discount}]]% OFF</span>
-                </div>
-                <div class="text-center">
-                  <img th:src="*{'data:image/jpeg;base64,'+ {product.image}}"
-                       height="130"
-                       width="130">
-                </div>
-                <div class="about text-center">
-                  <h5>[[${product.name}]]</h5>
-                  <span>[[${product.price}]] ₽</span>
-                </div>
-                <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-                  <button class="btn btn-primary text-uppercase"
-                          data-toggle="modal"
-                          th:attr="data-target='#addToCartModal'+*{product.id}">В Корзину
-                    <i class="bi bi-card-plus"></i>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                         fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                      <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                      <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                    </svg>
-                  </button>
+        <div class="container" id="app">
 
-                  <!-- Modal -->
-                  <div class="modal fade"
-                       th:id="*{'addToCartModal'+{product.id}}"
-                       data-backdrop="static" data-keyboard="false" tabindex="-1"
-                       aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="staticBackdropLabel">Add to cart</h5>
-                          <button type="button" class="close" data-dismiss="modal"
-                                  aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="card">
-                            <img th:src="*{'data:image/jpeg;base64,'+{product.image}}"
-                                 width="130px"
-                                 height="130px"
-                                 class="card-img-top">
-                            <div class="card-body">
-                              <form action="/addToCart" method="POST">
-                                <h5>[[${product.name}]]</h5>
-                                <div class="small text-muted">
-                                  [[${product.price}]] ₽
+            <div class="row g-2">
+                <div class="col-md-3" th:fragment="generalSection">
+                    <div class="accordion" id="accordion">
+                        <div class="card">
+                            <div id="collapseOne" class="collapse show"
+                                 aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body category">
+                                    <div class="t-products p-2">
+                                        <div class="p-lists">
+                                            <p>Categories</p>
+                                            <div class="d-flex justify-content-between mt-2"
+                                                 th:each="category : ${categories}">
+                                                <a th:href="@{/category/{id}(id = ${category.id})}">[[${category.name}]]</a>
+                                                <span>[[${category.productsNumber}]]</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <input type="hidden" name="id"
-                                       th:value="${product.id}"/>
-                                <input type="number" min="1" value="1" name="quantity"
-                                       class="form-control" placeholder="quantity"/>
-                                <button type="submit" class="btn btn-primary mt-2">Add
-                                </button>
-                              </form>
                             </div>
-                          </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
-                  <div class="add">
-                    <a th:href="@{/addToWishlist/{id}(id = ${product.id})}"
-                       class="product_fav"><i class="fa fa-heart"></i></a>
-                    <a th:href="@{/detail/{id}(id = ${product.id})}"
-                       class="product_fav"><i class="fab fa-opencart"></i></a>
-                  </div>
                 </div>
-              </div>
+
+                <div class="col-md-9">
+                    <div class="row g-2">
+                        <div class="col-md-4 mb-2" th:each="product : ${products}">
+                            <div class="product py-4">
+                                <div th:if="${product.discount.discount != 0}">
+                                    <span class="off bg-success">SALE -[[${product.discount.discount}]]%</span>
+                                </div>
+                                <div class="text-center">
+                                    <img th:src="*{'data:image/jpeg;base64,'+ {product.image}}"
+                                         height="130"
+                                         width="130">
+                                </div>
+                                <div class="about text-center">
+                                    <h5>[[${product.name}]]</h5>
+                                    <span>[[${product.price}]] ₽</span>
+                                </div>
+                              <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
+                                <form th:action="@{/addToCart}" method="post" >
+                                  <input type="hidden" th:value="${product.id}" name="id">
+                                  <input type="submit" class="btn btn-primary" value="Add to Cart">
+                                </form>
+                                <div class="add">
+                                  <a th:href="@{/addToWishlist/{id}(id = ${product.id})}" class="product_fav"><i
+                                          class="fa fa-heart"></i></a>
+                                  <a th:href="@{/detail/{id}(id = ${product.id})}"
+                                     class="product_fav"><i class="fab fa-opencart"></i></a>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <script type="text/javascript">
@@ -193,7 +147,6 @@
 				$('#sidebar').toggleClass('active');
 			});
 		});
-
 </script>
 
 </body>

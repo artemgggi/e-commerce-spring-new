@@ -79,10 +79,10 @@ public class ProductService {
         productRepository.save(p);
     }
 
-    public Category saveCategory(String name) {
+    public void saveCategory(String name) {
         Category c = new Category();
         c.setName(name);
-        return categoryRepository.save(c);
+        categoryRepository.save(c);
     }
 
     public List<Category> getAllCategories() {
