@@ -137,7 +137,7 @@
                                 </h5>
                             </div>
                             <div>
-                                <div class="cart-button mt-3 px-2 d-flex align-items-center">
+                                <div class="cart-button d-flex align-items-center">
                                     <form th:action="@{/addToCart}" method="post" >
                                         <input type="hidden" th:value="${product.id}" name="id">
                                         <input type="submit" class="btn btn-primary" value="Add to Cart">

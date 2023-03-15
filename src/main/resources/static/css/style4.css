@@ -26,7 +26,7 @@ a:focus {
 
 .navbar {
     padding: 15px 10px;
-    background: #fff9d4;
+    background: #fcffd5;
     border: none;
     border-radius: 0;
     margin-bottom: 10px;
@@ -36,8 +36,8 @@ a:focus {
 	font-weight: 700;
 	font-family: sans-serif;
 	font-size: 16px;
-	background: #f6ffff;
-	border-color: #ffe500;
+	background: #f7ffd6;
+	border-color: #f7ffd6;
 }
 .navbar btn:hover{
 	background: #f8f9fa;
@@ -287,12 +287,12 @@ a.article:hover {
 }
 
 .label{
-	background-color: #e8e8e8 !important;
-	color: #2c3374;
+	background-color: #a7ff07 !important;
+	color: #190202;
 	border-radius: 35px;
 	font-size: 12px;
-	margin-top: -11px;
-	margin-left: -40px;
+	margin-top: -35px;
+	margin-left: -20px;
 	position: absolute;
 	padding: 4px 8px;
 	line-height: 7px;

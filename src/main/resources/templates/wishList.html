@@ -73,65 +73,61 @@
             </div>
         </nav>
         <div class="container" id="app">
-            <div class="col-md-9">
-                <div class="row g-2">
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class=" table-responsive shopping-cart" style="background-color: #fff">
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th>Product</th>
-                                                    <th class="text-center">Buy</th>
-                                                    <th class="text-center">
-                                                        <a class="btn btn-sm btn-outline-danger clear"
-                                                           th:href="@{/clearWishList}">Clear</a>
-                                                    </th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr th:each="WishListItem : ${wishList.items}">
-                                                    <td>
-                                                        <div class="product-item">
-                                                            <a class="product-thumb" href="#">
-                                                                <img th:src="*{'data:image/jpeg;base64,'+{WishListItem.product.image}}"
-                                                                     alt="Product"></a>
-                                                            <div class="product-info">
-                                                                <h4 class="product-title">
-                                                                    <a href="#">[[${WishListItem.product.name}]]</a>
-                                                                </h4>
-                                                                <span>[[${WishListItem.product.price}]] ₽</span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-center text-lg text-medium">
-                                                        <form th:action="@{/addToCart}" method="post" >
-                                                            <input type="hidden" th:value="${WishListItem.product.id}" name="id">
-                                                            <input type="submit" class="btn btn-primary" value="Add to Cart">
-                                                        </form>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a class="remove-from-cart"
-                                                        th:href="@{/removeWishListItem/{id}(id = ${WishListItem.id})}"
-                                                            data-toggle="tooltip">
-                                                            <i class="fa fa-trash"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="shopping-cart-footer">
-                                                <a class="btn btn-outline-secondary back" href="/">
-                                                    <i class="fas fa-arrow-left"></i>Back to Shopping</a>
+            <div th:if="${wishList.itemsNumber < 1}">
+                <div class="text-center border border-light p-5">
+                    <p>Your wishlist is Empty :( <a th:href="@{/}"> Back to shopping </a></p>
+                </div>
+            </div>
+            <div th:if="${wishList.itemsNumber > 0}">
+                <div class="col-12">
+                    <div class="row">
+                        <div class=" table-responsive shopping-cart" style="background-color: #fff">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th class="text-center">Buy</th>
+                                    <th class="text-center">
+                                        <a class="btn btn-sm btn-outline-danger clear"
+                                           th:href="@{/clearWishList}">Clear</a>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="WishListItem : ${wishList.items}">
+                                    <td>
+                                        <div class="product-item">
+                                            <a class="product-thumb" href="#">
+                                                <img th:src="*{'data:image/jpeg;base64,'+{WishListItem.product.image}}"
+                                                     alt="Product"></a>
+                                            <div class="product-info">
+                                                <h4 class="product-title">
+                                                    <a href="#">[[${WishListItem.product.name}]]</a>
+                                                </h4>
+                                                <span>[[${WishListItem.product.price}]] ₽</span>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    </td>
+                                    <td class="text-center text-lg text-medium">
+                                        <form th:action="@{/addToCart}" method="post">
+                                            <input type="hidden" th:value="${WishListItem.product.id}" name="id">
+                                            <input type="submit" class="btn btn-primary" value="Add to Cart">
+                                        </form>
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="remove-from-cart"
+                                           th:href="@{/removeWishListItem/{id}(id = ${WishListItem.id})}"
+                                           data-toggle="tooltip">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="shopping-cart-footer">
+                            <a class="btn btn-outline-secondary back" href="/">
+                                <i class="fas fa-arrow-left"></i>Back to Shopping</a>
                         </div>
                     </div>
                 </div>
@@ -140,13 +136,14 @@
     </div>
 </div>
 
-
 <script type="text/javascript">
 		$(document).ready(function() {
 			$('#sidebarCollapse').on('click', function() {
 				$('#sidebar').toggleClass('active');
 			});
 		});
+
+
 
 </script>
 

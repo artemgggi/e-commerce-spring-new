@@ -56,18 +56,10 @@
                     <div class="dropdown-menu dropdown-menu-right ml-4"
                          id="dropdown-container"></div>
                 </form>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link btn btn-light mr-3" href="/shoppingCart">
-                                <i class="fas fa-shopping-basket"></i>
-                                <span class="label">[[${shoppingCart.itemsNumber}]]</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-light" href="#"
-                               onclick="handleClickLogin(event)">
+                            <a class="nav-link btn btn-light" href="/login">
                                 <i class="fas fa-user"></i>
                             </a>
                         </li>
@@ -76,103 +68,100 @@
             </div>
         </nav>
         <div class="container" id="app">
-            <div class="col-md-9">
-                <div class="row g-2">
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class=" table-responsive shopping-cart" style="background-color: #fff">
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th>Product</th>
-                                                    <th class="text-center">Quantity</th>
-                                                    <th class="text-center">Subtotal</th>
-                                                    <th class="text-center">Discount</th>
-                                                    <th class="text-center">
-                                                        <a class="btn btn-sm btn-outline-danger clear"
-                                                           th:href="@{/clearShoppingCart}">Clear</a>
-                                                    </th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr th:each="cartItem : ${shoppingCart.items}">
-                                                    <td>
-                                                        <div class="product-item">
-                                                            <a class="product-thumb" href="#">
-                                                                <img th:src="*{'data:image/jpeg;base64,'+{cartItem.product.image}}"
-                                                                     alt="Product"></a>
-                                                            <div class="product-info">
-                                                                <h4 class="product-title">
-                                                                    <a href="#">[[${cartItem.product.name}]]</a>
-                                                                </h4>
-                                                                <span>[[${cartItem.product.price}]] ₽</span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <form action="/updateShoppingCart" method="post">
-                                                            <input type="hidden"
-                                                                   name="item_id" th:value="${cartItem.id}"/>
-                                                            <div class="input-group">
-                                                                <input type="number" name="quantity" min="1"
-                                                                       th:value="${cartItem.quantity}"
-                                                                       th:attr="max=${cartItem.product.quantity}"
-                                                                       class="form-control round-input form-control-sm"/>
-                                                                <button class="btn btn-success btn-sm btn-custom"
-                                                                        type="submit">
-                                                                    <i class="fa fa-check"></i>
-                                                                </button>
-                                                            </div>
-                                                        </form>
-                                                    </td>
-                                                    <td class="text-center text-lg text-medium">
-                                                        [[${cartItem.product.price * cartItem.quantity}]] ₽
-                                                    </td>
-                                                    <td class="text-center text-lg text-medium">
-                                                        [[${cartItem.product.discount.discount}]] %
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a class="remove-from-cart"
-                                                           th:href="@{/removeCartItem/{id}(id = ${cartItem.id})}"
-                                                           data-toggle="tooltip">
-                                                            <i class="fa fa-trash"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="shopping-cart-footer">
-                                            <div class="column">
-                                                <form class="coupon-form" method="post">
-                                                    <input class="form-control round-input form-control-sm"
-                                                           type="text"
-                                                           placeholder="Coupon code" required="">
-                                                    <button class="btn btn-outline-primary btn-sm"
-                                                            type="submit">Apply Coupon
-                                                    </button>
-                                                </form>
+            <div th:if="${shoppingCart.itemsNumber < 1}">
+                <div class="text-center border border-light p-5">
+                    <p>Your cart is Empty :(<a th:href="@{/}"> Back to shopping </a></p>
+                </div>
+            </div>
+            <div th:if="${shoppingCart.itemsNumber > 0}">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="table-responsive shopping-cart" style="background-color: #fff">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-center">Subtotal</th>
+                                    <th class="text-center">Discount</th>
+                                    <th class="text-center">
+                                        <a class="btn btn-sm btn-outline-danger clear"
+                                           th:href="@{/clearShoppingCart}">Clear</a>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="cartItem : ${shoppingCart.items}">
+                                    <td>
+                                        <div class="product-item">
+                                            <a class="product-thumb" href="#">
+                                                <img th:src="*{'data:image/jpeg;base64,'+{cartItem.product.image}}"
+                                                     alt="Product"></a>
+                                            <div class="product-info">
+                                                <h4 class="product-title">
+                                                    <a href="#">[[${cartItem.product.name}]]</a>
+                                                </h4>
+                                                <span>[[${cartItem.product.price}]] ₽</span>
                                             </div>
-                                            <div class="column text-lg">
-                                                <b>Total: <span class="text-medium">
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <form action="/updateShoppingCart" method="post">
+                                            <input type="hidden"
+                                                   name="item_id" th:value="${cartItem.id}"/>
+                                            <div class="input-group">
+                                                <input type="number" name="quantity" min="1"
+                                                       th:value="${cartItem.quantity}"
+                                                       th:attr="max=${cartItem.product.quantity}"
+                                                       class="form-control round-input form-control-sm"/>
+                                                <button class="btn btn-success btn-sm btn-custom"
+                                                        type="submit">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    <td class="text-center text-lg text-medium">
+                                        [[${cartItem.product.price * cartItem.quantity}]] ₽
+                                    </td>
+                                    <td class="text-center text-lg text-medium">
+                                        [[${cartItem.product.discount.discount}]] %
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="remove-from-cart"
+                                           th:href="@{/removeCartItem/{id}(id = ${cartItem.id})}"
+                                           data-toggle="tooltip">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="shopping-cart-footer">
+                            <div class="column">
+                                <form class="coupon-form" method="post">
+                                    <input class="form-control round-input form-control-sm"
+                                           type="text"
+                                           placeholder="Coupon code" required="">
+                                    <button class="btn btn-outline-primary btn-sm"
+                                            type="submit">Apply Coupon
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="column text-lg">
+                                <b>Total: <span class="text-medium">
                                                         [[${shoppingCart.totalPrice}]] ₽</span></b>
-                                            </div>
-                                        </div>
-                                        <div class="shopping-cart-footer">
-                                            <div class="column">
-                                                <a class="btn btn-outline-secondary back" href="/">
-                                                    <i class="fas fa-arrow-left"></i>&nbsp;Back to Shopping</a>
-                                            </div>
-                                            <div class="column cart-button">
-                                                <a class="btn checkout btn-success"
-                                                   href="/shoppingCartCustomer">Checkout</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
+                        <div class="shopping-cart-footer">
+                            <div class="column">
+                                <a class="btn btn-outline-secondary back" href="/">
+                                    <i class="fas fa-arrow-left"></i>&nbsp;Back to Shopping</a>
+                            </div>
+                            <div class="column cart-button">
+                                <a class="btn checkout btn-success"
+                                   href="/shoppingCartCustomer">Checkout</a>
                             </div>
                         </div>
                     </div>
@@ -189,6 +178,7 @@
 				$('#sidebar').toggleClass('active');
 			});
 		});
+
 </script>
 
 <!--<script>-->

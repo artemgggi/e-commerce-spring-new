@@ -6,7 +6,6 @@ import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.model.ShoppingCart;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
-import com.artemgggi.webshop.service.WishListService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,14 +47,6 @@ public class AdminController {
         model.addAttribute("products", products);
         model.addAttribute("categories", productService.getAllCategories());
         return "/admin/index";
-    }
-
-    @GetMapping("/admin/product")
-    public String showAddProduct(Model model) {
-        model.addAttribute("category", new Category());
-        model.addAttribute("categories", productService.getAllCategories());
-        model.addAttribute("products", productService.getAllProduct());
-        return "/admin/product";
     }
 
     @PostMapping("/admin/addProduct")

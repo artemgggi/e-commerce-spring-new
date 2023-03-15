@@ -26,7 +26,7 @@ public class OrderService {
         this.shoppingCartRepository = shoppingCartRepository;
     }
 
-    public void saveOrder(String sessionToken) {
+    public void placeOrder(String sessionToken) {
         ShoppingCart shoppingCart = shoppingCartRepository.findBySessionToken(sessionToken);
         Order order = new Order();
         Customer customer = new Customer();

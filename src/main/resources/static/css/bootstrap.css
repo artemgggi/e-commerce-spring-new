@@ -60,7 +60,7 @@ body {
   line-height: 1.5;
   color: #0e0e0e;
   text-align: left;
-  background-color: #e7e7e7;
+  background-color: #ffffff;
 }
 
 [tabindex="-1"]:focus {
@@ -362,7 +362,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-weight: 500;
+  font-weight: 100;
   line-height: 1.2;
 }
 
@@ -383,8 +383,8 @@ h4, .h4 {
 }
 
 h5, .h5 {
-  font-size: 1.25rem;
-  color: dimgrey;
+  font-size: 1rem;
+  color: #555664;
 }
 
 h6, .h6 {
@@ -2421,9 +2421,9 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #848484;
-  background-color: #ffffff;
-  border-color: #b8b8b8;
+  color: #9f9f9f;
+  background-color: #efefef;
+  border-color: #ffffff;
 }
 
 .btn-primary:hover {
@@ -2626,8 +2626,8 @@ fieldset:disabled a.btn {
 
 .btn-light {
   color: #212529;
-  background-color: #fdfdfd;
-  border-color: #fff46b;
+  background-color: #f7ffd6;
+  border-color: #f7ffd6;
 }
 
 .btn-light:hover {
