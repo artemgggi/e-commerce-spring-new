@@ -2428,8 +2428,8 @@ fieldset:disabled a.btn {
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
+  background-color: #565656;
+  border-color: #ffffff;
 }
 
 .btn-primary:focus, .btn-primary.focus {
@@ -2626,8 +2626,8 @@ fieldset:disabled a.btn {
 
 .btn-light {
   color: #212529;
-  background-color: #f7ffd6;
-  border-color: #f7ffd6;
+  background-color: #ffffff;
+  border-color: #ffffff;
 }
 
 .btn-light:hover {
@@ -3064,10 +3064,10 @@ input[type="button"].btn-block {
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 1rem;
-  color: #212529;
+  color: #888888;
   text-align: left;
   list-style: none;
-  background-color: #fcffd5ab;
+  background-color: #b4b6b7;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
@@ -4461,7 +4461,7 @@ input[type="button"].btn-block {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgb(0 92 126);
 }
 
 .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
@@ -6527,7 +6527,7 @@ button.bg-secondary:focus {
 }
 
 .bg-success {
-  background-color: #28a745 !important;
+  background-color: #3a8f5ab5 !important;
 }
 
 a.bg-success:hover, a.bg-success:focus,
@@ -6595,7 +6595,7 @@ button.bg-dark:focus {
 }
 
 .border {
-  border: 1px solid #dee2e6 !important;
+  border: 1px solid #ffffff !important;
 }
 
 .border-top {
@@ -6659,7 +6659,7 @@ button.bg-dark:focus {
 }
 
 .border-light {
-  border-color: #f8f9fa !important;
+  border-color: #ffffff !important;
 }
 
 .border-dark {
@@ -8178,7 +8178,7 @@ button.bg-dark:focus {
 }
 
 .p-5 {
-  padding: 3rem !important;
+  padding: 5rem !important;
 }
 
 .pt-5,

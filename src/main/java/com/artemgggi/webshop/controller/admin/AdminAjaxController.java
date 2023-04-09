@@ -34,7 +34,6 @@ public class AdminAjaxController {
 
     @GetMapping("/admin/orders")
     public ModelAndView returnOrders(Model model) {
-        model.addAttribute("products", productService.getAllProduct());
         ModelAndView mv = new ModelAndView();
         mv.setViewName("/admin/orders");
         return mv;

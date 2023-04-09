@@ -20,7 +20,6 @@ public class Product {
     private String description;
     private int quantity;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Coupon discount;
     @Lob
     @Column(name = "image")
@@ -32,7 +31,6 @@ public class Product {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="product_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Carousel> carousel;
 
     public Long getId() {

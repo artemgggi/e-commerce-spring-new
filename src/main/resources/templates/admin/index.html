@@ -40,8 +40,7 @@
         </ul>
     </nav>
     <div id="content">
-        <nav th:fragment="topBar"
-             class="navbar navbar-expand-lg navbar-light">
+        <nav th:fragment="topBar" class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <button type="button" id="sidebarCollapse"
                         class="btn btn-light mr-4">
@@ -57,19 +56,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link btn btn-light" href="#"
+                            <a class="nav-link btn btn-light"
                                onclick="handleClickAddProduct(event)">
                                 <i class="fas fa-plus"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-light" href="#"
+                            <a class="nav-link btn btn-light"
                                onclick="handleClickProductList(event)">
                                 <i class="fas fa-box"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-light mr-3" href="/admin/orders">
+                            <a class="nav-link btn btn-light mr-3"
+                            onclick="handleClickOrders(event)">
                                 <i class="fas fa-list"></i>
                             </a>
                         </li>
@@ -94,7 +94,6 @@
                                 <div class="card-body category">
                                     <div class="t-products p-2">
                                         <div class="p-lists">
-                                            <p>Categories</p>
                                             <div class="d-flex justify-content-between mt-2"
                                                  th:each="category : ${categories}">
                                                 <a th:href="@{/category/{id}(id = ${category.id})}">[[${category.name}]]</a>
@@ -125,7 +124,7 @@
                                     <span>[[${product.price}]] ₽</span>
                                 </div>
                                 <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-                                    <form th:action="@{/addToCart}" method="post" >
+                                    <form th:action="@{/addToCart}" method="post">
                                         <input type="hidden" th:value="${product.id}" name="id">
                                         <input type="submit" class="btn btn-primary" value="Add to Cart">
                                     </form>

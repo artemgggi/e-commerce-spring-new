@@ -26,21 +26,21 @@ a:focus {
 
 .navbar {
     padding: 15px 10px;
-    background: #fcffd5;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 10px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    background: #fdfffb;
+    /* border: black; */
+    border-radius: 20px;
+    margin-bottom: 5px;
+    box-shadow: 1px 1px 3px rgb(72 72 72 / 10%);
 }
 .navbar .nav-link{
 	font-weight: 700;
 	font-family: sans-serif;
 	font-size: 16px;
-	background: #f7ffd6;
-	border-color: #f7ffd6;
+	background: #ffffff;
+	border-color: #ffffff;
 }
 .navbar btn:hover{
-	background: #f8f9fa;
+	background: #ffffff;
 }
 
 .navbar-btn {
@@ -73,8 +73,9 @@ span {
 #sidebar {
     min-width: 200px;
     max-width: 200px;
-    background: #fcffd5;
+    background: #eeeeee;
     color: #ad9b9b;
+    border: white;
     transition: all 0.3s;
 }
 
@@ -125,8 +126,8 @@ span {
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
-    background: #feffea;
+    padding: 15px;
+    background: #eeeeee;
 }
 
 #sidebar .sidebar-header strong {
@@ -287,7 +288,7 @@ a.article:hover {
 }
 
 .label{
-	background-color: #a7ff07 !important;
+	background-color: #4eff22 !important;
 	color: #190202;
 	border-radius: 35px;
 	font-size: 12px;

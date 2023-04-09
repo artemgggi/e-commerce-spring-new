@@ -91,9 +91,9 @@ button:active {
     top: 6%;
     width: 80px;
     text-align: center;
-    height: 30px;
+    height: 25px;
     line-height: 8px;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 13px;
     display: flex;
     align-items: center;

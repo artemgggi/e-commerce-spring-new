@@ -1,6 +1,7 @@
 package com.artemgggi.webshop.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
 
 import java.util.Date;
 
@@ -16,7 +17,7 @@ public class WishListItem {
     private Date date;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_id", nullable=false, updatable=false)
+    @JoinColumn(name = "product_id", nullable=false)
     private Product product;
 
     public Long getId() {

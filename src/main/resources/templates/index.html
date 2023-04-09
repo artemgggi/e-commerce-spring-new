@@ -98,7 +98,6 @@
                                 <div class="card-body category">
                                     <div class="t-products p-2">
                                         <div class="p-lists">
-                                            <p>Categories</p>
                                             <div class="d-flex justify-content-between mt-2"
                                                  th:each="category : ${categories}">
                                                 <a th:href="@{/category/{id}(id = ${category.id})}">[[${category.name}]]</a>
