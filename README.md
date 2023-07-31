@@ -1,2 +1,2 @@
 # eCommerceSpring
-This project is a web store based on SpringBoot
+This project is a e-commerce web application on SpringBoot.
