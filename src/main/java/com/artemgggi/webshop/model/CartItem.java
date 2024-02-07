@@ -18,7 +18,7 @@ public class CartItem {
     private Date date;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_id", nullable=false, updatable=false)
+    @JoinColumn(name = "product_id", nullable = false, updatable = false)
     private Product product;
 
     public Long getId() {

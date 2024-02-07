@@ -1,4 +1,4 @@
-package com.artemgggi.webshop.dto;
+package com.artemgggi.webshop.repository;
 
 import com.artemgggi.webshop.model.WishList;
 import org.springframework.data.jpa.repository.JpaRepository;

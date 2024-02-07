@@ -1,4 +1,4 @@
-package com.artemgggi.webshop.dto;
+package com.artemgggi.webshop.repository;
 
 import com.artemgggi.webshop.model.Product;
 import jakarta.transaction.Transactional;
@@ -11,5 +11,6 @@ import java.util.List;
 @Transactional
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByNameContainingIgnoreCase(String name);
+
     List<Product> findProductByCategoryId(String id);
 }

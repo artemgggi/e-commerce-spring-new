@@ -1,7 +1,7 @@
 package com.artemgggi.webshop.service;
 
-import com.artemgggi.webshop.dto.CartItemRepository;
-import com.artemgggi.webshop.dto.ShoppingCartRepository;
+import com.artemgggi.webshop.repository.CartItemRepository;
+import com.artemgggi.webshop.repository.ShoppingCartRepository;
 import com.artemgggi.webshop.model.CartItem;
 import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.model.ShoppingCart;
@@ -77,8 +77,8 @@ public class ShoppingCartService {
         ShoppingCart shoppingCart = shoppingCartRepository.findBySessionToken(sessionToken);
         Set<CartItem> items = shoppingCart.getItems();
         CartItem cartItem = null;
-        for(CartItem item : items) {
-            if(Objects.equals(item.getId(), id)) {
+        for (CartItem item : items) {
+            if (Objects.equals(item.getId(), id)) {
                 cartItem = item;
             }
         }

@@ -1,6 +1,6 @@
 package com.artemgggi.webshop.controller;
 
-import com.artemgggi.webshop.dto.ProductRepository;
+import com.artemgggi.webshop.repository.ProductRepository;
 import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.model.ShoppingCart;
 import com.artemgggi.webshop.model.WishList;

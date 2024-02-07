@@ -1,10 +1,14 @@
 package com.artemgggi.webshop.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 import java.util.Set;
 
-
+@Getter
+@Setter
 @Entity
 public class Category {
 
@@ -12,7 +16,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NonNull
+    @NotNull
     private String name;
 
     @Transient
@@ -21,37 +25,12 @@ public class Category {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.ALL)
     private Set<Product> products;
 
-    public Category() {}
+    public Category() { }
 
     public Category(Long id, String name) {
         super();
         this.id = id;
         this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @NonNull
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
     }
 
     public int getProductsNumber() {

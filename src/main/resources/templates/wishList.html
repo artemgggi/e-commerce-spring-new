@@ -23,10 +23,6 @@
 <body>
 <div class="wrapper">
     <nav th:fragment="sidebar" class="active" id="sidebar">
-        <div class="sidebar-header">
-            <h3>Web-Shop</h3>
-            <strong><i class="fa fa-shopping-cart" aria-hidden="true"></i></strong>
-        </div>
         <ul class="list-unstyled components">
             <li>
                 <a href="/"><i class="fas fa-home"></i>Home
@@ -75,7 +71,8 @@
         <div class="container" id="app">
             <div th:if="${wishList.itemsNumber < 1}">
                 <div class="text-center border border-light p-5">
-                    <p>Your wishlist is Empty :( <a th:href="@{/}"> Back to shopping </a></p>
+                    <h1>You wishlist is empty..</h1>
+                    <a th:href="@{/}">Go to the shopping</a>
                 </div>
             </div>
             <div th:if="${wishList.itemsNumber > 0}">

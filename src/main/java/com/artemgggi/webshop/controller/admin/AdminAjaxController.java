@@ -15,7 +15,7 @@ public class AdminAjaxController {
         this.productService = productService;
     }
 
-    @GetMapping( "/admin/products")
+    @GetMapping("/admin/products")
     public ModelAndView returnProducts(Model model) {
         model.addAttribute("categories", productService.getAllCategories());
         model.addAttribute("products", productService.getAllProduct());

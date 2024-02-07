@@ -1,10 +1,6 @@
 package com.artemgggi.webshop.model;
 
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 
 import java.util.Set;
 
@@ -30,7 +26,7 @@ public class Product {
     private Category category;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="product_id")
+    @JoinColumn(name = "product_id")
     private Set<Carousel> carousel;
 
     public Long getId() {

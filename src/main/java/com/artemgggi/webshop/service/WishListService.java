@@ -1,7 +1,7 @@
 package com.artemgggi.webshop.service;
 
-import com.artemgggi.webshop.dto.WishListItemRepository;
-import com.artemgggi.webshop.dto.WishListRepository;
+import com.artemgggi.webshop.repository.WishListItemRepository;
+import com.artemgggi.webshop.repository.WishListRepository;
 import com.artemgggi.webshop.model.*;
 import org.springframework.stereotype.Service;
 
@@ -54,7 +54,7 @@ public class WishListService {
         }
         wishList.setItems(items);
         wishListRepository.saveAndFlush(wishList);
-        if( !productExistInTheWishList ) {
+        if (!productExistInTheWishList ) {
             WishListItem wishListItem = new WishListItem();
             wishListItem.setDate(new Date());
             wishListItem.setProduct(p);
@@ -63,19 +63,19 @@ public class WishListService {
         }
     }
 
-    public WishList removeItemWishList(Long id, String sessionToken) {
-        WishList WishList = wishListRepository.findBySessionToken(sessionToken);
-        Set<WishListItem> items = WishList.getItems();
+    public void removeItemWishList(Long id, String sessionToken) {
+        WishList wishList = wishListRepository.findBySessionToken(sessionToken);
+        Set<WishListItem> items = wishList.getItems();
         WishListItem item = null;
-        for(WishListItem item1 : items) {
-            if(Objects.equals(item1.getId(), id)) {
+        for (WishListItem item1 : items) {
+            if (Objects.equals(item1.getId(), id)) {
                 item = item1;
             }
         }
         items.remove(item);
         wishListItemRepository.delete(item);
-        WishList.setItems(items);
-        return wishListRepository.save(WishList);
+        wishList.setItems(items);
+        wishListRepository.save(wishList);
     }
 
     public void clearWishList(String sessionTokenWishList) {

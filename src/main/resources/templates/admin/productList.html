@@ -8,7 +8,7 @@
     <base href="/">
     <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="api/ajaxFetch.js" type="text/javascript"></script>
-    <script src="font-awesome/js1/fontawesome.js" type="text/javascript" ></script>
+    <script src="font-awesome/js1/fontawesome.js" type="text/javascript"></script>
     <script src="js/bootstrap.js" type="text/javascript"></script>
     <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
     <!--CSS-->
@@ -28,7 +28,6 @@
             <th scope="col">Image</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
-            <th scope="col">Description</th>
             <th scope="col">Quantity</th>
             <th scope="col"></th>
         </tr>
@@ -38,87 +37,19 @@
             <th scope="row"><img th:src="*{'data:image;base64,'+{product.image}}"
                                  style="width: 100px; height: 100px">
             </th>
-            <td>[[*{product.name}]]
-                <br>
-                <button type="button" class="btn btn-success " data-toggle="modal"
-                        th:attr="data-target='#changeNameButton'+*{product.id}">Edit
+            <td>[[*{product.name}]]</td>
+            <td>[[*{product.price}]]₽</td>
+            <td>[[*{product.quantity}]]</td>
+            <td>
+                <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                        th:attr="data-target='#changeProductButton'+*{product.id}">Edit
                 </button>
-                <div class="modal fade" th:id="*{'changeNameButton'+{product.id}}" tabindex="-1" role="dialog"
+                <br>
+                <div class="modal fade" th:id="*{'changeProductButton'+{product.id}}" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Edit name</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="false">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="admin/changeName" method="post">
-                                    <div class="form-group">
-                                        <label>product id</label>
-                                        <input type="text" th:value="*{product.id}"
-                                               class="form-control" name="id" readonly>
-                                        <label>product name</label>
-                                        <input type="text" th:value="*{product.name}"
-                                               class="form-control" name="name" readonly>
-                                        <label>new product name</label>
-                                        <input type="text" name="newPname" class="form-control">
-                                        <br>
-                                        <button type="submit" class="btn btn-primary">save</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td>[[*{product.price}]]
-                <br>
-                <button type="button" class="btn btn-success " data-toggle="modal"
-                        th:attr="data-target='#changePriceButton'+*{product.id}">Edit
-                </button>
-                <div class="modal fade" th:id="*{'changePriceButton'+{product.id}}" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Edit price</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="false">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="admin/changePprice" method="post">
-                                    <div class="form-group">
-                                        <label>product id</label>
-                                        <input type="text" th:value="*{product.id}"
-                                               class="form-control" name="id" readonly>
-                                        <label>product price</label>
-                                        <input type="text" th:value="*{product.price}"
-                                               class="form-control" name="name" readonly>
-                                        <label>new product price</label>
-                                        <input type="text" name="newPprice" class="form-control">
-                                        <br>
-                                        <button type="submit" class="btn btn-primary">save</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td>[[*{product.description}]]
-                <br>
-                <button type="button" class="btn btn-success " data-toggle="modal"
-                        th:attr="data-target='#changeDescriptionButton'+*{product.id}">Edit
-                </button>
-                <div class="modal fade" th:id="*{'changeDescriptionButton'+{product.id}}" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Edit Description</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="false">×</span>
                                 </button>
@@ -126,15 +57,20 @@
                             <div class="modal-body">
                                 <form action="/admin/changePdescription" method="post">
                                     <div class="form-group">
-                                        <label>product id</label>
-                                        <input type="text" th:value="*{product.id}"
-                                               class="form-control" name="id" readonly>
-                                        <label>product description</label>
-                                        <input type="text" th:value="*{product.description}"
-                                               class="form-control" name="name" readonly>
-                                        <label>new product description</label>
-                                        <textarea type="text" name="newPdescription" class="form-control"></textarea>
-                                        <br>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="id">ID</span>
+                                            <input type="text" th:value="*{product.id}" class="form-control" readonly>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="name">Name</span>
+                                            <input type="text" th:value="*{product.name}" class="form-control" readonly>
+                                            <button class="btn btn-outline-secondary" type="button" id="changeName">Edit</button>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="price">Price</span>
+                                            <input type="text" th:value="*{product.price}" class="form-control" readonly>
+                                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Edit</button>
+                                        </div>
                                         <button type="submit" class="btn btn-primary">save</button>
                                     </div>
                                 </form>
@@ -143,42 +79,7 @@
                     </div>
                 </div>
             </td>
-            <td>[[*{product.quantity}]]
-                <br>
-                <button type="button" class="btn btn-success " data-toggle="modal"
-                        th:attr="data-target='#changeQuantityButton'+*{product.id}">Edit
-                </button>
-                <div class="modal fade" th:id="*{'changeQuantityButton'+{product.id}}" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Edit quantity</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="false">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/admin/changeProductQuantity" method="post">
-                                    <div class="form-group">
-                                        <label>product id</label>
-                                        <input type="text" th:value="*{product.id}"
-                                               class="form-control" name="id" readonly>
-                                        <label>product quantity</label>
-                                        <input type="text" th:value="*{product.quantity}"
-                                               class="form-control" name="name" readonly>
-                                        <label>new product quantity</label>
-                                        <input type="text" name="newQuantity" class="form-control">
-                                        <br>
-                                        <button type="submit" class="btn btn-primary">save</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td><br><a th:href="@{/admin/deleteProduct/{id}(id=${product.id})}"
+            <td><a th:href="@{/admin/deleteProduct/{id}(id=${product.id})}"
                    class="btn btn-danger">Delete</a></td>
         </tr>
         </tbody>

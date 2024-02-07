@@ -2,7 +2,6 @@ package com.artemgggi.webshop.model;
 
 import jakarta.persistence.*;
 
-
 @Entity
 @Table(name = "order_detail")
 public class OrderDetail {

@@ -1,4 +1,4 @@
-package com.artemgggi.webshop.dto;
+package com.artemgggi.webshop.repository;
 
 import com.artemgggi.webshop.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
+
     Role findByName(String name);
 }

@@ -21,10 +21,10 @@ public class WishList {
 
     private String sessionToken;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER )
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<WishListItem> items = new HashSet<>();
 
-    public WishList() {}
+    public WishList() { }
 
     public Long getId() {
         return id;

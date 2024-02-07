@@ -21,63 +21,60 @@
     <link rel="icon" href="images/icon.png"/>
 </head>
 <body>
-<div id="content">
-    <div class="card">
-        <div class="text-center border border-light p-5">
-            <div class="form">
-                <p>Register</p>
-                <div th:if="${error}" class="text-center alert alert-danger">
-                    <p th:text="${error}"></p>
-                </div>
-                <div th:if="${username}" class="text-center alert-warning">
-                    <p th:text="${username}"></p>
-                </div>
-                <div th:if="${password}" class="text-center alert-warning">
-                    <p th:text="${password}"></p>
-                </div>
-                <div th:if="${success}" class="text-center alert-success">
-                    <p th:text="${success}"></p>
-                </div>
-                <form th:action="@{/do-register}" method="post" th:object="${customerDto}">
-                    <div class="input-form">
-                        <input type="text" th:field="*{firstName}" placeholder="First Name" name="">
+<div class="container">
+    <div class="row">
+    <div class="col-md-6 offset-md-3">
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You have successfully registered our app!</div>
+            </div>
+            <div class="card-header">
+            <h2 class="text-center">Registration</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
+                    <div class="form-group mb-3">
+                        <label class="form-label">First Name</label>
+                        <input class="form-control" id="firstName" name="firstName" placeholder="Enter first name"
+                                th:field="*{firstName}"
+                                type="text"/>
+                        <p th:errors="*{firstName}" class="text-danger"
+                           th:if="${#fields.hasErrors('firstName')}"></p>
                     </div>
-                    <div class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}"
-                         th:errors="*{firstName}">
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Last Name</label>
+                        <input class="form-control" id="lastName" name="lastName" placeholder="Enter last name"
+                                th:field="*{lastName}"
+                                type="text"/>
+                        <p th:errors="*{lastName}" class="text-danger"
+                           th:if="${#fields.hasErrors('lastName')}"></p>
                     </div>
-                    <br>
-                    <div class="input-form">
-                        <input type="text" th:field="*{lastName}" placeholder="Last Name" name="">
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Email</label>
+                        <input class="form-control" id="email" name="email" placeholder="Enter email address"
+                                th:field="*{email}"
+                                type="email"
+                        />
+                        <p th:errors="*{email}" class="text-danger"
+                           th:if="${#fields.hasErrors('email')}"></p>
                     </div>
-                    <div class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}"
-                         th:errors="*{lastName}">
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Password</label>
+                        <input class="form-control" id="password" name="password" placeholder="Enter password"
+                                th:field="*{password}"
+                                type="password"/>
+                        <p th:errors="*{password}" class="text-danger"
+                           th:if="${#fields.hasErrors('password')}"></p>
                     </div>
-                    <br>
-                    <div class="input-form">
-                        <input type="email" th:field="*{username}" placeholder="Username" name="">
-                    </div>
-                    <br>
-                    <div class="input-form">
-                        <input type="password" th:field="*{password}" placeholder="Password" name="">
-                    </div>
-                    <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}"
-                         th:errors="*{password}">
-                    </div>
-                    <br>
-                    <div class="input-form">
-                        <input type="password" th:field="*{repeatPassword}" placeholder="Verify password" name="">
-                    </div>
-                    <br>
-                    <div class="input-form">
-                        <p>Do You Already Have An Account ? <a th:href="@{/login}"> Sign in now </a></p>
-                    </div>
-                    <br>
-                    <div class="input-form">
-                        <a class="btn btn-outline-secondary back" href="/">
-                            <i class="fas fa-arrow-left"></i>Back</a>
-                        <input type="submit" class="btn btn-info btn-success" value="Sign up">
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Register</button>
+                        <span>Already registered? <a th:href="@{/login}">Login here</a>
+                        </span>
                     </div>
                 </form>
+            </div>
             </div>
         </div>
     </div>

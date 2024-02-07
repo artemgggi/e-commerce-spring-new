@@ -1,7 +1,7 @@
 package com.artemgggi.webshop.service;
 
-import com.artemgggi.webshop.dto.CategoryRepository;
-import com.artemgggi.webshop.dto.ProductRepository;
+import com.artemgggi.webshop.repository.CategoryRepository;
+import com.artemgggi.webshop.repository.ProductRepository;
 import com.artemgggi.webshop.model.Carousel;
 import com.artemgggi.webshop.model.Category;
 import com.artemgggi.webshop.model.Coupon;
@@ -61,19 +61,19 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public void changeProductName(Long id ,String name) {
+    public void changeProductName(Long id, String name) {
         Product p = productRepository.findById(id).get();
         p.setName(name);
         productRepository.save(p);
     }
 
-    public void changeProductDescription(Long id , String description) {
+    public void changeProductDescription(Long id, String description) {
         Product p = productRepository.findById(id).get();
         p.setDescription(description);
         productRepository.save(p);
     }
 
-    public void changeProductPrice(Long id,int price) {
+    public void changeProductPrice(Long id, int price) {
         Product p = productRepository.findById(id).get();
         p.setPrice(price);
         productRepository.save(p);
@@ -93,8 +93,7 @@ public class ProductService {
         Product p = productRepository.findById(id).get();
         Carousel carousel = new Carousel();
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        if(fileName.contains(".."))
-        {
+        if (fileName.contains("..")) {
             System.out.println("not a valid file");
         }
         try {

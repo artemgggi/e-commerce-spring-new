@@ -1,7 +1,7 @@
 package com.artemgggi.webshop.service;
-import com.artemgggi.webshop.dto.OrderDetailRepository;
-import com.artemgggi.webshop.dto.OrderRepository;
-import com.artemgggi.webshop.dto.ShoppingCartRepository;
+import com.artemgggi.webshop.repository.OrderDetailRepository;
+import com.artemgggi.webshop.repository.OrderRepository;
+import com.artemgggi.webshop.repository.ShoppingCartRepository;
 import com.artemgggi.webshop.model.*;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +29,10 @@ public class OrderService {
     public void placeOrder(String sessionToken) {
         ShoppingCart shoppingCart = shoppingCartRepository.findBySessionToken(sessionToken);
         Order order = new Order();
-        Customer customer = new Customer();
+        User user = new User();
         order.setOrderStatus("PENDING");
         order.setOrderDate(new Date());
-        order.setCustomer(customer);
+        order.setCustomer(user);
         order.setTotalPrice(shoppingCart.getTotalPrice());
         List<OrderDetail> orderDetailList = new ArrayList<>();
         for (CartItem item : shoppingCart.getItems()) {

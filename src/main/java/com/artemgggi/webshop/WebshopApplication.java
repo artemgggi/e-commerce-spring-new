@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WebshopApplication  {
 
     public static void main(String[] args) {
-        //System.setProperty("spring.devtools.restart.enabled", "true");
+        System.setProperty("spring.devtools.restart.enabled", "true");
         SpringApplication.run(WebshopApplication.class, args);
     }
 }

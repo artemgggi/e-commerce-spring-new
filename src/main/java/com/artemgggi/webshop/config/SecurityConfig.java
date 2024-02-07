@@ -9,15 +9,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig {
+public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
 
-    public WebSecurityConfig(UserDetailsService userDetailsService) {
+    public SecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -29,25 +28,30 @@ public class WebSecurityConfig {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-                http.csrf().disable();
-                http.authorizeHttpRequests()
-//                        .requestMatchers("/admin/**").hasRole("MANAGER")
-//                        .requestMatchers("/customer/**").hasRole("CUSTOMER")
-                        .requestMatchers("/**").permitAll().anyRequest().authenticated()
-                .and()
-                .formLogin().defaultSuccessUrl("/admin/index").permitAll()
-                .loginProcessingUrl("/j_spring_security_check")
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
-                .logoutSuccessUrl("/")
-                .and()
-                .exceptionHandling();
+        http
+                .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/", "/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin((form) -> form
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/")
+                        .permitAll()
+                )
+                .logout((logout) -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true));
+
         return http.build();
     }
 }

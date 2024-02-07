@@ -23,10 +23,6 @@
 <body>
 <div class="wrapper">
     <nav th:fragment="sidebar" class="active" id="sidebar">
-        <div class="sidebar-header">
-            <h3>Web-Shop</h3>
-            <strong><i class="fa fa-shopping-cart" aria-hidden="true"></i></strong>
-        </div>
         <ul class="list-unstyled components">
             <li>
                 <a href="/"><i class="fas fa-home"></i>Home
@@ -68,10 +64,11 @@
             </div>
         </nav>
         <div class="container" id="app">
-            <div th:if="${shoppingCart.itemsNumber < 1}">
-                <div class="text-center border border-light p-5">
-                    <p>Your cart is Empty :(<a th:href="@{/}"> Back to shopping </a></p>
-                </div>
+            <div th:if="${shoppingCart.itemsNumber == 0}">
+            <div class="text-center border border-light p-5">
+                <h1>You cart is empty..</h1>
+                <a th:href="@{/}">Go to the shopping</a>
+            </div>
             </div>
             <div th:if="${shoppingCart.itemsNumber > 0}">
                 <div class="col-12">
@@ -180,24 +177,6 @@
 		});
 
 </script>
-
-<!--<script>-->
-<!--		function openTab(evt, Name) {-->
-<!--			var i, tabcontent, tablinks;-->
-<!--			tabcontent = document.getElementsByClassName("tabcontent");-->
-<!--			for (i = 0; i < tabcontent.length; i++) {-->
-<!--				tabcontent[i].style.display = "none";-->
-<!--			}-->
-<!--			tablinks = document.getElementsByClassName("tablinks");-->
-<!--			for (i = 0; i < tablinks.length; i++) {-->
-<!--				tablinks[i].className = tablinks[i].className.replace(-->
-<!--						" active", "");-->
-<!--			}-->
-<!--			document.getElementById(Name).style.display = "block";-->
-<!--			evt.currentTarget.className += " active";-->
-<!--		}-->
-<!--		document.getElementById("defaultOpen").click();-->
-<!--</script>-->
 
 </body>
 </html>

@@ -1,9 +1,17 @@
 package com.artemgggi.webshop.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "shopping_cart")
 public class ShoppingCart {
@@ -26,49 +34,11 @@ public class ShoppingCart {
 
     private String sessionToken;
 
-    public ShoppingCart() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public Double getTotalPrice() {
         double sum = 0.0;
         for (CartItem item : this.items) {
            sum = sum + item.getProduct().getPrice() * item.getQuantity();
         }
         return sum;
-    }
-
-    public int getItemsNumber() {
-        return this.items.size();
-    }
-
-    public Set<CartItem> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<CartItem> items) {
-        this.items = items;
-    }
-
-    public String getSessionToken() {
-        return sessionToken;
-    }
-
-    public void setSessionToken(String sessionToken) {
-        this.sessionToken = sessionToken;
     }
 }

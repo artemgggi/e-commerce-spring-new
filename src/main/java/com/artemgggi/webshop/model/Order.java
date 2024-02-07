@@ -11,7 +11,7 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name= "order_id")
+    @Column(name = "order_id")
     private Long id;
 
     private Date orderDate;
@@ -21,8 +21,8 @@ public class Order {
     private String orderStatus;
     private String notes;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-    private Customer customer;
+//    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderDetail> orderDetailList;
@@ -83,12 +83,12 @@ public class Order {
         this.notes = notes;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public User getCustomer() {
+        return user;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer(User user) {
+        this.user = user;
     }
 
     public List<OrderDetail> getOrderDetailList() {

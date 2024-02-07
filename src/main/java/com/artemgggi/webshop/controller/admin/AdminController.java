@@ -1,7 +1,6 @@
 package com.artemgggi.webshop.controller.admin;
 
-import com.artemgggi.webshop.dto.ProductRepository;
-import com.artemgggi.webshop.model.Category;
+import com.artemgggi.webshop.repository.ProductRepository;
 import com.artemgggi.webshop.model.Product;
 import com.artemgggi.webshop.model.ShoppingCart;
 import com.artemgggi.webshop.service.ProductService;
@@ -56,7 +55,7 @@ public class AdminController {
                               @RequestParam("desc") String desc,
                               @RequestParam("quantity") int quantity,
                               @RequestParam("categories") String categories) {
-        productService.saveProductToDB(file, name, price,desc, quantity, categories);
+        productService.saveProductToDB(file, name, price, desc, quantity, categories);
         return "redirect:/admin/index";
     }
 
@@ -80,7 +79,7 @@ public class AdminController {
     }
 
     @PostMapping("/admin/changePdescription")
-    public String changeDescription(@RequestParam("id") Long id ,
+    public String changeDescription(@RequestParam("id") Long id,
                                     @RequestParam("newPdescription")
                                     String description) {
         productService.changeProductDescription(id, description);
@@ -88,14 +87,14 @@ public class AdminController {
     }
 
     @PostMapping("/admin/changePprice")
-    public String changePrice(@RequestParam("id") Long id ,
+    public String changePrice(@RequestParam("id") Long id,
                               @RequestParam("newPprice") int price) {
         productService.changeProductPrice(id, price);
         return "redirect:/admin/index";
     }
 
     @PostMapping("/admin/changeProductQuantity")
-    public String changeQuantity(@RequestParam("id") Long id ,
+    public String changeQuantity(@RequestParam("id") Long id,
                                  @RequestParam("newQuantity") int quantity) {
         productService.changeProductQuantity(id, quantity);
         return "redirect:/admin/index";
@@ -104,7 +103,7 @@ public class AdminController {
     @PostMapping("/admin/addPictureToP")
     public String addImageToProduct(@RequestParam("file") MultipartFile file,
                                     @RequestParam("product_id") Long id ) {
-        productService.addImageToProduct(file,id);
+        productService.addImageToProduct(file, id);
         return "redirect:/admin/index";
     }
 
