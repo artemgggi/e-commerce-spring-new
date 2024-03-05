@@ -1,6 +1,6 @@
 package com.artemgggi.webshop.repository;
 
-import com.artemgggi.webshop.model.WishListItem;
+import com.artemgggi.webshop.model.wishlist.WishListItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

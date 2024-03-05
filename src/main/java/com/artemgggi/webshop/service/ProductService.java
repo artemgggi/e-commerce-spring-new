@@ -2,10 +2,10 @@ package com.artemgggi.webshop.service;
 
 import com.artemgggi.webshop.repository.CategoryRepository;
 import com.artemgggi.webshop.repository.ProductRepository;
-import com.artemgggi.webshop.model.Carousel;
-import com.artemgggi.webshop.model.Category;
-import com.artemgggi.webshop.model.Coupon;
-import com.artemgggi.webshop.model.Product;
+import com.artemgggi.webshop.model.product.Carousel;
+import com.artemgggi.webshop.model.product.Category;
+import com.artemgggi.webshop.model.product.Coupon;
+import com.artemgggi.webshop.model.product.Product;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;

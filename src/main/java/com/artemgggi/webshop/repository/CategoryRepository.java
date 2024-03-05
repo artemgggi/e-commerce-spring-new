@@ -1,6 +1,6 @@
 package com.artemgggi.webshop.repository;
 
-import com.artemgggi.webshop.model.Category;
+import com.artemgggi.webshop.model.product.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

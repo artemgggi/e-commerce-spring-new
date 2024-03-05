@@ -1,8 +1,8 @@
 package com.artemgggi.webshop.service;
 
-import com.artemgggi.webshop.model.Role;
-import com.artemgggi.webshop.model.User;
-import com.artemgggi.webshop.model.UserDto;
+import com.artemgggi.webshop.model.user.Role;
+import com.artemgggi.webshop.model.user.User;
+import com.artemgggi.webshop.model.user.UserDto;
 import com.artemgggi.webshop.repository.RoleRepository;
 import com.artemgggi.webshop.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;

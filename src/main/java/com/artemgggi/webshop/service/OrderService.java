@@ -1,8 +1,12 @@
 package com.artemgggi.webshop.service;
+import com.artemgggi.webshop.model.cart.CartItem;
+import com.artemgggi.webshop.model.cart.ShoppingCart;
+import com.artemgggi.webshop.model.order.Order;
+import com.artemgggi.webshop.model.order.OrderDetail;
+import com.artemgggi.webshop.model.user.User;
 import com.artemgggi.webshop.repository.OrderDetailRepository;
 import com.artemgggi.webshop.repository.OrderRepository;
 import com.artemgggi.webshop.repository.ShoppingCartRepository;
-import com.artemgggi.webshop.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,11 +16,11 @@ import java.util.List;
 @Service
 public class OrderService {
 
-    final private OrderRepository orderRepository;
+     private OrderRepository orderRepository;
 
-    final private OrderDetailRepository orderDetailRepository;
+     private OrderDetailRepository orderDetailRepository;
 
-    final private ShoppingCartRepository shoppingCartRepository;
+     private ShoppingCartRepository shoppingCartRepository;
 
     public OrderService(OrderRepository orderRepository,
                         OrderDetailRepository orderDetailRepository,
@@ -32,7 +36,6 @@ public class OrderService {
         User user = new User();
         order.setOrderStatus("PENDING");
         order.setOrderDate(new Date());
-        order.setCustomer(user);
         order.setTotalPrice(shoppingCart.getTotalPrice());
         List<OrderDetail> orderDetailList = new ArrayList<>();
         for (CartItem item : shoppingCart.getItems()) {

@@ -1,9 +1,9 @@
 package com.artemgggi.webshop.controller;
 
 import com.artemgggi.webshop.repository.ProductRepository;
-import com.artemgggi.webshop.model.Product;
-import com.artemgggi.webshop.model.ShoppingCart;
-import com.artemgggi.webshop.model.WishList;
+import com.artemgggi.webshop.model.product.Product;
+import com.artemgggi.webshop.model.cart.ShoppingCart;
+import com.artemgggi.webshop.model.wishlist.WishList;
 import com.artemgggi.webshop.service.ProductService;
 import com.artemgggi.webshop.service.ShoppingCartService;
 import com.artemgggi.webshop.service.WishListService;

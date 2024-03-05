@@ -92,7 +92,7 @@
                                             <div class="d-flex justify-content-between mt-2"
                                                  th:each="category : ${categories}">
                                                 <a th:href="@{/category/{id}(id = ${category.id})}">[[${category.name}]]</a>
-                                                <span>[[${category.productsNumber}]]</span>
+                                                <span>[[${category.getProductsNumber}]]</span>
                                             </div>
                                         </div>
                                     </div>

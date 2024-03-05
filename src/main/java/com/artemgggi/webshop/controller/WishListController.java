@@ -1,6 +1,6 @@
 package com.artemgggi.webshop.controller;
 
-import com.artemgggi.webshop.model.WishList;
+import com.artemgggi.webshop.model.wishlist.WishList;
 import com.artemgggi.webshop.service.WishListService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -37,13 +37,11 @@ public class WishListController {
 
     @GetMapping("/addToWishlist/{id}")
     public String addToWishList(@PathVariable("id") Long id, HttpServletRequest request) {
-        String sessionTokenWishList= getSessionToken(request);
+        String sessionTokenWishList = getSessionToken(request);
         if (sessionTokenWishList == null) {
             sessionTokenWishList = UUID.randomUUID().toString();
             request.getSession().setAttribute("sessionTokenWishList", sessionTokenWishList);
             wishListService.addToWishListFirstTime(id, sessionTokenWishList);
-        } else {
-            wishListService.addToExistWishList(id, sessionTokenWishList);
         }
         return "redirect:/";
     }

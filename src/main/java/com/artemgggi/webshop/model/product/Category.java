@@ -1,14 +1,12 @@
-package com.artemgggi.webshop.model;
+package com.artemgggi.webshop.model.product;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.lang.NonNull;
+import lombok.Data;
+
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @Entity
 public class Category {
 
@@ -24,16 +22,4 @@ public class Category {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.ALL)
     private Set<Product> products;
-
-    public Category() { }
-
-    public Category(Long id, String name) {
-        super();
-        this.id = id;
-        this.name = name;
-    }
-
-    public int getProductsNumber() {
-        return this.products.size();
-    }
 }

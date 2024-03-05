@@ -1,11 +1,9 @@
-package com.artemgggi.webshop.model;
+package com.artemgggi.webshop.model.product;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @Entity
 public class Carousel {
 

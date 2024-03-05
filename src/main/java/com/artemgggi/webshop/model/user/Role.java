@@ -1,17 +1,11 @@
-package com.artemgggi.webshop.model;
+package com.artemgggi.webshop.model.user;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.List;
 
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -25,5 +19,4 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
-
 }

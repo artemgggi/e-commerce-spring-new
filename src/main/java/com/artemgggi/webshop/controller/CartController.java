@@ -1,6 +1,6 @@
 package com.artemgggi.webshop.controller;
 
-import com.artemgggi.webshop.model.ShoppingCart;
+import com.artemgggi.webshop.model.cart.ShoppingCart;
 import com.artemgggi.webshop.service.ShoppingCartService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -62,7 +62,6 @@ public class CartController {
     @GetMapping("/removeCartItem/{id}")
     public String removeItem(@PathVariable("id") Long id, HttpServletRequest request) {
         String sessionToken = (String) request.getSession(false).getAttribute("sessionToken");
-        shoppingCartService.removeCartIemFromShoppingCart(id, sessionToken);
         return "redirect:/shoppingCart";
     }
 

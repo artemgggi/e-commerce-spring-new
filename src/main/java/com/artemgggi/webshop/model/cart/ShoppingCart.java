@@ -1,19 +1,14 @@
-package com.artemgggi.webshop.model;
+package com.artemgggi.webshop.model.cart;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Entity
-@Table(name = "shopping_cart")
 public class ShoppingCart {
 
     @Id

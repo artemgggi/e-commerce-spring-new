@@ -1,24 +1,23 @@
 package com.artemgggi.webshop.service;
 
+import com.artemgggi.webshop.model.cart.CartItem;
+import com.artemgggi.webshop.model.product.Product;
+import com.artemgggi.webshop.model.cart.ShoppingCart;
 import com.artemgggi.webshop.repository.CartItemRepository;
 import com.artemgggi.webshop.repository.ShoppingCartRepository;
-import com.artemgggi.webshop.model.CartItem;
-import com.artemgggi.webshop.model.Product;
-import com.artemgggi.webshop.model.ShoppingCart;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Objects;
 import java.util.Set;
 
 @Service
 public class ShoppingCartService {
 
-    private final ShoppingCartRepository shoppingCartRepository;
+    private  ShoppingCartRepository shoppingCartRepository;
 
-    private final ProductService productService;
+    private  ProductService productService;
 
-    private final CartItemRepository cartItemRepository;
+    private  CartItemRepository cartItemRepository;
 
     public ShoppingCartService(ShoppingCartRepository shoppingCartRepository,
                                ProductService productService,
@@ -53,7 +52,7 @@ public class ShoppingCartService {
         }
         shoppingCart.setItems(items);
         shoppingCartRepository.saveAndFlush(shoppingCart);
-        if( !productExistInTheCart ) {
+        if (!productExistInTheCart) {
             CartItem cartItem1 = new CartItem();
             cartItem1.setDate(new Date());
             cartItem1.setQuantity(quantity);
@@ -71,21 +70,6 @@ public class ShoppingCartService {
         CartItem cartItem = cartItemRepository.findById(id).get();
         cartItem.setQuantity(quantity);
         cartItemRepository.saveAndFlush(cartItem);
-    }
-    //TODO
-    public void removeCartIemFromShoppingCart(Long id, String sessionToken) {
-        ShoppingCart shoppingCart = shoppingCartRepository.findBySessionToken(sessionToken);
-        Set<CartItem> items = shoppingCart.getItems();
-        CartItem cartItem = null;
-        for (CartItem item : items) {
-            if (Objects.equals(item.getId(), id)) {
-                cartItem = item;
-            }
-        }
-        items.remove(cartItem);
-        cartItemRepository.delete(cartItem);
-        shoppingCart.setItems(items);
-        shoppingCartRepository.save(shoppingCart);
     }
 
     public void clearShoppingCart(String sessionToken) {

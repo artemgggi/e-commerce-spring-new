@@ -1,8 +1,8 @@
 package com.artemgggi.webshop.service;
 
 import com.artemgggi.webshop.repository.UserRepository;
-import com.artemgggi.webshop.model.Role;
-import com.artemgggi.webshop.model.User;
+import com.artemgggi.webshop.model.user.Role;
+import com.artemgggi.webshop.model.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
+
     private UserRepository userRepository;
 
     public CustomUserDetailsService(UserRepository userRepository) {
